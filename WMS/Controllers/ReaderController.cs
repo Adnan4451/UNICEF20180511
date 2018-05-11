@@ -43,7 +43,8 @@ namespace WMS.Controllers
 
             ViewBag.CurrentFilter = searchString;
             List<Reader> readers = new List<Models.Reader>();
-            int NoOfReaders = Convert.ToInt32(GlobalVaribales.NoOfDevices);
+            readers = db.Readers.ToList();
+            int NoOfReaders = 200;
             if(GlobalVaribales.DeviceType=="1")
                 readers = db.Readers.Where(aa => aa.ReaderType.Category == "CNS-Card").Take(NoOfReaders).ToList();
             if (GlobalVaribales.DeviceType == "2")
@@ -115,13 +116,7 @@ namespace WMS.Controllers
         {
             ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
             ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName");
-            if (GlobalVaribales.DeviceType == "1")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            if (GlobalVaribales.DeviceType == "2")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-FP" || aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            if (GlobalVaribales.DeviceType == "3")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-Face" || aa.Category == "CNS-FP" || aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            
+            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName"); 
             return View();
         }
 
@@ -136,7 +131,7 @@ namespace WMS.Controllers
             // Regex for IP [0-9]+(\.[0-9][0-9]?)?
             reader.ClearRecords = (bool)ValueProvider.GetValue("ClearRecords").ConvertTo(typeof(bool));
             reader.Status = (bool)ValueProvider.GetValue("Status").ConvertTo(typeof(bool));
-            if (db.Readers.Where(aa => aa.Status == true).Count() >= Convert.ToInt32(GlobalVaribales.NoOfDevices))
+            if (db.Readers.Where(aa => aa.Status == true).Count() >= 700)
                 ModelState.AddModelError("RdrName", "Your Readers has exceeded from License, Please upgrade your license");
             if (string.IsNullOrEmpty(reader.IpAdd))
                 ModelState.AddModelError("IpAdd", "Required");
@@ -176,15 +171,10 @@ namespace WMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
-            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
-            if (GlobalVaribales.DeviceType == "1")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            if (GlobalVaribales.DeviceType == "2")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-FP" || aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            if (GlobalVaribales.DeviceType == "3")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-Face" || aa.Category == "CNS-FP" || aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            return View(reader);
+            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName", reader.LocID);
+            ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s => s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
+            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);          
+           return View(reader);
         }
         // GET: /Reader/Edit/5
         [CustomActionAttribute]
@@ -201,13 +191,8 @@ namespace WMS.Controllers
             }
             ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
             ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
-            if (GlobalVaribales.DeviceType == "1")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            if (GlobalVaribales.DeviceType == "2")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-FP" || aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            if (GlobalVaribales.DeviceType == "3")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-Face" || aa.Category == "CNS-FP" || aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID);
-            return View(reader);
+            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID); 
+           return View(reader);
         }
 
         // POST: /Reader/Edit/5
@@ -257,12 +242,7 @@ namespace WMS.Controllers
             }
             ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", reader.LocID);
             ViewBag.RdrDutyID = new SelectList(db.RdrDutyCodes.OrderBy(s=>s.RdrDutyName), "RdrDutyID", "RdrDutyName", reader.RdrDutyID);
-            if (GlobalVaribales.DeviceType == "1")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            if (GlobalVaribales.DeviceType == "2")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-FP" || aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
-            if (GlobalVaribales.DeviceType == "3")
-                ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.Where(aa => aa.Category == "CNS-Face" || aa.Category == "CNS-FP" || aa.Category == "CNS-Card").OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName");
+            ViewBag.RdrTypeID = new SelectList(db.ReaderTypes.OrderBy(s => s.RdrTypeName), "RdrTypeID", "RdrTypeName", reader.RdrTypeID); 
             return View(reader);
         }
 

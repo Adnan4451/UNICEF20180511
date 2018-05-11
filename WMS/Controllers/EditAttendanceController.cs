@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WMS.Controllers.EditAttendance;
 using WMS.Controllers.Filters;
+using WMS.CustomClass;
 using WMS.HelperClass;
 using WMS.Models;
 
@@ -46,12 +47,13 @@ namespace WMS.Controllers
                     DateTime _AttDataFrom = Convert.ToDateTime(Request.Form["DateFrom"].ToString());
                     Session["EditAttendanceDate"] = Request.Form["DateFrom"].ToString();
                     AttData _attData = new AttData();
-                    List<Emp> _Emp = new List<Emp>();
+                    List<EmpView> emps = new List<EmpView>();
                     int EmpID = 0;
-                    _Emp = db.Emps.Where(aa => aa.EmpNo == _EmpNo && aa.Status == true).ToList();                   
-                    if (_Emp.Count > 0)
+                    emps = db.EmpViews.Where(aa => aa.EmpNo == _EmpNo && aa.Status == true).ToList();
+                    emps = AssistantQuery.GetFilteredEmps(emps, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
+                    if (emps.Count > 0)
                     {
-                        EmpID = _Emp.FirstOrDefault().EmpID;
+                        EmpID = emps.FirstOrDefault().EmpID;
                         if (db.AttDatas.Where(aa => aa.EmpID == EmpID && aa.AttDate == _AttDataFrom).Count() > 0)
                         {
 

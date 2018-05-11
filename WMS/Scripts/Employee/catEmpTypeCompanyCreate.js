@@ -4,7 +4,7 @@
            $('#TypeID').empty();
            var convalue = $('#CatID').val();
            //var URL = '/WMS/Emp/EmpTypeList';
-            var URL = '/Emp/EmpTypeList';
+           var URL = '/Emp/EmpTypeList';
            $.getJSON(URL + '/' + convalue, function (data) {
                var items;
                $.each(data, function (i, state) {

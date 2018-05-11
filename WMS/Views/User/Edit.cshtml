@@ -1,20 +1,18 @@
 ﻿@model WMS.Models.User
 
 @{
-    ViewBag.Title = "User Edit";
+    ViewBag.Title = "Edit";
 }
-<br />
     <div>
       <form class ="form-inline" role="form">
-          <div class="form-group "> <h3>Edit User</h3> </div>
+          <div class="form-group "> <h2>Edit User</h2> </div>
       </form>  
     </div>
+ <hr />
+
 @using (Html.BeginForm()) 
 {
-    <div class="well bs-component">
-        <form class="form-horizontal" action="~/Views/User/Edit" enctype="multipart/form-data" method="post">
-             @Html.AntiForgeryToken()
-            <fieldset>
+    @Html.AntiForgeryToken()
     <div class="form-horizontal">
     @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.UserID)
@@ -55,28 +53,20 @@
                 </div>
             </div>
 
-          <div class="form-group"name="ForUserOnly" id="ForUserOnly">
-            <div class="col-md-2 text-right">Section</div>
-            <div class="col-md-3">
-                <input type="hidden" placeholder="e.g Lahore" data-ng-model="section.name" id="uSectionCount" name="uSectionCount" class="form-control" value="{{sections.length}}">
-                <div class="input-group" ng-repeat="sec in sections">
-                    <input disabled type="text" placeholder="e.g Lahore" id="testSection{{$index + 1}}" data-ng-model="sec.name" class="form-control">
-                    <input type="hidden" placeholder="e.g Lahore" data-ng-model="sec.name" id="uSection{{$index + 1}}" name="uSection{{$index + 1}}" class="form-control" value="{{sec.name}}">
-                    <span class="input-group-btn">
-                        <button type="button" ng-click="removeSection($index)" class="btn btn-default"><i class="fa fa-times"></i>[X]</button>
-                    </span>
+          <div id="ForUserOnly">
+                    <div class="form-group">
+                        <div class="control-label col-md-2">Locations</div>
+                        <div class="col-md-6">
+                            @Html.DropDownList("Location", null, new { @id = "Location", @multiple = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-2">Sections</div>
+                        <div class="col-md-6">
+                            @Html.DropDownList("Department", null, new { @id = "Department", @multiple = "form-control" })
+                        </div>
+                    </div>
                 </div>
-                 <div  ng-show="isAddingSection">
-                    @*<input type="text" placeholder="Add a Location" data-ng-model="newLocation.name" class="form-control">*@
-                    <select type="text" placeholder="Add a Section" data-ng-model="newSection.name" class="form-control">
-                        <option ng-repeat="sec in AllSections">{{sec.Text}}</option>
-                    </select>
-                    <a class="btn btn-default btn-sm" ng-click="addSection()">Add</a>
-                    <a href="" ng-click="isAddingSection = false">Done Adding</a>
-                </div>
-                <p><a href="" ng-click="isAddingSection = true">+ Add Section</a></p>
-            </div>
-        </div>
             
          <div class="form-group">
              <div class="col-md-2 text-right">Operations</div>
@@ -93,7 +83,6 @@
                     @Html.CheckBox("MHR") <label>HR</label>
                     @Html.CheckBox("MOption") <label>Options</label>
                     @Html.CheckBox("MLeave") <label>Leaves</label>
-                    @Html.CheckBox("MRoster") <label>Roster</label>
                     @Html.CheckBox("MUser") <label>Users</label>
                     @Html.CheckBox("MDevice") <label>Devices</label>
                     @Html.CheckBox("MDesktop") <label>Desktop</label>
@@ -108,10 +97,10 @@
                         @Html.CheckBox("MRLeave") <label>Leaves</label>
                         @Html.CheckBox("MRDailyAtt") <label>Daily Attendance</label>
                         @Html.CheckBox("MRMonthly") <label>Monthly Attendance</label>
-                        @Html.CheckBox("MRAudit") <label>Audit</label>
-                    @Html.CheckBox("MRManualEditAtt") <label>Edit Attendance</label>
+                        @*@Html.CheckBox("MRAudit") <label>Audit</label>*@
+                    @*@Html.CheckBox("MRManualEditAtt") <label>Edit Attendance</label>*@
                     @Html.CheckBox("MRDetail") <label>Detailed</label>
-                    @Html.CheckBox("MRSummary") <label>Summary</label>
+                    @*@Html.CheckBox("MRSummary")*@ <label>Summary</label>
                 </div>
             </div>
      </section>
@@ -125,18 +114,47 @@
         </div>
       </div>
     </div>
-                </fieldset>
-            </form>
-        </div>
-}
-@*<div>
-    <div ng-controller="myCtrl" data-ng-init="initFunction()">
- 	<p>Name: <input type="text" ng-model="name"></p>
- 	<p>{{name}}</p>
-        
-</div>
-    </div>*@
-  
+} 
 <script src="~/Scripts/angular/MainController.js"></script>  
 <script src="~/Scripts/angular/UserEditController.js"></script>
 <script src="~/Scripts/UserScripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+<script type="text/javascript">
+    var SelectedLocations = @Html.Raw(Json.Encode(ViewBag.SelectedLocation ));    
+    $("#Location").val(SelectedLocations);
+    var SelectedDepartments = @Html.Raw(Json.Encode(ViewBag.SelectedDepartments ));    
+    $("#Department").val(SelectedDepartments);
+</script>
+<script>
+    $(document).ready(function () {
+        $('#Location').multiselect({
+            nonSelectedText: 'Select Locations',
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            buttonWidth: '200px',
+            enableCheckedItem: true
+        });
+        $('#Department').multiselect({
+            nonSelectedText: 'Select Departments',
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            buttonWidth: '200px'
+        });
+        $('#button').click(function () {
+            var selectedLocation = $('#Location');           
+            var selectedDepts = $('#Department');
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                url: '/User/GETIDs',
+                type: 'POST',
+                cache: false,
+                dataType: "json",              
+                data: { Locations: location, Department: departments },
+                success: function (result) {
+                    alert(result);
+                }
+            });
+        });
+    });
+</script>

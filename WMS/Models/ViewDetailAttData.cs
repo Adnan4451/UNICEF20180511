@@ -86,5 +86,7 @@ namespace WMS.Models
         public Nullable<System.DateTime> Tout6 { get; set; }
         public Nullable<System.DateTime> Tin7 { get; set; }
         public Nullable<System.DateTime> Tout7 { get; set; }
+        public Nullable<short> ApprovedOT { get; set; }
+        public Nullable<byte> Gender { get; set; }
     }
 }

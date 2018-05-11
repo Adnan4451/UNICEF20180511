@@ -12,7 +12,7 @@ using WMS.CustomClass;
 using WMS.Controllers.Filters;
 namespace WMS.Controllers
 {
-     [CustomControllerAttributes]
+    [CustomControllerAttributes]
     public class EmpTypeController : Controller
     {
         private TAS2013Entities db = new TAS2013Entities();
@@ -20,41 +20,44 @@ namespace WMS.Controllers
         // GET: /EmpType/
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.CatSortParm = sortOrder == "cat" ? "cat_desc" : "cat";
-            if (searchString != null)
+            if (Session["LogedUserFullname"].ToString() != "")
             {
-                page = 1;
+                ViewBag.CurrentSort = sortOrder;
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                if (searchString != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                ViewBag.CurrentFilter = searchString;
+                QueryBuilder qb = new QueryBuilder();
+
+                var emptype = db.EmpTypes.AsQueryable();
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    emptype = emptype.Where(s => s.TypeName.ToUpper().Contains(searchString.ToUpper())
+                        );
+                }
+
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        emptype = emptype.OrderByDescending(s => s.TypeName);
+                        break;
+                    default:
+                        emptype = emptype.OrderBy(s => s.TypeName);
+                        break;
+                }
+                int pageSize = 8;
+                int pageNumber = (page ?? 1);
+                return View(emptype.ToPagedList(pageNumber, pageSize));
             }
             else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
-            var emptype = db.EmpTypes.AsQueryable();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                emptype = emptype.Where(s => s.TypeName.ToUpper().Contains(searchString.ToUpper())
-                    //|| s.Category.CatName.ToUpper().Contains(searchString.ToUpper())
-                    );
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    emptype = emptype.OrderByDescending(s => s.TypeName);
-                    break;
-                
-                default:
-                    emptype = emptype.OrderBy(s => s.TypeName);
-                    break;
-            }
-            int pageSize = 8;
-            int pageNumber = (page ?? 1);
-            return View(emptype.ToPagedList(pageNumber, pageSize));
+                return Redirect(Request.UrlReferrer.ToString());
 
         }
 
@@ -87,7 +90,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Create([Bind(Include = "TypeID,TypeName,CatID")] EmpType emptype)
+        public ActionResult Create([Bind(Include = "TypeID,TypeName,CatID,ALIncrement")] EmpType emptype)
         {
             //if (emptype.CatID == null)
             //    ModelState.AddModelError("CatID", "Please select Category");
@@ -108,7 +111,7 @@ namespace WMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-              return View(emptype);
+            return View(emptype);
         }
         private bool CheckDuplicate(string _Name)
         {
@@ -143,7 +146,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Edit([Bind(Include = "TypeID,TypeName,CatID")] EmpType emptype)
+        public ActionResult Edit([Bind(Include = "TypeID,TypeName,CatID,ALIncrement")] EmpType emptype)
         {
             if (string.IsNullOrEmpty(emptype.TypeName))
                 ModelState.AddModelError("TypeName", "This field is required!");

@@ -5,7 +5,7 @@
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="TAS2013ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TAS2013ConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.TAS2013ConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="TAS2013ConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TAS2013ConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.TAS2013ConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="TAS2013ConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="TAS2013ConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.TAS2013ConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EmpViewTableAdapter" GeneratorDataComponentClassName="EmpViewTableAdapter" Name="EmpView" UserDataComponentName="EmpViewTableAdapter">
@@ -44,76 +44,6 @@
               <Mapping SourceColumn="TypeName" DataSetColumn="TypeName" />
               <Mapping SourceColumn="LocName" DataSetColumn="LocName" />
               <Mapping SourceColumn="ShiftName" DataSetColumn="ShiftName" />
-              <Mapping SourceColumn="DeptID" DataSetColumn="DeptID" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewAttDataTableAdapter" GeneratorDataComponentClassName="ViewAttDataTableAdapter" Name="ViewAttData" UserDataComponentName="ViewAttDataTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="TAS2013ConnectionString (Web.config)" DbObjectName="TAS2015_PPAF.dbo.ViewAttData" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT DeptName, SectionName, DesignationName, EmpNo, EmpName, DesigID, ShiftID, LocID, TypeID, SecID, CardNo, NicNo, FatherName, JoinDate, Status, TypeName, LocName, ShiftName, EmpID, AttDate, EmpDate, DutyCode, DutyTime, TimeIn, TimeOut, WorkMin, LateIn, LateOut, EarlyIn, EarlyOut, OTMin, GZOTMin, BreakMin, SLMin, StatusP, StatusAB, StatusLI, StatusLO, StatusEI, StatusEO, StatusOT, StatusGZOT, StatusGZ, StatusDO, StatusHD, StatusSL, StatusOD, StatusHL, StatusLeave, StatusMN, StatusIN, StatusBreak, ShifMin, Remarks, DeptID FROM dbo.ViewAttData</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="DeptName" DataSetColumn="DeptName" />
-              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
-              <Mapping SourceColumn="DesignationName" DataSetColumn="DesignationName" />
-              <Mapping SourceColumn="EmpNo" DataSetColumn="EmpNo" />
-              <Mapping SourceColumn="EmpName" DataSetColumn="EmpName" />
-              <Mapping SourceColumn="DesigID" DataSetColumn="DesigID" />
-              <Mapping SourceColumn="ShiftID" DataSetColumn="ShiftID" />
-              <Mapping SourceColumn="LocID" DataSetColumn="LocID" />
-              <Mapping SourceColumn="TypeID" DataSetColumn="TypeID" />
-              <Mapping SourceColumn="SecID" DataSetColumn="SecID" />
-              <Mapping SourceColumn="CardNo" DataSetColumn="CardNo" />
-              <Mapping SourceColumn="NicNo" DataSetColumn="NicNo" />
-              <Mapping SourceColumn="FatherName" DataSetColumn="FatherName" />
-              <Mapping SourceColumn="JoinDate" DataSetColumn="JoinDate" />
-              <Mapping SourceColumn="Status" DataSetColumn="Status" />
-              <Mapping SourceColumn="TypeName" DataSetColumn="TypeName" />
-              <Mapping SourceColumn="LocName" DataSetColumn="LocName" />
-              <Mapping SourceColumn="ShiftName" DataSetColumn="ShiftName" />
-              <Mapping SourceColumn="EmpID" DataSetColumn="EmpID" />
-              <Mapping SourceColumn="AttDate" DataSetColumn="AttDate" />
-              <Mapping SourceColumn="EmpDate" DataSetColumn="EmpDate" />
-              <Mapping SourceColumn="DutyCode" DataSetColumn="DutyCode" />
-              <Mapping SourceColumn="DutyTime" DataSetColumn="DutyTime" />
-              <Mapping SourceColumn="TimeIn" DataSetColumn="TimeIn" />
-              <Mapping SourceColumn="TimeOut" DataSetColumn="TimeOut" />
-              <Mapping SourceColumn="WorkMin" DataSetColumn="WorkMin" />
-              <Mapping SourceColumn="LateIn" DataSetColumn="LateIn" />
-              <Mapping SourceColumn="LateOut" DataSetColumn="LateOut" />
-              <Mapping SourceColumn="EarlyIn" DataSetColumn="EarlyIn" />
-              <Mapping SourceColumn="EarlyOut" DataSetColumn="EarlyOut" />
-              <Mapping SourceColumn="OTMin" DataSetColumn="OTMin" />
-              <Mapping SourceColumn="GZOTMin" DataSetColumn="GZOTMin" />
-              <Mapping SourceColumn="BreakMin" DataSetColumn="BreakMin" />
-              <Mapping SourceColumn="SLMin" DataSetColumn="SLMin" />
-              <Mapping SourceColumn="StatusP" DataSetColumn="StatusP" />
-              <Mapping SourceColumn="StatusAB" DataSetColumn="StatusAB" />
-              <Mapping SourceColumn="StatusLI" DataSetColumn="StatusLI" />
-              <Mapping SourceColumn="StatusLO" DataSetColumn="StatusLO" />
-              <Mapping SourceColumn="StatusEI" DataSetColumn="StatusEI" />
-              <Mapping SourceColumn="StatusEO" DataSetColumn="StatusEO" />
-              <Mapping SourceColumn="StatusOT" DataSetColumn="StatusOT" />
-              <Mapping SourceColumn="StatusGZOT" DataSetColumn="StatusGZOT" />
-              <Mapping SourceColumn="StatusGZ" DataSetColumn="StatusGZ" />
-              <Mapping SourceColumn="StatusDO" DataSetColumn="StatusDO" />
-              <Mapping SourceColumn="StatusHD" DataSetColumn="StatusHD" />
-              <Mapping SourceColumn="StatusSL" DataSetColumn="StatusSL" />
-              <Mapping SourceColumn="StatusOD" DataSetColumn="StatusOD" />
-              <Mapping SourceColumn="StatusHL" DataSetColumn="StatusHL" />
-              <Mapping SourceColumn="StatusLeave" DataSetColumn="StatusLeave" />
-              <Mapping SourceColumn="StatusMN" DataSetColumn="StatusMN" />
-              <Mapping SourceColumn="StatusIN" DataSetColumn="StatusIN" />
-              <Mapping SourceColumn="StatusBreak" DataSetColumn="StatusBreak" />
-              <Mapping SourceColumn="ShifMin" DataSetColumn="ShifMin" />
-              <Mapping SourceColumn="Remarks" DataSetColumn="Remarks" />
               <Mapping SourceColumn="DeptID" DataSetColumn="DeptID" />
             </Mappings>
             <Sources />
@@ -348,6 +278,355 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewAttMainEditTableAdapter" GeneratorDataComponentClassName="ViewAttMainEditTableAdapter" Name="ViewAttMainEdit" UserDataComponentName="ViewAttMainEditTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TAS2013ConnectionString (Web.config)" DbObjectName="TASBasic.dbo.ViewAttMainEdit" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT EmpID, AttEditID, EditDateTime, OldTimeIn, OldTimeOut, NewTimeIn, NewTimeOut, EmpDate, Process, OldDutyCode, OldDutyTime, NewDutyCode, NewDutyTime, UserID, CompanyID, OldRemarks, NewRemarks, OldShiftMin, NewShiftMin, DeptName, SectionName, DesignationName, Expr1, EmpNo, EmpName, DesigID, ShiftID, LocID, TypeID, SecID, CardNo, NicNo, FatherName, BloodGroup, JoinDate, BirthDate, ValidDate, IssueDate, ResignDate, Status, TypeName, LocName, ShiftName, DeptID, Deleted FROM dbo.ViewAttMainEdit</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EmpID" DataSetColumn="EmpID" />
+              <Mapping SourceColumn="AttEditID" DataSetColumn="AttEditID" />
+              <Mapping SourceColumn="EditDateTime" DataSetColumn="EditDateTime" />
+              <Mapping SourceColumn="OldTimeIn" DataSetColumn="OldTimeIn" />
+              <Mapping SourceColumn="OldTimeOut" DataSetColumn="OldTimeOut" />
+              <Mapping SourceColumn="NewTimeIn" DataSetColumn="NewTimeIn" />
+              <Mapping SourceColumn="NewTimeOut" DataSetColumn="NewTimeOut" />
+              <Mapping SourceColumn="EmpDate" DataSetColumn="EmpDate" />
+              <Mapping SourceColumn="Process" DataSetColumn="Process" />
+              <Mapping SourceColumn="OldDutyCode" DataSetColumn="OldDutyCode" />
+              <Mapping SourceColumn="OldDutyTime" DataSetColumn="OldDutyTime" />
+              <Mapping SourceColumn="NewDutyCode" DataSetColumn="NewDutyCode" />
+              <Mapping SourceColumn="NewDutyTime" DataSetColumn="NewDutyTime" />
+              <Mapping SourceColumn="UserID" DataSetColumn="UserID" />
+              <Mapping SourceColumn="CompanyID" DataSetColumn="CompanyID" />
+              <Mapping SourceColumn="OldRemarks" DataSetColumn="OldRemarks" />
+              <Mapping SourceColumn="NewRemarks" DataSetColumn="NewRemarks" />
+              <Mapping SourceColumn="OldShiftMin" DataSetColumn="OldShiftMin" />
+              <Mapping SourceColumn="NewShiftMin" DataSetColumn="NewShiftMin" />
+              <Mapping SourceColumn="DeptName" DataSetColumn="DeptName" />
+              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
+              <Mapping SourceColumn="DesignationName" DataSetColumn="DesignationName" />
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="EmpNo" DataSetColumn="EmpNo" />
+              <Mapping SourceColumn="EmpName" DataSetColumn="EmpName" />
+              <Mapping SourceColumn="DesigID" DataSetColumn="DesigID" />
+              <Mapping SourceColumn="ShiftID" DataSetColumn="ShiftID" />
+              <Mapping SourceColumn="LocID" DataSetColumn="LocID" />
+              <Mapping SourceColumn="TypeID" DataSetColumn="TypeID" />
+              <Mapping SourceColumn="SecID" DataSetColumn="SecID" />
+              <Mapping SourceColumn="CardNo" DataSetColumn="CardNo" />
+              <Mapping SourceColumn="NicNo" DataSetColumn="NicNo" />
+              <Mapping SourceColumn="FatherName" DataSetColumn="FatherName" />
+              <Mapping SourceColumn="BloodGroup" DataSetColumn="BloodGroup" />
+              <Mapping SourceColumn="JoinDate" DataSetColumn="JoinDate" />
+              <Mapping SourceColumn="BirthDate" DataSetColumn="BirthDate" />
+              <Mapping SourceColumn="ValidDate" DataSetColumn="ValidDate" />
+              <Mapping SourceColumn="IssueDate" DataSetColumn="IssueDate" />
+              <Mapping SourceColumn="ResignDate" DataSetColumn="ResignDate" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="TypeName" DataSetColumn="TypeName" />
+              <Mapping SourceColumn="LocName" DataSetColumn="LocName" />
+              <Mapping SourceColumn="ShiftName" DataSetColumn="ShiftName" />
+              <Mapping SourceColumn="DeptID" DataSetColumn="DeptID" />
+              <Mapping SourceColumn="Deleted" DataSetColumn="Deleted" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DailySummaryTableAdapter" GeneratorDataComponentClassName="DailySummaryTableAdapter" Name="DailySummary" UserDataComponentName="DailySummaryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TAS2013ConnectionString (Web.config)" DbObjectName="TASBasic.dbo.DailySummary" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[DailySummary] WHERE (([SummaryDateCriteria] = @Original_SummaryDateCriteria))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_SummaryDateCriteria" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SummaryDateCriteria" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[DailySummary] ([SummaryDateCriteria], [Criteria], [Date], [TotalEmps], [PresentEmps], [AbsentEmps], [LvEmps], [ShortLvEmps], [HalfLvEmps], [LIEmps], [LOEmps], [EIEmps], [EOEmps], [OTEmps], [OnTimeEmps], [DayOffEmps], [LIMins], [LOMins], [EIMins], [EOMins], [OTMins], [ExpectedWorkMins], [ActualWorkMins], [LossWorkMins], [ALIMins], [ALOMins], [AEIMins], [AEOMins], [AOTMins], [AExpectedMins], [AActualMins], [ALossMins], [CriteriaValue], [CriteriaName], [AvgTimeIn], [AvgTimeOut]) VALUES (@SummaryDateCriteria, @Criteria, @Date, @TotalEmps, @PresentEmps, @AbsentEmps, @LvEmps, @ShortLvEmps, @HalfLvEmps, @LIEmps, @LOEmps, @EIEmps, @EOEmps, @OTEmps, @OnTimeEmps, @DayOffEmps, @LIMins, @LOMins, @EIMins, @EOMins, @OTMins, @ExpectedWorkMins, @ActualWorkMins, @LossWorkMins, @ALIMins, @ALOMins, @AEIMins, @AEOMins, @AOTMins, @AExpectedMins, @AActualMins, @ALossMins, @CriteriaValue, @CriteriaName, @AvgTimeIn, @AvgTimeOut)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@SummaryDateCriteria" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SummaryDateCriteria" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Criteria" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Criteria" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Date" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Date" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@TotalEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="TotalEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@PresentEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="PresentEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AbsentEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AbsentEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@LvEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="LvEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ShortLvEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ShortLvEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@HalfLvEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="HalfLvEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@LIEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="LIEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@LOEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="LOEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@EIEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="EIEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@EOEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="EOEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@OTEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="OTEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@OnTimeEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="OnTimeEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@DayOffEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="DayOffEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@LIMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LIMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@LOMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@EIMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EIMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@EOMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EOMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@OTMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="OTMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ExpectedWorkMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ExpectedWorkMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ActualWorkMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ActualWorkMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@LossWorkMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LossWorkMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ALIMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ALIMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ALOMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ALOMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AEIMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AEIMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AEOMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AEOMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AOTMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AOTMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AExpectedMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AExpectedMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AActualMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AActualMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ALossMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ALossMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@CriteriaValue" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="CriteriaValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CriteriaName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CriteriaName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Time" Direction="Input" ParameterName="@AvgTimeIn" Precision="0" ProviderType="Time" Scale="0" Size="0" SourceColumn="AvgTimeIn" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Time" Direction="Input" ParameterName="@AvgTimeOut" Precision="0" ProviderType="Time" Scale="0" Size="0" SourceColumn="AvgTimeOut" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT SummaryDateCriteria, Criteria, Date, TotalEmps, PresentEmps, AbsentEmps, LvEmps, ShortLvEmps, HalfLvEmps, LIEmps, LOEmps, EIEmps, EOEmps, OTEmps, OnTimeEmps, DayOffEmps, LIMins, LOMins, EIMins, EOMins, OTMins, ExpectedWorkMins, ActualWorkMins, LossWorkMins, ALIMins, ALOMins, AEIMins, AEOMins, AOTMins, AExpectedMins, AActualMins, ALossMins, CriteriaValue, CriteriaName, AvgTimeIn, AvgTimeOut FROM dbo.DailySummary</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[DailySummary] SET [SummaryDateCriteria] = @SummaryDateCriteria, [Criteria] = @Criteria, [Date] = @Date, [TotalEmps] = @TotalEmps, [PresentEmps] = @PresentEmps, [AbsentEmps] = @AbsentEmps, [LvEmps] = @LvEmps, [ShortLvEmps] = @ShortLvEmps, [HalfLvEmps] = @HalfLvEmps, [LIEmps] = @LIEmps, [LOEmps] = @LOEmps, [EIEmps] = @EIEmps, [EOEmps] = @EOEmps, [OTEmps] = @OTEmps, [OnTimeEmps] = @OnTimeEmps, [DayOffEmps] = @DayOffEmps, [LIMins] = @LIMins, [LOMins] = @LOMins, [EIMins] = @EIMins, [EOMins] = @EOMins, [OTMins] = @OTMins, [ExpectedWorkMins] = @ExpectedWorkMins, [ActualWorkMins] = @ActualWorkMins, [LossWorkMins] = @LossWorkMins, [ALIMins] = @ALIMins, [ALOMins] = @ALOMins, [AEIMins] = @AEIMins, [AEOMins] = @AEOMins, [AOTMins] = @AOTMins, [AExpectedMins] = @AExpectedMins, [AActualMins] = @AActualMins, [ALossMins] = @ALossMins, [CriteriaValue] = @CriteriaValue, [CriteriaName] = @CriteriaName, [AvgTimeIn] = @AvgTimeIn, [AvgTimeOut] = @AvgTimeOut WHERE (([SummaryDateCriteria] = @Original_SummaryDateCriteria))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@SummaryDateCriteria" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SummaryDateCriteria" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Criteria" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Criteria" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Date" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Date" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@TotalEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="TotalEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@PresentEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="PresentEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AbsentEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AbsentEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@LvEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="LvEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ShortLvEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ShortLvEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@HalfLvEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="HalfLvEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@LIEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="LIEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@LOEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="LOEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@EIEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="EIEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@EOEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="EOEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@OTEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="OTEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@OnTimeEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="OnTimeEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@DayOffEmps" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="DayOffEmps" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@LIMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LIMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@LOMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@EIMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EIMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@EOMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EOMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@OTMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="OTMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ExpectedWorkMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ExpectedWorkMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ActualWorkMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ActualWorkMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@LossWorkMins" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LossWorkMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ALIMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ALIMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ALOMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ALOMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AEIMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AEIMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AEOMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AEOMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AOTMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AOTMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AExpectedMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AExpectedMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@AActualMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="AActualMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@ALossMins" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="ALossMins" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@CriteriaValue" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="CriteriaValue" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CriteriaName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CriteriaName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Time" Direction="Input" ParameterName="@AvgTimeIn" Precision="0" ProviderType="Time" Scale="0" Size="0" SourceColumn="AvgTimeIn" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Time" Direction="Input" ParameterName="@AvgTimeOut" Precision="0" ProviderType="Time" Scale="0" Size="0" SourceColumn="AvgTimeOut" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_SummaryDateCriteria" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SummaryDateCriteria" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SummaryDateCriteria" DataSetColumn="SummaryDateCriteria" />
+              <Mapping SourceColumn="Criteria" DataSetColumn="Criteria" />
+              <Mapping SourceColumn="Date" DataSetColumn="Date" />
+              <Mapping SourceColumn="TotalEmps" DataSetColumn="TotalEmps" />
+              <Mapping SourceColumn="PresentEmps" DataSetColumn="PresentEmps" />
+              <Mapping SourceColumn="AbsentEmps" DataSetColumn="AbsentEmps" />
+              <Mapping SourceColumn="LvEmps" DataSetColumn="LvEmps" />
+              <Mapping SourceColumn="ShortLvEmps" DataSetColumn="ShortLvEmps" />
+              <Mapping SourceColumn="HalfLvEmps" DataSetColumn="HalfLvEmps" />
+              <Mapping SourceColumn="LIEmps" DataSetColumn="LIEmps" />
+              <Mapping SourceColumn="LOEmps" DataSetColumn="LOEmps" />
+              <Mapping SourceColumn="EIEmps" DataSetColumn="EIEmps" />
+              <Mapping SourceColumn="EOEmps" DataSetColumn="EOEmps" />
+              <Mapping SourceColumn="OTEmps" DataSetColumn="OTEmps" />
+              <Mapping SourceColumn="OnTimeEmps" DataSetColumn="OnTimeEmps" />
+              <Mapping SourceColumn="DayOffEmps" DataSetColumn="DayOffEmps" />
+              <Mapping SourceColumn="LIMins" DataSetColumn="LIMins" />
+              <Mapping SourceColumn="LOMins" DataSetColumn="LOMins" />
+              <Mapping SourceColumn="EIMins" DataSetColumn="EIMins" />
+              <Mapping SourceColumn="EOMins" DataSetColumn="EOMins" />
+              <Mapping SourceColumn="OTMins" DataSetColumn="OTMins" />
+              <Mapping SourceColumn="ExpectedWorkMins" DataSetColumn="ExpectedWorkMins" />
+              <Mapping SourceColumn="ActualWorkMins" DataSetColumn="ActualWorkMins" />
+              <Mapping SourceColumn="LossWorkMins" DataSetColumn="LossWorkMins" />
+              <Mapping SourceColumn="ALIMins" DataSetColumn="ALIMins" />
+              <Mapping SourceColumn="ALOMins" DataSetColumn="ALOMins" />
+              <Mapping SourceColumn="AEIMins" DataSetColumn="AEIMins" />
+              <Mapping SourceColumn="AEOMins" DataSetColumn="AEOMins" />
+              <Mapping SourceColumn="AOTMins" DataSetColumn="AOTMins" />
+              <Mapping SourceColumn="AExpectedMins" DataSetColumn="AExpectedMins" />
+              <Mapping SourceColumn="AActualMins" DataSetColumn="AActualMins" />
+              <Mapping SourceColumn="ALossMins" DataSetColumn="ALossMins" />
+              <Mapping SourceColumn="CriteriaValue" DataSetColumn="CriteriaValue" />
+              <Mapping SourceColumn="CriteriaName" DataSetColumn="CriteriaName" />
+              <Mapping SourceColumn="AvgTimeIn" DataSetColumn="AvgTimeIn" />
+              <Mapping SourceColumn="AvgTimeOut" DataSetColumn="AvgTimeOut" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewLvAppTableAdapter" GeneratorDataComponentClassName="ViewLvAppTableAdapter" Name="ViewLvApp" UserDataComponentName="ViewLvAppTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TAS2013ConnectionString (Web.config)" DbObjectName="TASBasic.dbo.ViewLvApp" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Expr1, LvID, LvDate, LeaveTypeID, FromDate, ToDate, NoOfDays, IsHalf, FirstHalf, HalfAbsent, LvReason, LvAddress, CreatedBy, LvStatus, ManagerID, ApprovedBy, IsRevoked, Stage, Active, DeptName, SectionName, DesignationName, EmpID, EmpNo, EmpName, DesigID, ShiftID, LocID, TypeID, SecID, CardNo, NicNo, FatherName, BloodGroup, JoinDate, BirthDate, ValidDate, IssueDate, ResignDate, Status, TypeName, LocName, ShiftName, DeptID, Deleted, LvDesc, FldName, HalfLeave, HalfLvCode, HalfAbCode, MaxDays, UserID, UserName FROM dbo.ViewLvApp</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="LvID" DataSetColumn="LvID" />
+              <Mapping SourceColumn="LvDate" DataSetColumn="LvDate" />
+              <Mapping SourceColumn="LeaveTypeID" DataSetColumn="LeaveTypeID" />
+              <Mapping SourceColumn="FromDate" DataSetColumn="FromDate" />
+              <Mapping SourceColumn="ToDate" DataSetColumn="ToDate" />
+              <Mapping SourceColumn="NoOfDays" DataSetColumn="NoOfDays" />
+              <Mapping SourceColumn="IsHalf" DataSetColumn="IsHalf" />
+              <Mapping SourceColumn="FirstHalf" DataSetColumn="FirstHalf" />
+              <Mapping SourceColumn="HalfAbsent" DataSetColumn="HalfAbsent" />
+              <Mapping SourceColumn="LvReason" DataSetColumn="LvReason" />
+              <Mapping SourceColumn="LvAddress" DataSetColumn="LvAddress" />
+              <Mapping SourceColumn="CreatedBy" DataSetColumn="CreatedBy" />
+              <Mapping SourceColumn="LvStatus" DataSetColumn="LvStatus" />
+              <Mapping SourceColumn="ManagerID" DataSetColumn="ManagerID" />
+              <Mapping SourceColumn="ApprovedBy" DataSetColumn="ApprovedBy" />
+              <Mapping SourceColumn="IsRevoked" DataSetColumn="IsRevoked" />
+              <Mapping SourceColumn="Stage" DataSetColumn="Stage" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+              <Mapping SourceColumn="DeptName" DataSetColumn="DeptName" />
+              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
+              <Mapping SourceColumn="DesignationName" DataSetColumn="DesignationName" />
+              <Mapping SourceColumn="EmpID" DataSetColumn="EmpID" />
+              <Mapping SourceColumn="EmpNo" DataSetColumn="EmpNo" />
+              <Mapping SourceColumn="EmpName" DataSetColumn="EmpName" />
+              <Mapping SourceColumn="DesigID" DataSetColumn="DesigID" />
+              <Mapping SourceColumn="ShiftID" DataSetColumn="ShiftID" />
+              <Mapping SourceColumn="LocID" DataSetColumn="LocID" />
+              <Mapping SourceColumn="TypeID" DataSetColumn="TypeID" />
+              <Mapping SourceColumn="SecID" DataSetColumn="SecID" />
+              <Mapping SourceColumn="CardNo" DataSetColumn="CardNo" />
+              <Mapping SourceColumn="NicNo" DataSetColumn="NicNo" />
+              <Mapping SourceColumn="FatherName" DataSetColumn="FatherName" />
+              <Mapping SourceColumn="BloodGroup" DataSetColumn="BloodGroup" />
+              <Mapping SourceColumn="JoinDate" DataSetColumn="JoinDate" />
+              <Mapping SourceColumn="BirthDate" DataSetColumn="BirthDate" />
+              <Mapping SourceColumn="ValidDate" DataSetColumn="ValidDate" />
+              <Mapping SourceColumn="IssueDate" DataSetColumn="IssueDate" />
+              <Mapping SourceColumn="ResignDate" DataSetColumn="ResignDate" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="TypeName" DataSetColumn="TypeName" />
+              <Mapping SourceColumn="LocName" DataSetColumn="LocName" />
+              <Mapping SourceColumn="ShiftName" DataSetColumn="ShiftName" />
+              <Mapping SourceColumn="DeptID" DataSetColumn="DeptID" />
+              <Mapping SourceColumn="Deleted" DataSetColumn="Deleted" />
+              <Mapping SourceColumn="LvDesc" DataSetColumn="LvDesc" />
+              <Mapping SourceColumn="FldName" DataSetColumn="FldName" />
+              <Mapping SourceColumn="HalfLeave" DataSetColumn="HalfLeave" />
+              <Mapping SourceColumn="HalfLvCode" DataSetColumn="HalfLvCode" />
+              <Mapping SourceColumn="HalfAbCode" DataSetColumn="HalfAbCode" />
+              <Mapping SourceColumn="MaxDays" DataSetColumn="MaxDays" />
+              <Mapping SourceColumn="UserID" DataSetColumn="UserID" />
+              <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewAttDataTableAdapter" GeneratorDataComponentClassName="ViewAttDataTableAdapter" Name="ViewAttData" UserDataComponentName="ViewAttDataTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TAS2013ConnectionString (Web.config)" DbObjectName="TAS2015_PPAF.dbo.ViewAttData" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT DeptName, SectionName, DesignationName, EmpNo, EmpName, DesigID, ShiftID, LocID, TypeID, SecID, CardNo, NicNo, FatherName, JoinDate, Status, TypeName, LocName, ShiftName, EmpID, AttDate, EmpDate, DutyCode, DutyTime, TimeIn, TimeOut, WorkMin, LateIn, LateOut, EarlyIn, EarlyOut, OTMin, GZOTMin, BreakMin, SLMin, StatusP, StatusAB, StatusLI, StatusLO, StatusEI, StatusEO, StatusOT, StatusGZOT, StatusGZ, StatusDO, StatusHD, StatusSL, StatusOD, StatusHL, StatusLeave, StatusMN, StatusIN, StatusBreak, ShifMin, Remarks, DeptID, Deleted, PDays, ABDays, LeaveDays, ApprovedOT FROM dbo.ViewAttData</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DeptName" DataSetColumn="DeptName" />
+              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
+              <Mapping SourceColumn="DesignationName" DataSetColumn="DesignationName" />
+              <Mapping SourceColumn="EmpNo" DataSetColumn="EmpNo" />
+              <Mapping SourceColumn="EmpName" DataSetColumn="EmpName" />
+              <Mapping SourceColumn="DesigID" DataSetColumn="DesigID" />
+              <Mapping SourceColumn="ShiftID" DataSetColumn="ShiftID" />
+              <Mapping SourceColumn="LocID" DataSetColumn="LocID" />
+              <Mapping SourceColumn="TypeID" DataSetColumn="TypeID" />
+              <Mapping SourceColumn="SecID" DataSetColumn="SecID" />
+              <Mapping SourceColumn="CardNo" DataSetColumn="CardNo" />
+              <Mapping SourceColumn="NicNo" DataSetColumn="NicNo" />
+              <Mapping SourceColumn="FatherName" DataSetColumn="FatherName" />
+              <Mapping SourceColumn="JoinDate" DataSetColumn="JoinDate" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="TypeName" DataSetColumn="TypeName" />
+              <Mapping SourceColumn="LocName" DataSetColumn="LocName" />
+              <Mapping SourceColumn="ShiftName" DataSetColumn="ShiftName" />
+              <Mapping SourceColumn="EmpID" DataSetColumn="EmpID" />
+              <Mapping SourceColumn="AttDate" DataSetColumn="AttDate" />
+              <Mapping SourceColumn="EmpDate" DataSetColumn="EmpDate" />
+              <Mapping SourceColumn="DutyCode" DataSetColumn="DutyCode" />
+              <Mapping SourceColumn="DutyTime" DataSetColumn="DutyTime" />
+              <Mapping SourceColumn="TimeIn" DataSetColumn="TimeIn" />
+              <Mapping SourceColumn="TimeOut" DataSetColumn="TimeOut" />
+              <Mapping SourceColumn="WorkMin" DataSetColumn="WorkMin" />
+              <Mapping SourceColumn="LateIn" DataSetColumn="LateIn" />
+              <Mapping SourceColumn="LateOut" DataSetColumn="LateOut" />
+              <Mapping SourceColumn="EarlyIn" DataSetColumn="EarlyIn" />
+              <Mapping SourceColumn="EarlyOut" DataSetColumn="EarlyOut" />
+              <Mapping SourceColumn="OTMin" DataSetColumn="OTMin" />
+              <Mapping SourceColumn="GZOTMin" DataSetColumn="GZOTMin" />
+              <Mapping SourceColumn="BreakMin" DataSetColumn="BreakMin" />
+              <Mapping SourceColumn="SLMin" DataSetColumn="SLMin" />
+              <Mapping SourceColumn="StatusP" DataSetColumn="StatusP" />
+              <Mapping SourceColumn="StatusAB" DataSetColumn="StatusAB" />
+              <Mapping SourceColumn="StatusLI" DataSetColumn="StatusLI" />
+              <Mapping SourceColumn="StatusLO" DataSetColumn="StatusLO" />
+              <Mapping SourceColumn="StatusEI" DataSetColumn="StatusEI" />
+              <Mapping SourceColumn="StatusEO" DataSetColumn="StatusEO" />
+              <Mapping SourceColumn="StatusOT" DataSetColumn="StatusOT" />
+              <Mapping SourceColumn="StatusGZOT" DataSetColumn="StatusGZOT" />
+              <Mapping SourceColumn="StatusGZ" DataSetColumn="StatusGZ" />
+              <Mapping SourceColumn="StatusDO" DataSetColumn="StatusDO" />
+              <Mapping SourceColumn="StatusHD" DataSetColumn="StatusHD" />
+              <Mapping SourceColumn="StatusSL" DataSetColumn="StatusSL" />
+              <Mapping SourceColumn="StatusOD" DataSetColumn="StatusOD" />
+              <Mapping SourceColumn="StatusHL" DataSetColumn="StatusHL" />
+              <Mapping SourceColumn="StatusLeave" DataSetColumn="StatusLeave" />
+              <Mapping SourceColumn="StatusMN" DataSetColumn="StatusMN" />
+              <Mapping SourceColumn="StatusIN" DataSetColumn="StatusIN" />
+              <Mapping SourceColumn="StatusBreak" DataSetColumn="StatusBreak" />
+              <Mapping SourceColumn="ShifMin" DataSetColumn="ShifMin" />
+              <Mapping SourceColumn="Remarks" DataSetColumn="Remarks" />
+              <Mapping SourceColumn="DeptID" DataSetColumn="DeptID" />
+              <Mapping SourceColumn="Deleted" DataSetColumn="Deleted" />
+              <Mapping SourceColumn="PDays" DataSetColumn="PDays" />
+              <Mapping SourceColumn="ABDays" DataSetColumn="ABDays" />
+              <Mapping SourceColumn="LeaveDays" DataSetColumn="LeaveDays" />
+              <Mapping SourceColumn="ApprovedOT" DataSetColumn="ApprovedOT" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -452,151 +731,6 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DeptID" msprop:Generator_ColumnVarNameInTable="columnDeptID" msprop:Generator_ColumnPropNameInRow="DeptID" msprop:Generator_ColumnPropNameInTable="DeptIDColumn" msprop:Generator_UserColumnName="DeptID" type="xs:short" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="ViewAttData" msprop:Generator_TableClassName="ViewAttDataDataTable" msprop:Generator_TableVarName="tableViewAttData" msprop:Generator_TablePropName="ViewAttData" msprop:Generator_RowDeletingName="ViewAttDataRowDeleting" msprop:Generator_RowChangingName="ViewAttDataRowChanging" msprop:Generator_RowEvHandlerName="ViewAttDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewAttDataRowDeleted" msprop:Generator_UserTableName="ViewAttData" msprop:Generator_RowChangedName="ViewAttDataRowChanged" msprop:Generator_RowEvArgName="ViewAttDataRowChangeEvent" msprop:Generator_RowClassName="ViewAttDataRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="DeptName" msprop:Generator_ColumnVarNameInTable="columnDeptName" msprop:Generator_ColumnPropNameInRow="DeptName" msprop:Generator_ColumnPropNameInTable="DeptNameColumn" msprop:Generator_UserColumnName="DeptName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DesignationName" msprop:Generator_ColumnVarNameInTable="columnDesignationName" msprop:Generator_ColumnPropNameInRow="DesignationName" msprop:Generator_ColumnPropNameInTable="DesignationNameColumn" msprop:Generator_UserColumnName="DesignationName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="200" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="EmpNo" msprop:Generator_ColumnVarNameInTable="columnEmpNo" msprop:Generator_ColumnPropNameInRow="EmpNo" msprop:Generator_ColumnPropNameInTable="EmpNoColumn" msprop:Generator_UserColumnName="EmpNo">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DesigID" msprop:Generator_ColumnVarNameInTable="columnDesigID" msprop:Generator_ColumnPropNameInRow="DesigID" msprop:Generator_ColumnPropNameInTable="DesigIDColumn" msprop:Generator_UserColumnName="DesigID" type="xs:int" minOccurs="0" />
-              <xs:element name="ShiftID" msprop:Generator_ColumnVarNameInTable="columnShiftID" msprop:Generator_ColumnPropNameInRow="ShiftID" msprop:Generator_ColumnPropNameInTable="ShiftIDColumn" msprop:Generator_UserColumnName="ShiftID" type="xs:unsignedByte" minOccurs="0" />
-              <xs:element name="LocID" msprop:Generator_ColumnVarNameInTable="columnLocID" msprop:Generator_ColumnPropNameInRow="LocID" msprop:Generator_ColumnPropNameInTable="LocIDColumn" msprop:Generator_UserColumnName="LocID" type="xs:short" minOccurs="0" />
-              <xs:element name="TypeID" msprop:Generator_ColumnVarNameInTable="columnTypeID" msprop:Generator_ColumnPropNameInRow="TypeID" msprop:Generator_ColumnPropNameInTable="TypeIDColumn" msprop:Generator_UserColumnName="TypeID" type="xs:unsignedByte" minOccurs="0" />
-              <xs:element name="SecID" msprop:Generator_ColumnVarNameInTable="columnSecID" msprop:Generator_ColumnPropNameInRow="SecID" msprop:Generator_ColumnPropNameInTable="SecIDColumn" msprop:Generator_UserColumnName="SecID" type="xs:short" minOccurs="0" />
-              <xs:element name="CardNo" msprop:Generator_ColumnVarNameInTable="columnCardNo" msprop:Generator_ColumnPropNameInRow="CardNo" msprop:Generator_ColumnPropNameInTable="CardNoColumn" msprop:Generator_UserColumnName="CardNo" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="NicNo" msprop:Generator_ColumnVarNameInTable="columnNicNo" msprop:Generator_ColumnPropNameInRow="NicNo" msprop:Generator_ColumnPropNameInTable="NicNoColumn" msprop:Generator_UserColumnName="NicNo" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="FatherName" msprop:Generator_ColumnVarNameInTable="columnFatherName" msprop:Generator_ColumnPropNameInRow="FatherName" msprop:Generator_ColumnPropNameInTable="FatherNameColumn" msprop:Generator_UserColumnName="FatherName" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="JoinDate" msprop:Generator_ColumnVarNameInTable="columnJoinDate" msprop:Generator_ColumnPropNameInRow="JoinDate" msprop:Generator_ColumnPropNameInTable="JoinDateColumn" msprop:Generator_UserColumnName="JoinDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
-              <xs:element name="TypeName" msprop:Generator_ColumnVarNameInTable="columnTypeName" msprop:Generator_ColumnPropNameInRow="TypeName" msprop:Generator_ColumnPropNameInTable="TypeNameColumn" msprop:Generator_UserColumnName="TypeName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="LocName" msprop:Generator_ColumnVarNameInTable="columnLocName" msprop:Generator_ColumnPropNameInRow="LocName" msprop:Generator_ColumnPropNameInTable="LocNameColumn" msprop:Generator_UserColumnName="LocName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="ShiftName" msprop:Generator_ColumnVarNameInTable="columnShiftName" msprop:Generator_ColumnPropNameInRow="ShiftName" msprop:Generator_ColumnPropNameInTable="ShiftNameColumn" msprop:Generator_UserColumnName="ShiftName">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="EmpID" msprop:Generator_ColumnVarNameInTable="columnEmpID" msprop:Generator_ColumnPropNameInRow="EmpID" msprop:Generator_ColumnPropNameInTable="EmpIDColumn" msprop:Generator_UserColumnName="EmpID" type="xs:int" minOccurs="0" />
-              <xs:element name="AttDate" msprop:Generator_ColumnVarNameInTable="columnAttDate" msprop:Generator_ColumnPropNameInRow="AttDate" msprop:Generator_ColumnPropNameInTable="AttDateColumn" msprop:Generator_UserColumnName="AttDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="EmpDate" msprop:Generator_ColumnVarNameInTable="columnEmpDate" msprop:Generator_ColumnPropNameInRow="EmpDate" msprop:Generator_ColumnPropNameInTable="EmpDateColumn" msprop:Generator_UserColumnName="EmpDate">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="15" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DutyCode" msprop:Generator_ColumnVarNameInTable="columnDutyCode" msprop:Generator_ColumnPropNameInRow="DutyCode" msprop:Generator_ColumnPropNameInTable="DutyCodeColumn" msprop:Generator_UserColumnName="DutyCode" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="1" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DutyTime" msprop:Generator_ColumnVarNameInTable="columnDutyTime" msprop:Generator_ColumnPropNameInRow="DutyTime" msprop:Generator_ColumnPropNameInTable="DutyTimeColumn" msprop:Generator_UserColumnName="DutyTime" type="xs:duration" minOccurs="0" />
-              <xs:element name="TimeIn" msprop:Generator_ColumnVarNameInTable="columnTimeIn" msprop:Generator_ColumnPropNameInRow="TimeIn" msprop:Generator_ColumnPropNameInTable="TimeInColumn" msprop:Generator_UserColumnName="TimeIn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="TimeOut" msprop:Generator_ColumnVarNameInTable="columnTimeOut" msprop:Generator_ColumnPropNameInRow="TimeOut" msprop:Generator_ColumnPropNameInTable="TimeOutColumn" msprop:Generator_UserColumnName="TimeOut" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="WorkMin" msprop:Generator_ColumnVarNameInTable="columnWorkMin" msprop:Generator_ColumnPropNameInRow="WorkMin" msprop:Generator_ColumnPropNameInTable="WorkMinColumn" msprop:Generator_UserColumnName="WorkMin" type="xs:short" minOccurs="0" />
-              <xs:element name="LateIn" msprop:Generator_ColumnVarNameInTable="columnLateIn" msprop:Generator_ColumnPropNameInRow="LateIn" msprop:Generator_ColumnPropNameInTable="LateInColumn" msprop:Generator_UserColumnName="LateIn" type="xs:short" minOccurs="0" />
-              <xs:element name="LateOut" msprop:Generator_ColumnVarNameInTable="columnLateOut" msprop:Generator_ColumnPropNameInRow="LateOut" msprop:Generator_ColumnPropNameInTable="LateOutColumn" msprop:Generator_UserColumnName="LateOut" type="xs:short" minOccurs="0" />
-              <xs:element name="EarlyIn" msprop:Generator_ColumnVarNameInTable="columnEarlyIn" msprop:Generator_ColumnPropNameInRow="EarlyIn" msprop:Generator_ColumnPropNameInTable="EarlyInColumn" msprop:Generator_UserColumnName="EarlyIn" type="xs:short" minOccurs="0" />
-              <xs:element name="EarlyOut" msprop:Generator_ColumnVarNameInTable="columnEarlyOut" msprop:Generator_ColumnPropNameInRow="EarlyOut" msprop:Generator_ColumnPropNameInTable="EarlyOutColumn" msprop:Generator_UserColumnName="EarlyOut" type="xs:short" minOccurs="0" />
-              <xs:element name="OTMin" msprop:Generator_ColumnVarNameInTable="columnOTMin" msprop:Generator_ColumnPropNameInRow="OTMin" msprop:Generator_ColumnPropNameInTable="OTMinColumn" msprop:Generator_UserColumnName="OTMin" type="xs:short" minOccurs="0" />
-              <xs:element name="GZOTMin" msprop:Generator_ColumnVarNameInTable="columnGZOTMin" msprop:Generator_ColumnPropNameInRow="GZOTMin" msprop:Generator_ColumnPropNameInTable="GZOTMinColumn" msprop:Generator_UserColumnName="GZOTMin" type="xs:short" minOccurs="0" />
-              <xs:element name="BreakMin" msprop:Generator_ColumnVarNameInTable="columnBreakMin" msprop:Generator_ColumnPropNameInRow="BreakMin" msprop:Generator_ColumnPropNameInTable="BreakMinColumn" msprop:Generator_UserColumnName="BreakMin" type="xs:short" minOccurs="0" />
-              <xs:element name="SLMin" msprop:Generator_ColumnVarNameInTable="columnSLMin" msprop:Generator_ColumnPropNameInRow="SLMin" msprop:Generator_ColumnPropNameInTable="SLMinColumn" msprop:Generator_UserColumnName="SLMin" type="xs:short" minOccurs="0" />
-              <xs:element name="StatusP" msprop:Generator_ColumnVarNameInTable="columnStatusP" msprop:Generator_ColumnPropNameInRow="StatusP" msprop:Generator_ColumnPropNameInTable="StatusPColumn" msprop:Generator_UserColumnName="StatusP" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusAB" msprop:Generator_ColumnVarNameInTable="columnStatusAB" msprop:Generator_ColumnPropNameInRow="StatusAB" msprop:Generator_ColumnPropNameInTable="StatusABColumn" msprop:Generator_UserColumnName="StatusAB" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusLI" msprop:Generator_ColumnVarNameInTable="columnStatusLI" msprop:Generator_ColumnPropNameInRow="StatusLI" msprop:Generator_ColumnPropNameInTable="StatusLIColumn" msprop:Generator_UserColumnName="StatusLI" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusLO" msprop:Generator_ColumnVarNameInTable="columnStatusLO" msprop:Generator_ColumnPropNameInRow="StatusLO" msprop:Generator_ColumnPropNameInTable="StatusLOColumn" msprop:Generator_UserColumnName="StatusLO" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusEI" msprop:Generator_ColumnVarNameInTable="columnStatusEI" msprop:Generator_ColumnPropNameInRow="StatusEI" msprop:Generator_ColumnPropNameInTable="StatusEIColumn" msprop:Generator_UserColumnName="StatusEI" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusEO" msprop:Generator_ColumnVarNameInTable="columnStatusEO" msprop:Generator_ColumnPropNameInRow="StatusEO" msprop:Generator_ColumnPropNameInTable="StatusEOColumn" msprop:Generator_UserColumnName="StatusEO" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusOT" msprop:Generator_ColumnVarNameInTable="columnStatusOT" msprop:Generator_ColumnPropNameInRow="StatusOT" msprop:Generator_ColumnPropNameInTable="StatusOTColumn" msprop:Generator_UserColumnName="StatusOT" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusGZOT" msprop:Generator_ColumnVarNameInTable="columnStatusGZOT" msprop:Generator_ColumnPropNameInRow="StatusGZOT" msprop:Generator_ColumnPropNameInTable="StatusGZOTColumn" msprop:Generator_UserColumnName="StatusGZOT" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusGZ" msprop:Generator_ColumnVarNameInTable="columnStatusGZ" msprop:Generator_ColumnPropNameInRow="StatusGZ" msprop:Generator_ColumnPropNameInTable="StatusGZColumn" msprop:Generator_UserColumnName="StatusGZ" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusDO" msprop:Generator_ColumnVarNameInTable="columnStatusDO" msprop:Generator_ColumnPropNameInRow="StatusDO" msprop:Generator_ColumnPropNameInTable="StatusDOColumn" msprop:Generator_UserColumnName="StatusDO" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusHD" msprop:Generator_ColumnVarNameInTable="columnStatusHD" msprop:Generator_ColumnPropNameInRow="StatusHD" msprop:Generator_ColumnPropNameInTable="StatusHDColumn" msprop:Generator_UserColumnName="StatusHD" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusSL" msprop:Generator_ColumnVarNameInTable="columnStatusSL" msprop:Generator_ColumnPropNameInRow="StatusSL" msprop:Generator_ColumnPropNameInTable="StatusSLColumn" msprop:Generator_UserColumnName="StatusSL" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusOD" msprop:Generator_ColumnVarNameInTable="columnStatusOD" msprop:Generator_ColumnPropNameInRow="StatusOD" msprop:Generator_ColumnPropNameInTable="StatusODColumn" msprop:Generator_UserColumnName="StatusOD" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusHL" msprop:Generator_ColumnVarNameInTable="columnStatusHL" msprop:Generator_ColumnPropNameInRow="StatusHL" msprop:Generator_ColumnPropNameInTable="StatusHLColumn" msprop:Generator_UserColumnName="StatusHL" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusLeave" msprop:Generator_ColumnVarNameInTable="columnStatusLeave" msprop:Generator_ColumnPropNameInRow="StatusLeave" msprop:Generator_ColumnPropNameInTable="StatusLeaveColumn" msprop:Generator_UserColumnName="StatusLeave" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusMN" msprop:Generator_ColumnVarNameInTable="columnStatusMN" msprop:Generator_ColumnPropNameInRow="StatusMN" msprop:Generator_ColumnPropNameInTable="StatusMNColumn" msprop:Generator_UserColumnName="StatusMN" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusIN" msprop:Generator_ColumnVarNameInTable="columnStatusIN" msprop:Generator_ColumnPropNameInRow="StatusIN" msprop:Generator_ColumnPropNameInTable="StatusINColumn" msprop:Generator_UserColumnName="StatusIN" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusBreak" msprop:Generator_ColumnVarNameInTable="columnStatusBreak" msprop:Generator_ColumnPropNameInRow="StatusBreak" msprop:Generator_ColumnPropNameInTable="StatusBreakColumn" msprop:Generator_UserColumnName="StatusBreak" type="xs:boolean" minOccurs="0" />
-              <xs:element name="ShifMin" msprop:Generator_ColumnVarNameInTable="columnShifMin" msprop:Generator_ColumnPropNameInRow="ShifMin" msprop:Generator_ColumnPropNameInTable="ShifMinColumn" msprop:Generator_UserColumnName="ShifMin" type="xs:short" minOccurs="0" />
-              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -786,18 +920,12 @@
         <xs:element name="FlexyMonthPer" msprop:Generator_TableClassName="FlexyMonthPerDataTable" msprop:Generator_TableVarName="tableFlexyMonthPer" msprop:Generator_RowChangedName="FlexyMonthPerRowChanged" msprop:Generator_TablePropName="FlexyMonthPer" msprop:Generator_RowDeletingName="FlexyMonthPerRowDeleting" msprop:Generator_RowChangingName="FlexyMonthPerRowChanging" msprop:Generator_RowEvHandlerName="FlexyMonthPerRowChangeEventHandler" msprop:Generator_RowDeletedName="FlexyMonthPerRowDeleted" msprop:Generator_RowClassName="FlexyMonthPerRow" msprop:Generator_UserTableName="FlexyMonthPer" msprop:Generator_RowEvArgName="FlexyMonthPerRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Period" msprop:Generator_ColumnVarNameInTable="columnPeriod" msprop:Generator_ColumnPropNameInRow="Period" msprop:Generator_ColumnPropNameInTable="PeriodColumn" msprop:Generator_UserColumnName="Period" type="xs:string" minOccurs="0" />
               <xs:element name="EmpMonth" msprop:Generator_ColumnVarNameInTable="columnEmpMonth" msprop:Generator_ColumnPropNameInRow="EmpMonth" msprop:Generator_ColumnPropNameInTable="EmpMonthColumn" msprop:Generator_UserColumnName="EmpMonth" type="xs:string" minOccurs="0" />
               <xs:element name="StartDate" msprop:Generator_ColumnVarNameInTable="columnStartDate" msprop:Generator_ColumnPropNameInRow="StartDate" msprop:Generator_ColumnPropNameInTable="StartDateColumn" msprop:Generator_UserColumnName="StartDate" type="xs:string" minOccurs="0" />
               <xs:element name="EndDate" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_UserColumnName="EndDate" type="xs:string" minOccurs="0" />
               <xs:element name="EmpNo" msprop:Generator_ColumnVarNameInTable="columnEmpNo" msprop:Generator_ColumnPropNameInRow="EmpNo" msprop:Generator_ColumnPropNameInTable="EmpNoColumn" msprop:Generator_UserColumnName="EmpNo" type="xs:string" minOccurs="0" />
               <xs:element name="EmpID" msprop:Generator_ColumnVarNameInTable="columnEmpID" msprop:Generator_ColumnPropNameInRow="EmpID" msprop:Generator_ColumnPropNameInTable="EmpIDColumn" msprop:Generator_UserColumnName="EmpID" type="xs:int" minOccurs="0" />
               <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName" type="xs:string" minOccurs="0" />
-              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName" type="xs:string" minOccurs="0" />
-              <xs:element name="DeptName" msprop:Generator_ColumnVarNameInTable="columnDeptName" msprop:Generator_ColumnPropNameInRow="DeptName" msprop:Generator_ColumnPropNameInTable="DeptNameColumn" msprop:Generator_UserColumnName="DeptName" type="xs:string" minOccurs="0" />
-              <xs:element name="TypeName" msprop:Generator_ColumnVarNameInTable="columnTypeName" msprop:Generator_ColumnPropNameInRow="TypeName" msprop:Generator_ColumnPropNameInTable="TypeNameColumn" msprop:Generator_UserColumnName="TypeName" type="xs:string" minOccurs="0" />
-              <xs:element name="LocName" msprop:Generator_ColumnVarNameInTable="columnLocName" msprop:Generator_ColumnPropNameInRow="LocName" msprop:Generator_ColumnPropNameInTable="LocNameColumn" msprop:Generator_UserColumnName="LocName" type="xs:string" minOccurs="0" />
-              <xs:element name="ShiftName" msprop:Generator_ColumnVarNameInTable="columnShiftName" msprop:Generator_ColumnPropNameInRow="ShiftName" msprop:Generator_ColumnPropNameInTable="ShiftNameColumn" msprop:Generator_UserColumnName="ShiftName" type="xs:string" minOccurs="0" />
               <xs:element name="D21" msprop:Generator_ColumnVarNameInTable="columnD21" msprop:Generator_ColumnPropNameInRow="D21" msprop:Generator_ColumnPropNameInTable="D21Column" msprop:Generator_UserColumnName="D21" type="xs:string" minOccurs="0" />
               <xs:element name="D22" msprop:Generator_ColumnVarNameInTable="columnD22" msprop:Generator_ColumnPropNameInRow="D22" msprop:Generator_ColumnPropNameInTable="D22Column" msprop:Generator_UserColumnName="D22" type="xs:string" minOccurs="0" />
               <xs:element name="D23" msprop:Generator_ColumnVarNameInTable="columnD23" msprop:Generator_ColumnPropNameInRow="D23" msprop:Generator_ColumnPropNameInTable="D23Column" msprop:Generator_UserColumnName="D23" type="xs:string" minOccurs="0" />
@@ -829,54 +957,11 @@
               <xs:element name="D18" msprop:Generator_ColumnVarNameInTable="columnD18" msprop:Generator_ColumnPropNameInRow="D18" msprop:Generator_ColumnPropNameInTable="D18Column" msprop:Generator_UserColumnName="D18" type="xs:string" minOccurs="0" />
               <xs:element name="D19" msprop:Generator_ColumnVarNameInTable="columnD19" msprop:Generator_ColumnPropNameInRow="D19" msprop:Generator_ColumnPropNameInTable="D19Column" msprop:Generator_UserColumnName="D19" type="xs:string" minOccurs="0" />
               <xs:element name="D20" msprop:Generator_ColumnVarNameInTable="columnD20" msprop:Generator_ColumnPropNameInRow="D20" msprop:Generator_ColumnPropNameInTable="D20Column" msprop:Generator_UserColumnName="D20" type="xs:string" minOccurs="0" />
-              <xs:element name="TotalDays" msprop:Generator_ColumnVarNameInTable="columnTotalDays" msprop:Generator_ColumnPropNameInRow="TotalDays" msprop:Generator_ColumnPropNameInTable="TotalDaysColumn" msprop:Generator_UserColumnName="TotalDays" type="xs:short" minOccurs="0" />
-              <xs:element name="WorkDays" msprop:Generator_ColumnVarNameInTable="columnWorkDays" msprop:Generator_ColumnPropNameInRow="WorkDays" msprop:Generator_ColumnPropNameInTable="WorkDaysColumn" msprop:Generator_UserColumnName="WorkDays" type="xs:short" minOccurs="0" />
-              <xs:element name="PreDays" msprop:Generator_ColumnVarNameInTable="columnPreDays" msprop:Generator_ColumnPropNameInRow="PreDays" msprop:Generator_ColumnPropNameInTable="PreDaysColumn" msprop:Generator_UserColumnName="PreDays" type="xs:short" minOccurs="0" />
-              <xs:element name="AbDays" msprop:Generator_ColumnVarNameInTable="columnAbDays" msprop:Generator_ColumnPropNameInRow="AbDays" msprop:Generator_ColumnPropNameInTable="AbDaysColumn" msprop:Generator_UserColumnName="AbDays" type="xs:short" minOccurs="0" />
-              <xs:element name="RestDays" msprop:Generator_ColumnVarNameInTable="columnRestDays" msprop:Generator_ColumnPropNameInRow="RestDays" msprop:Generator_ColumnPropNameInTable="RestDaysColumn" msprop:Generator_UserColumnName="RestDays" type="xs:short" minOccurs="0" />
-              <xs:element name="GZDays" msprop:Generator_ColumnVarNameInTable="columnGZDays" msprop:Generator_ColumnPropNameInRow="GZDays" msprop:Generator_ColumnPropNameInTable="GZDaysColumn" msprop:Generator_UserColumnName="GZDays" type="xs:short" minOccurs="0" />
-              <xs:element name="LeaveDays" msprop:Generator_ColumnVarNameInTable="columnLeaveDays" msprop:Generator_ColumnPropNameInRow="LeaveDays" msprop:Generator_ColumnPropNameInTable="LeaveDaysColumn" msprop:Generator_UserColumnName="LeaveDays" type="xs:short" minOccurs="0" />
-              <xs:element name="OfficialDutyDays" msprop:Generator_ColumnVarNameInTable="columnOfficialDutyDays" msprop:Generator_ColumnPropNameInRow="OfficialDutyDays" msprop:Generator_ColumnPropNameInTable="OfficialDutyDaysColumn" msprop:Generator_UserColumnName="OfficialDutyDays" type="xs:short" minOccurs="0" />
-              <xs:element name="TEarlyIn" msprop:Generator_ColumnVarNameInTable="columnTEarlyIn" msprop:Generator_ColumnPropNameInRow="TEarlyIn" msprop:Generator_ColumnPropNameInTable="TEarlyInColumn" msprop:Generator_UserColumnName="TEarlyIn" type="xs:short" minOccurs="0" />
-              <xs:element name="TEarlyOut" msprop:Generator_ColumnVarNameInTable="columnTEarlyOut" msprop:Generator_ColumnPropNameInRow="TEarlyOut" msprop:Generator_ColumnPropNameInTable="TEarlyOutColumn" msprop:Generator_UserColumnName="TEarlyOut" type="xs:short" minOccurs="0" />
-              <xs:element name="TLateIn" msprop:Generator_ColumnVarNameInTable="columnTLateIn" msprop:Generator_ColumnPropNameInRow="TLateIn" msprop:Generator_ColumnPropNameInTable="TLateInColumn" msprop:Generator_UserColumnName="TLateIn" type="xs:short" minOccurs="0" />
-              <xs:element name="TLateOut" msprop:Generator_ColumnVarNameInTable="columnTLateOut" msprop:Generator_ColumnPropNameInRow="TLateOut" msprop:Generator_ColumnPropNameInTable="TLateOutColumn" msprop:Generator_UserColumnName="TLateOut" type="xs:short" minOccurs="0" />
-              <xs:element name="TWorkTime" msprop:Generator_ColumnVarNameInTable="columnTWorkTime" msprop:Generator_ColumnPropNameInRow="TWorkTime" msprop:Generator_ColumnPropNameInTable="TWorkTimeColumn" msprop:Generator_UserColumnName="TWorkTime" type="xs:short" minOccurs="0" />
-              <xs:element name="TNOT" msprop:Generator_ColumnVarNameInTable="columnTNOT" msprop:Generator_ColumnPropNameInRow="TNOT" msprop:Generator_ColumnPropNameInTable="TNOTColumn" msprop:Generator_UserColumnName="TNOT" type="xs:short" minOccurs="0" />
-              <xs:element name="TGZOT" msprop:Generator_ColumnVarNameInTable="columnTGZOT" msprop:Generator_ColumnPropNameInRow="TGZOT" msprop:Generator_ColumnPropNameInTable="TGZOTColumn" msprop:Generator_UserColumnName="TGZOT" type="xs:short" minOccurs="0" />
-              <xs:element name="ExpectedWrkTime" msprop:Generator_ColumnVarNameInTable="columnExpectedWrkTime" msprop:Generator_ColumnPropNameInRow="ExpectedWrkTime" msprop:Generator_ColumnPropNameInTable="ExpectedWrkTimeColumn" msprop:Generator_UserColumnName="ExpectedWrkTime" type="xs:short" minOccurs="0" />
-              <xs:element name="OT1" msprop:Generator_ColumnVarNameInTable="columnOT1" msprop:Generator_ColumnPropNameInRow="OT1" msprop:Generator_ColumnPropNameInTable="OT1Column" msprop:Generator_UserColumnName="OT1" type="xs:short" minOccurs="0" />
-              <xs:element name="OT2" msprop:Generator_ColumnVarNameInTable="columnOT2" msprop:Generator_ColumnPropNameInRow="OT2" msprop:Generator_ColumnPropNameInTable="OT2Column" msprop:Generator_UserColumnName="OT2" type="xs:short" minOccurs="0" />
-              <xs:element name="OT3" msprop:Generator_ColumnVarNameInTable="columnOT3" msprop:Generator_ColumnPropNameInRow="OT3" msprop:Generator_ColumnPropNameInTable="OT3Column" msprop:Generator_UserColumnName="OT3" type="xs:short" minOccurs="0" />
-              <xs:element name="OT4" msprop:Generator_ColumnVarNameInTable="columnOT4" msprop:Generator_ColumnPropNameInRow="OT4" msprop:Generator_ColumnPropNameInTable="OT4Column" msprop:Generator_UserColumnName="OT4" type="xs:short" minOccurs="0" />
-              <xs:element name="OT5" msprop:Generator_ColumnVarNameInTable="columnOT5" msprop:Generator_ColumnPropNameInRow="OT5" msprop:Generator_ColumnPropNameInTable="OT5Column" msprop:Generator_UserColumnName="OT5" type="xs:short" minOccurs="0" />
-              <xs:element name="OT6" msprop:Generator_ColumnVarNameInTable="columnOT6" msprop:Generator_ColumnPropNameInRow="OT6" msprop:Generator_ColumnPropNameInTable="OT6Column" msprop:Generator_UserColumnName="OT6" type="xs:short" minOccurs="0" />
-              <xs:element name="OT7" msprop:Generator_ColumnVarNameInTable="columnOT7" msprop:Generator_ColumnPropNameInRow="OT7" msprop:Generator_ColumnPropNameInTable="OT7Column" msprop:Generator_UserColumnName="OT7" type="xs:short" minOccurs="0" />
-              <xs:element name="OT8" msprop:Generator_ColumnVarNameInTable="columnOT8" msprop:Generator_ColumnPropNameInRow="OT8" msprop:Generator_ColumnPropNameInTable="OT8Column" msprop:Generator_UserColumnName="OT8" type="xs:short" minOccurs="0" />
-              <xs:element name="OT9" msprop:Generator_ColumnVarNameInTable="columnOT9" msprop:Generator_ColumnPropNameInRow="OT9" msprop:Generator_ColumnPropNameInTable="OT9Column" msprop:Generator_UserColumnName="OT9" type="xs:short" minOccurs="0" />
-              <xs:element name="OT10" msprop:Generator_ColumnVarNameInTable="columnOT10" msprop:Generator_ColumnPropNameInRow="OT10" msprop:Generator_ColumnPropNameInTable="OT10Column" msprop:Generator_UserColumnName="OT10" type="xs:short" minOccurs="0" />
-              <xs:element name="OT11" msprop:Generator_ColumnVarNameInTable="columnOT11" msprop:Generator_ColumnPropNameInRow="OT11" msprop:Generator_ColumnPropNameInTable="OT11Column" msprop:Generator_UserColumnName="OT11" type="xs:short" minOccurs="0" />
-              <xs:element name="OT12" msprop:Generator_ColumnVarNameInTable="columnOT12" msprop:Generator_ColumnPropNameInRow="OT12" msprop:Generator_ColumnPropNameInTable="OT12Column" msprop:Generator_UserColumnName="OT12" type="xs:short" minOccurs="0" />
-              <xs:element name="OT13" msprop:Generator_ColumnVarNameInTable="columnOT13" msprop:Generator_ColumnPropNameInRow="OT13" msprop:Generator_ColumnPropNameInTable="OT13Column" msprop:Generator_UserColumnName="OT13" type="xs:short" minOccurs="0" />
-              <xs:element name="OT14" msprop:Generator_ColumnVarNameInTable="columnOT14" msprop:Generator_ColumnPropNameInRow="OT14" msprop:Generator_ColumnPropNameInTable="OT14Column" msprop:Generator_UserColumnName="OT14" type="xs:short" minOccurs="0" />
-              <xs:element name="OT15" msprop:Generator_ColumnVarNameInTable="columnOT15" msprop:Generator_ColumnPropNameInRow="OT15" msprop:Generator_ColumnPropNameInTable="OT15Column" msprop:Generator_UserColumnName="OT15" type="xs:short" minOccurs="0" />
-              <xs:element name="OT16" msprop:Generator_ColumnVarNameInTable="columnOT16" msprop:Generator_ColumnPropNameInRow="OT16" msprop:Generator_ColumnPropNameInTable="OT16Column" msprop:Generator_UserColumnName="OT16" type="xs:short" minOccurs="0" />
-              <xs:element name="OT17" msprop:Generator_ColumnVarNameInTable="columnOT17" msprop:Generator_ColumnPropNameInRow="OT17" msprop:Generator_ColumnPropNameInTable="OT17Column" msprop:Generator_UserColumnName="OT17" type="xs:short" minOccurs="0" />
-              <xs:element name="OT18" msprop:Generator_ColumnVarNameInTable="columnOT18" msprop:Generator_ColumnPropNameInRow="OT18" msprop:Generator_ColumnPropNameInTable="OT18Column" msprop:Generator_UserColumnName="OT18" type="xs:short" minOccurs="0" />
-              <xs:element name="OT19" msprop:Generator_ColumnVarNameInTable="columnOT19" msprop:Generator_ColumnPropNameInRow="OT19" msprop:Generator_ColumnPropNameInTable="OT19Column" msprop:Generator_UserColumnName="OT19" type="xs:short" minOccurs="0" />
-              <xs:element name="OT20" msprop:Generator_ColumnVarNameInTable="columnOT20" msprop:Generator_ColumnPropNameInRow="OT20" msprop:Generator_ColumnPropNameInTable="OT20Column" msprop:Generator_UserColumnName="OT20" type="xs:short" minOccurs="0" />
-              <xs:element name="OT21" msprop:Generator_ColumnVarNameInTable="columnOT21" msprop:Generator_ColumnPropNameInRow="OT21" msprop:Generator_ColumnPropNameInTable="OT21Column" msprop:Generator_UserColumnName="OT21" type="xs:short" minOccurs="0" />
-              <xs:element name="OT22" msprop:Generator_ColumnVarNameInTable="columnOT22" msprop:Generator_ColumnPropNameInRow="OT22" msprop:Generator_ColumnPropNameInTable="OT22Column" msprop:Generator_UserColumnName="OT22" type="xs:short" minOccurs="0" />
-              <xs:element name="OT23" msprop:Generator_ColumnVarNameInTable="columnOT23" msprop:Generator_ColumnPropNameInRow="OT23" msprop:Generator_ColumnPropNameInTable="OT23Column" msprop:Generator_UserColumnName="OT23" type="xs:short" minOccurs="0" />
-              <xs:element name="OT24" msprop:Generator_ColumnVarNameInTable="columnOT24" msprop:Generator_ColumnPropNameInRow="OT24" msprop:Generator_ColumnPropNameInTable="OT24Column" msprop:Generator_UserColumnName="OT24" type="xs:short" minOccurs="0" />
-              <xs:element name="OT25" msprop:Generator_ColumnVarNameInTable="columnOT25" msprop:Generator_ColumnPropNameInRow="OT25" msprop:Generator_ColumnPropNameInTable="OT25Column" msprop:Generator_UserColumnName="OT25" type="xs:short" minOccurs="0" />
-              <xs:element name="OT26" msprop:Generator_ColumnVarNameInTable="columnOT26" msprop:Generator_ColumnPropNameInRow="OT26" msprop:Generator_ColumnPropNameInTable="OT26Column" msprop:Generator_UserColumnName="OT26" type="xs:short" minOccurs="0" />
-              <xs:element name="OT27" msprop:Generator_ColumnVarNameInTable="columnOT27" msprop:Generator_ColumnPropNameInRow="OT27" msprop:Generator_ColumnPropNameInTable="OT27Column" msprop:Generator_UserColumnName="OT27" type="xs:short" minOccurs="0" />
-              <xs:element name="OT28" msprop:Generator_ColumnVarNameInTable="columnOT28" msprop:Generator_ColumnPropNameInRow="OT28" msprop:Generator_ColumnPropNameInTable="OT28Column" msprop:Generator_UserColumnName="OT28" type="xs:short" minOccurs="0" />
-              <xs:element name="OT29" msprop:Generator_ColumnVarNameInTable="columnOT29" msprop:Generator_ColumnPropNameInRow="OT29" msprop:Generator_ColumnPropNameInTable="OT29Column" msprop:Generator_UserColumnName="OT29" type="xs:short" minOccurs="0" />
-              <xs:element name="OT30" msprop:Generator_ColumnVarNameInTable="columnOT30" msprop:Generator_ColumnPropNameInRow="OT30" msprop:Generator_ColumnPropNameInTable="OT30Column" msprop:Generator_UserColumnName="OT30" type="xs:short" minOccurs="0" />
-              <xs:element name="OT31" msprop:Generator_ColumnVarNameInTable="columnOT31" msprop:Generator_ColumnPropNameInRow="OT31" msprop:Generator_ColumnPropNameInTable="OT31Column" msprop:Generator_UserColumnName="OT31" type="xs:short" minOccurs="0" />
-              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
+              <xs:element name="OldAnnualBalance" msprop:Generator_ColumnVarNameInTable="columnOldAnnualBalance" msprop:Generator_ColumnPropNameInRow="OldAnnualBalance" msprop:Generator_ColumnPropNameInTable="OldAnnualBalanceColumn" msprop:Generator_UserColumnName="OldAnnualBalance" type="xs:int" minOccurs="0" />
+              <xs:element name="Credited" msprop:Generator_ColumnVarNameInTable="columnCredited" msprop:Generator_ColumnPropNameInRow="Credited" msprop:Generator_ColumnPropNameInTable="CreditedColumn" msprop:Generator_UserColumnName="Credited" type="xs:int" minOccurs="0" />
+              <xs:element name="Taken" msprop:Generator_ColumnVarNameInTable="columnTaken" msprop:Generator_ColumnPropNameInRow="Taken" msprop:Generator_ColumnPropNameInTable="TakenColumn" msprop:Generator_UserColumnName="Taken" type="xs:int" minOccurs="0" />
+              <xs:element name="NewBalane" msprop:Generator_ColumnVarNameInTable="columnNewBalane" msprop:Generator_ColumnPropNameInRow="NewBalane" msprop:Generator_ColumnPropNameInTable="NewBalaneColumn" msprop:Generator_UserColumnName="NewBalane" type="xs:int" minOccurs="0" />
+              <xs:element name="SickLeave" msprop:Generator_ColumnVarNameInTable="columnSickLeave" msprop:Generator_ColumnPropNameInRow="SickLeave" msprop:Generator_ColumnPropNameInTable="SickLeaveColumn" msprop:Generator_UserColumnName="SickLeave" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1141,15 +1226,702 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="EditAttendance" msprop:Generator_TableClassName="EditAttendanceDataTable" msprop:Generator_TableVarName="tableEditAttendance" msprop:Generator_RowChangedName="EditAttendanceRowChanged" msprop:Generator_TablePropName="EditAttendance" msprop:Generator_RowDeletingName="EditAttendanceRowDeleting" msprop:Generator_RowChangingName="EditAttendanceRowChanging" msprop:Generator_RowEvHandlerName="EditAttendanceRowChangeEventHandler" msprop:Generator_RowDeletedName="EditAttendanceRowDeleted" msprop:Generator_RowClassName="EditAttendanceRow" msprop:Generator_UserTableName="EditAttendance" msprop:Generator_RowEvArgName="EditAttendanceRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmpID" msprop:Generator_ColumnVarNameInTable="columnEmpID" msprop:Generator_ColumnPropNameInRow="EmpID" msprop:Generator_ColumnPropNameInTable="EmpIDColumn" msprop:Generator_UserColumnName="EmpID" type="xs:string" minOccurs="0" />
+              <xs:element name="EmpNo" msprop:Generator_ColumnVarNameInTable="columnEmpNo" msprop:Generator_ColumnPropNameInRow="EmpNo" msprop:Generator_ColumnPropNameInTable="EmpNoColumn" msprop:Generator_UserColumnName="EmpNo" type="xs:string" minOccurs="0" />
+              <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName" type="xs:string" minOccurs="0" />
+              <xs:element name="Section" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="Section" type="xs:string" minOccurs="0" />
+              <xs:element name="SectionID" msprop:Generator_ColumnVarNameInTable="columnSectionID" msprop:Generator_ColumnPropNameInRow="SectionID" msprop:Generator_ColumnPropNameInTable="SectionIDColumn" msprop:Generator_UserColumnName="SectionID" type="xs:string" minOccurs="0" />
+              <xs:element name="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_UserColumnName="Designation" type="xs:string" minOccurs="0" />
+              <xs:element name="LocationName" msprop:Generator_ColumnVarNameInTable="columnLocationName" msprop:Generator_ColumnPropNameInRow="LocationName" msprop:Generator_ColumnPropNameInTable="LocationNameColumn" msprop:Generator_UserColumnName="LocationName" type="xs:string" minOccurs="0" />
+              <xs:element name="LocID" msprop:Generator_ColumnVarNameInTable="columnLocID" msprop:Generator_ColumnPropNameInRow="LocID" msprop:Generator_ColumnPropNameInTable="LocIDColumn" msprop:Generator_UserColumnName="LocID" type="xs:string" minOccurs="0" />
+              <xs:element name="CrewName" msprop:Generator_ColumnVarNameInTable="columnCrewName" msprop:Generator_ColumnPropNameInRow="CrewName" msprop:Generator_ColumnPropNameInTable="CrewNameColumn" msprop:Generator_UserColumnName="CrewName" type="xs:string" minOccurs="0" />
+              <xs:element name="CrewID" msprop:Generator_ColumnVarNameInTable="columnCrewID" msprop:Generator_ColumnPropNameInRow="CrewID" msprop:Generator_ColumnPropNameInTable="CrewIDColumn" msprop:Generator_UserColumnName="CrewID" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalDays" msprop:Generator_ColumnVarNameInTable="columnTotalDays" msprop:Generator_ColumnPropNameInRow="TotalDays" msprop:Generator_ColumnPropNameInTable="TotalDaysColumn" msprop:Generator_UserColumnName="TotalDays" type="xs:string" minOccurs="0" />
+              <xs:element name="WorkingDays" msprop:Generator_ColumnVarNameInTable="columnWorkingDays" msprop:Generator_ColumnPropNameInRow="WorkingDays" msprop:Generator_ColumnPropNameInTable="WorkingDaysColumn" msprop:Generator_UserColumnName="WorkingDays" type="xs:string" minOccurs="0" />
+              <xs:element name="LateInDays" msprop:Generator_ColumnVarNameInTable="columnLateInDays" msprop:Generator_ColumnPropNameInRow="LateInDays" msprop:Generator_ColumnPropNameInTable="LateInDaysColumn" msprop:Generator_UserColumnName="LateInDays" type="xs:string" minOccurs="0" />
+              <xs:element name="OnTimeDays" msprop:Generator_ColumnVarNameInTable="columnOnTimeDays" msprop:Generator_ColumnPropNameInRow="OnTimeDays" msprop:Generator_ColumnPropNameInTable="OnTimeDaysColumn" msprop:Generator_UserColumnName="OnTimeDays" type="xs:string" minOccurs="0" />
+              <xs:element name="PunctualityPercentage" msprop:Generator_ColumnVarNameInTable="columnPunctualityPercentage" msprop:Generator_ColumnPropNameInRow="PunctualityPercentage" msprop:Generator_ColumnPropNameInTable="PunctualityPercentageColumn" msprop:Generator_UserColumnName="PunctualityPercentage" type="xs:string" minOccurs="0" />
+              <xs:element name="LateInPercentage" msprop:Generator_ColumnVarNameInTable="columnLateInPercentage" msprop:Generator_ColumnPropNameInRow="LateInPercentage" msprop:Generator_ColumnPropNameInTable="LateInPercentageColumn" msprop:Generator_UserColumnName="LateInPercentage" type="xs:string" minOccurs="0" />
+              <xs:element name="WorkingHoursRequired" msprop:Generator_ColumnVarNameInTable="columnWorkingHoursRequired" msprop:Generator_ColumnPropNameInRow="WorkingHoursRequired" msprop:Generator_ColumnPropNameInTable="WorkingHoursRequiredColumn" msprop:Generator_UserColumnName="WorkingHoursRequired" type="xs:string" minOccurs="0" />
+              <xs:element name="WorkingHoursSpend" msprop:Generator_ColumnVarNameInTable="columnWorkingHoursSpend" msprop:Generator_ColumnPropNameInRow="WorkingHoursSpend" msprop:Generator_ColumnPropNameInTable="WorkingHoursSpendColumn" msprop:Generator_UserColumnName="WorkingHoursSpend" type="xs:string" minOccurs="0" />
+              <xs:element name="DepartmentWisePunctuality" msprop:Generator_ColumnVarNameInTable="columnDepartmentWisePunctuality" msprop:Generator_ColumnPropNameInRow="DepartmentWisePunctuality" msprop:Generator_ColumnPropNameInTable="DepartmentWisePunctualityColumn" msprop:Generator_UserColumnName="DepartmentWisePunctuality" type="xs:string" minOccurs="0" />
+              <xs:element name="AverageWorkingHourPerWeek" msprop:Generator_ColumnVarNameInTable="columnAverageWorkingHourPerWeek" msprop:Generator_ColumnPropNameInRow="AverageWorkingHourPerWeek" msprop:Generator_ColumnPropNameInTable="AverageWorkingHourPerWeekColumn" msprop:Generator_UserColumnName="AverageWorkingHourPerWeek" type="xs:string" minOccurs="0" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" type="xs:string" minOccurs="0" />
+              <xs:element name="JobCardDays" msprop:Generator_ColumnVarNameInTable="columnJobCardDays" msprop:Generator_ColumnPropNameInRow="JobCardDays" msprop:Generator_ColumnPropNameInTable="JobCardDaysColumn" msprop:Generator_UserColumnName="JobCardDays" type="xs:string" minOccurs="0" />
+              <xs:element name="LeaveDays" msprop:Generator_ColumnVarNameInTable="columnLeaveDays" msprop:Generator_ColumnPropNameInRow="LeaveDays" msprop:Generator_ColumnPropNameInTable="LeaveDaysColumn" msprop:Generator_UserColumnName="LeaveDays" type="xs:string" minOccurs="0" />
+              <xs:element name="AverageWorkingDaysPerDaySpend" msprop:Generator_ColumnVarNameInTable="columnAverageWorkingDaysPerDaySpend" msprop:Generator_ColumnPropNameInRow="AverageWorkingDaysPerDaySpend" msprop:Generator_ColumnPropNameInTable="AverageWorkingDaysPerDaySpendColumn" msprop:Generator_UserColumnName="AverageWorkingDaysPerDaySpend" type="xs:string" minOccurs="0" />
+              <xs:element name="Punctuality" msprop:Generator_ColumnVarNameInTable="columnPunctuality" msprop:Generator_ColumnPropNameInRow="Punctuality" msprop:Generator_ColumnPropNameInTable="PunctualityColumn" msprop:Generator_UserColumnName="Punctuality" type="xs:string" minOccurs="0" />
+              <xs:element name="JobcardHours" msprop:Generator_ColumnVarNameInTable="columnJobcardHours" msprop:Generator_ColumnPropNameInRow="JobcardHours" msprop:Generator_ColumnPropNameInTable="JobcardHoursColumn" msprop:Generator_UserColumnName="JobcardHours" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ViewAttMainEdit" msprop:Generator_TableClassName="ViewAttMainEditDataTable" msprop:Generator_TableVarName="tableViewAttMainEdit" msprop:Generator_TablePropName="ViewAttMainEdit" msprop:Generator_RowDeletingName="ViewAttMainEditRowDeleting" msprop:Generator_RowChangingName="ViewAttMainEditRowChanging" msprop:Generator_RowEvHandlerName="ViewAttMainEditRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewAttMainEditRowDeleted" msprop:Generator_UserTableName="ViewAttMainEdit" msprop:Generator_RowChangedName="ViewAttMainEditRowChanged" msprop:Generator_RowEvArgName="ViewAttMainEditRowChangeEvent" msprop:Generator_RowClassName="ViewAttMainEditRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmpID" msprop:Generator_ColumnVarNameInTable="columnEmpID" msprop:Generator_ColumnPropNameInRow="EmpID" msprop:Generator_ColumnPropNameInTable="EmpIDColumn" msprop:Generator_UserColumnName="EmpID" type="xs:int" minOccurs="0" />
+              <xs:element name="AttEditID" msprop:Generator_ColumnVarNameInTable="columnAttEditID" msprop:Generator_ColumnPropNameInRow="AttEditID" msprop:Generator_ColumnPropNameInTable="AttEditIDColumn" msprop:Generator_UserColumnName="AttEditID" type="xs:int" />
+              <xs:element name="EditDateTime" msprop:Generator_ColumnVarNameInTable="columnEditDateTime" msprop:Generator_ColumnPropNameInRow="EditDateTime" msprop:Generator_ColumnPropNameInTable="EditDateTimeColumn" msprop:Generator_UserColumnName="EditDateTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OldTimeIn" msprop:Generator_ColumnVarNameInTable="columnOldTimeIn" msprop:Generator_ColumnPropNameInRow="OldTimeIn" msprop:Generator_ColumnPropNameInTable="OldTimeInColumn" msprop:Generator_UserColumnName="OldTimeIn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OldTimeOut" msprop:Generator_ColumnVarNameInTable="columnOldTimeOut" msprop:Generator_ColumnPropNameInRow="OldTimeOut" msprop:Generator_ColumnPropNameInTable="OldTimeOutColumn" msprop:Generator_UserColumnName="OldTimeOut" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NewTimeIn" msprop:Generator_ColumnVarNameInTable="columnNewTimeIn" msprop:Generator_ColumnPropNameInRow="NewTimeIn" msprop:Generator_ColumnPropNameInTable="NewTimeInColumn" msprop:Generator_UserColumnName="NewTimeIn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NewTimeOut" msprop:Generator_ColumnVarNameInTable="columnNewTimeOut" msprop:Generator_ColumnPropNameInRow="NewTimeOut" msprop:Generator_ColumnPropNameInTable="NewTimeOutColumn" msprop:Generator_UserColumnName="NewTimeOut" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EmpDate" msprop:Generator_ColumnVarNameInTable="columnEmpDate" msprop:Generator_ColumnPropNameInRow="EmpDate" msprop:Generator_ColumnPropNameInTable="EmpDateColumn" msprop:Generator_UserColumnName="EmpDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Process" msprop:Generator_ColumnVarNameInTable="columnProcess" msprop:Generator_ColumnPropNameInRow="Process" msprop:Generator_ColumnPropNameInTable="ProcessColumn" msprop:Generator_UserColumnName="Process" type="xs:boolean" minOccurs="0" />
+              <xs:element name="OldDutyCode" msprop:Generator_ColumnVarNameInTable="columnOldDutyCode" msprop:Generator_ColumnPropNameInRow="OldDutyCode" msprop:Generator_ColumnPropNameInTable="OldDutyCodeColumn" msprop:Generator_UserColumnName="OldDutyCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OldDutyTime" msprop:Generator_ColumnVarNameInTable="columnOldDutyTime" msprop:Generator_ColumnPropNameInRow="OldDutyTime" msprop:Generator_ColumnPropNameInTable="OldDutyTimeColumn" msprop:Generator_UserColumnName="OldDutyTime" type="xs:duration" minOccurs="0" />
+              <xs:element name="NewDutyCode" msprop:Generator_ColumnVarNameInTable="columnNewDutyCode" msprop:Generator_ColumnPropNameInRow="NewDutyCode" msprop:Generator_ColumnPropNameInTable="NewDutyCodeColumn" msprop:Generator_UserColumnName="NewDutyCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NewDutyTime" msprop:Generator_ColumnVarNameInTable="columnNewDutyTime" msprop:Generator_ColumnPropNameInRow="NewDutyTime" msprop:Generator_ColumnPropNameInTable="NewDutyTimeColumn" msprop:Generator_UserColumnName="NewDutyTime" type="xs:duration" minOccurs="0" />
+              <xs:element name="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_UserColumnName="UserID" type="xs:int" minOccurs="0" />
+              <xs:element name="CompanyID" msprop:Generator_ColumnVarNameInTable="columnCompanyID" msprop:Generator_ColumnPropNameInRow="CompanyID" msprop:Generator_ColumnPropNameInTable="CompanyIDColumn" msprop:Generator_UserColumnName="CompanyID" type="xs:short" minOccurs="0" />
+              <xs:element name="OldRemarks" msprop:Generator_ColumnVarNameInTable="columnOldRemarks" msprop:Generator_ColumnPropNameInRow="OldRemarks" msprop:Generator_ColumnPropNameInTable="OldRemarksColumn" msprop:Generator_UserColumnName="OldRemarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NewRemarks" msprop:Generator_ColumnVarNameInTable="columnNewRemarks" msprop:Generator_ColumnPropNameInRow="NewRemarks" msprop:Generator_ColumnPropNameInTable="NewRemarksColumn" msprop:Generator_UserColumnName="NewRemarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OldShiftMin" msprop:Generator_ColumnVarNameInTable="columnOldShiftMin" msprop:Generator_ColumnPropNameInRow="OldShiftMin" msprop:Generator_ColumnPropNameInTable="OldShiftMinColumn" msprop:Generator_UserColumnName="OldShiftMin" type="xs:short" minOccurs="0" />
+              <xs:element name="NewShiftMin" msprop:Generator_ColumnVarNameInTable="columnNewShiftMin" msprop:Generator_ColumnPropNameInRow="NewShiftMin" msprop:Generator_ColumnPropNameInTable="NewShiftMinColumn" msprop:Generator_UserColumnName="NewShiftMin" type="xs:short" minOccurs="0" />
+              <xs:element name="DeptName" msprop:Generator_ColumnVarNameInTable="columnDeptName" msprop:Generator_ColumnPropNameInRow="DeptName" msprop:Generator_ColumnPropNameInTable="DeptNameColumn" msprop:Generator_UserColumnName="DeptName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DesignationName" msprop:Generator_ColumnVarNameInTable="columnDesignationName" msprop:Generator_ColumnPropNameInRow="DesignationName" msprop:Generator_ColumnPropNameInTable="DesignationNameColumn" msprop:Generator_UserColumnName="DesignationName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1" type="xs:int" />
+              <xs:element name="EmpNo" msprop:Generator_ColumnVarNameInTable="columnEmpNo" msprop:Generator_ColumnPropNameInRow="EmpNo" msprop:Generator_ColumnPropNameInTable="EmpNoColumn" msprop:Generator_UserColumnName="EmpNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DesigID" msprop:Generator_ColumnVarNameInTable="columnDesigID" msprop:Generator_ColumnPropNameInRow="DesigID" msprop:Generator_ColumnPropNameInTable="DesigIDColumn" msprop:Generator_UserColumnName="DesigID" type="xs:int" minOccurs="0" />
+              <xs:element name="ShiftID" msprop:Generator_ColumnVarNameInTable="columnShiftID" msprop:Generator_ColumnPropNameInRow="ShiftID" msprop:Generator_ColumnPropNameInTable="ShiftIDColumn" msprop:Generator_UserColumnName="ShiftID" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="LocID" msprop:Generator_ColumnVarNameInTable="columnLocID" msprop:Generator_ColumnPropNameInRow="LocID" msprop:Generator_ColumnPropNameInTable="LocIDColumn" msprop:Generator_UserColumnName="LocID" type="xs:short" minOccurs="0" />
+              <xs:element name="TypeID" msprop:Generator_ColumnVarNameInTable="columnTypeID" msprop:Generator_ColumnPropNameInRow="TypeID" msprop:Generator_ColumnPropNameInTable="TypeIDColumn" msprop:Generator_UserColumnName="TypeID" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SecID" msprop:Generator_ColumnVarNameInTable="columnSecID" msprop:Generator_ColumnPropNameInRow="SecID" msprop:Generator_ColumnPropNameInTable="SecIDColumn" msprop:Generator_UserColumnName="SecID" type="xs:short" minOccurs="0" />
+              <xs:element name="CardNo" msprop:Generator_ColumnVarNameInTable="columnCardNo" msprop:Generator_ColumnPropNameInRow="CardNo" msprop:Generator_ColumnPropNameInTable="CardNoColumn" msprop:Generator_UserColumnName="CardNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NicNo" msprop:Generator_ColumnVarNameInTable="columnNicNo" msprop:Generator_ColumnPropNameInRow="NicNo" msprop:Generator_ColumnPropNameInTable="NicNoColumn" msprop:Generator_UserColumnName="NicNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FatherName" msprop:Generator_ColumnVarNameInTable="columnFatherName" msprop:Generator_ColumnPropNameInRow="FatherName" msprop:Generator_ColumnPropNameInTable="FatherNameColumn" msprop:Generator_UserColumnName="FatherName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BloodGroup" msprop:Generator_ColumnVarNameInTable="columnBloodGroup" msprop:Generator_ColumnPropNameInRow="BloodGroup" msprop:Generator_ColumnPropNameInTable="BloodGroupColumn" msprop:Generator_UserColumnName="BloodGroup" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JoinDate" msprop:Generator_ColumnVarNameInTable="columnJoinDate" msprop:Generator_ColumnPropNameInRow="JoinDate" msprop:Generator_ColumnPropNameInTable="JoinDateColumn" msprop:Generator_UserColumnName="JoinDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BirthDate" msprop:Generator_ColumnVarNameInTable="columnBirthDate" msprop:Generator_ColumnPropNameInRow="BirthDate" msprop:Generator_ColumnPropNameInTable="BirthDateColumn" msprop:Generator_UserColumnName="BirthDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ValidDate" msprop:Generator_ColumnVarNameInTable="columnValidDate" msprop:Generator_ColumnPropNameInRow="ValidDate" msprop:Generator_ColumnPropNameInTable="ValidDateColumn" msprop:Generator_UserColumnName="ValidDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IssueDate" msprop:Generator_ColumnVarNameInTable="columnIssueDate" msprop:Generator_ColumnPropNameInRow="IssueDate" msprop:Generator_ColumnPropNameInTable="IssueDateColumn" msprop:Generator_UserColumnName="IssueDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ResignDate" msprop:Generator_ColumnVarNameInTable="columnResignDate" msprop:Generator_ColumnPropNameInRow="ResignDate" msprop:Generator_ColumnPropNameInTable="ResignDateColumn" msprop:Generator_UserColumnName="ResignDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
+              <xs:element name="TypeName" msprop:Generator_ColumnVarNameInTable="columnTypeName" msprop:Generator_ColumnPropNameInRow="TypeName" msprop:Generator_ColumnPropNameInTable="TypeNameColumn" msprop:Generator_UserColumnName="TypeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LocName" msprop:Generator_ColumnVarNameInTable="columnLocName" msprop:Generator_ColumnPropNameInRow="LocName" msprop:Generator_ColumnPropNameInTable="LocNameColumn" msprop:Generator_UserColumnName="LocName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ShiftName" msprop:Generator_ColumnVarNameInTable="columnShiftName" msprop:Generator_ColumnPropNameInRow="ShiftName" msprop:Generator_ColumnPropNameInTable="ShiftNameColumn" msprop:Generator_UserColumnName="ShiftName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DeptID" msprop:Generator_ColumnVarNameInTable="columnDeptID" msprop:Generator_ColumnPropNameInRow="DeptID" msprop:Generator_ColumnPropNameInTable="DeptIDColumn" msprop:Generator_UserColumnName="DeptID" type="xs:short" />
+              <xs:element name="Deleted" msprop:Generator_ColumnVarNameInTable="columnDeleted" msprop:Generator_ColumnPropNameInRow="Deleted" msprop:Generator_ColumnPropNameInTable="DeletedColumn" msprop:Generator_UserColumnName="Deleted" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LvSummaryMonth" msprop:Generator_TableClassName="LvSummaryMonthDataTable" msprop:Generator_TableVarName="tableLvSummaryMonth" msprop:Generator_RowChangedName="LvSummaryMonthRowChanged" msprop:Generator_TablePropName="LvSummaryMonth" msprop:Generator_RowDeletingName="LvSummaryMonthRowDeleting" msprop:Generator_RowChangingName="LvSummaryMonthRowChanging" msprop:Generator_RowEvHandlerName="LvSummaryMonthRowChangeEventHandler" msprop:Generator_RowDeletedName="LvSummaryMonthRowDeleted" msprop:Generator_RowClassName="LvSummaryMonthRow" msprop:Generator_UserTableName="LvSummaryMonth" msprop:Generator_RowEvArgName="LvSummaryMonthRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmpNo" msprop:Generator_ColumnVarNameInTable="columnEmpNo" msprop:Generator_ColumnPropNameInRow="EmpNo" msprop:Generator_ColumnPropNameInTable="EmpNoColumn" msprop:Generator_UserColumnName="EmpNo" type="xs:string" minOccurs="0" />
+              <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName" type="xs:string" minOccurs="0" />
+              <xs:element name="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_UserColumnName="Designation" type="xs:string" minOccurs="0" />
+              <xs:element name="Section" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="Section" type="xs:string" minOccurs="0" />
+              <xs:element name="Deaprtment" msprop:Generator_ColumnVarNameInTable="columnDeaprtment" msprop:Generator_ColumnPropNameInRow="Deaprtment" msprop:Generator_ColumnPropNameInTable="DeaprtmentColumn" msprop:Generator_UserColumnName="Deaprtment" type="xs:string" minOccurs="0" />
+              <xs:element name="EmpType" msprop:Generator_ColumnVarNameInTable="columnEmpType" msprop:Generator_ColumnPropNameInRow="EmpType" msprop:Generator_ColumnPropNameInTable="EmpTypeColumn" msprop:Generator_UserColumnName="EmpType" type="xs:string" minOccurs="0" />
+              <xs:element name="Category" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_UserColumnName="Category" type="xs:string" minOccurs="0" />
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalCL" msprop:Generator_ColumnVarNameInTable="columnTotalCL" msprop:Generator_ColumnPropNameInRow="TotalCL" msprop:Generator_ColumnPropNameInTable="TotalCLColumn" msprop:Generator_UserColumnName="TotalCL" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalSL" msprop:Generator_ColumnVarNameInTable="columnTotalSL" msprop:Generator_ColumnPropNameInRow="TotalSL" msprop:Generator_ColumnPropNameInTable="TotalSLColumn" msprop:Generator_UserColumnName="TotalSL" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalAL" msprop:Generator_ColumnVarNameInTable="columnTotalAL" msprop:Generator_ColumnPropNameInRow="TotalAL" msprop:Generator_ColumnPropNameInTable="TotalALColumn" msprop:Generator_UserColumnName="TotalAL" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalCPL" msprop:Generator_ColumnVarNameInTable="columnTotalCPL" msprop:Generator_ColumnPropNameInRow="TotalCPL" msprop:Generator_ColumnPropNameInTable="TotalCPLColumn" msprop:Generator_UserColumnName="TotalCPL" type="xs:double" minOccurs="0" />
+              <xs:element name="ConsumedCL" msprop:Generator_ColumnVarNameInTable="columnConsumedCL" msprop:Generator_ColumnPropNameInRow="ConsumedCL" msprop:Generator_ColumnPropNameInTable="ConsumedCLColumn" msprop:Generator_UserColumnName="ConsumedCL" type="xs:double" minOccurs="0" />
+              <xs:element name="ConsumedSL" msprop:Generator_ColumnVarNameInTable="columnConsumedSL" msprop:Generator_ColumnPropNameInRow="ConsumedSL" msprop:Generator_ColumnPropNameInTable="ConsumedSLColumn" msprop:Generator_UserColumnName="ConsumedSL" type="xs:double" minOccurs="0" />
+              <xs:element name="ConsumedAL" msprop:Generator_ColumnVarNameInTable="columnConsumedAL" msprop:Generator_ColumnPropNameInRow="ConsumedAL" msprop:Generator_ColumnPropNameInTable="ConsumedALColumn" msprop:Generator_UserColumnName="ConsumedAL" type="xs:double" minOccurs="0" />
+              <xs:element name="ConsumedCPL" msprop:Generator_ColumnVarNameInTable="columnConsumedCPL" msprop:Generator_ColumnPropNameInRow="ConsumedCPL" msprop:Generator_ColumnPropNameInTable="ConsumedCPLColumn" msprop:Generator_UserColumnName="ConsumedCPL" type="xs:double" minOccurs="0" />
+              <xs:element name="BalanceCL" msprop:Generator_ColumnVarNameInTable="columnBalanceCL" msprop:Generator_ColumnPropNameInRow="BalanceCL" msprop:Generator_ColumnPropNameInTable="BalanceCLColumn" msprop:Generator_UserColumnName="BalanceCL" type="xs:double" minOccurs="0" />
+              <xs:element name="BalanceSL" msprop:Generator_ColumnVarNameInTable="columnBalanceSL" msprop:Generator_ColumnPropNameInRow="BalanceSL" msprop:Generator_ColumnPropNameInTable="BalanceSLColumn" msprop:Generator_UserColumnName="BalanceSL" type="xs:double" minOccurs="0" />
+              <xs:element name="BalanceAL" msprop:Generator_ColumnVarNameInTable="columnBalanceAL" msprop:Generator_ColumnPropNameInRow="BalanceAL" msprop:Generator_ColumnPropNameInTable="BalanceALColumn" msprop:Generator_UserColumnName="BalanceAL" type="xs:double" minOccurs="0" />
+              <xs:element name="BalanceCPL" msprop:Generator_ColumnVarNameInTable="columnBalanceCPL" msprop:Generator_ColumnPropNameInRow="BalanceCPL" msprop:Generator_ColumnPropNameInTable="BalanceCPLColumn" msprop:Generator_UserColumnName="BalanceCPL" type="xs:double" minOccurs="0" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" type="xs:string" minOccurs="0" />
+              <xs:element name="Month" msprop:Generator_ColumnVarNameInTable="columnMonth" msprop:Generator_ColumnPropNameInRow="Month" msprop:Generator_ColumnPropNameInTable="MonthColumn" msprop:Generator_UserColumnName="Month" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ViewYLSummary" msprop:Generator_TableClassName="ViewYLSummaryDataTable" msprop:Generator_TableVarName="tableViewYLSummary" msprop:Generator_RowChangedName="ViewYLSummaryRowChanged" msprop:Generator_TablePropName="ViewYLSummary" msprop:Generator_RowDeletingName="ViewYLSummaryRowDeleting" msprop:Generator_RowChangingName="ViewYLSummaryRowChanging" msprop:Generator_RowEvHandlerName="ViewYLSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewYLSummaryRowDeleted" msprop:Generator_RowClassName="ViewYLSummaryRow" msprop:Generator_UserTableName="ViewYLSummary" msprop:Generator_RowEvArgName="ViewYLSummaryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EmpID" msprop:Generator_ColumnVarNameInTable="columnEmpID" msprop:Generator_ColumnPropNameInRow="EmpID" msprop:Generator_ColumnPropNameInTable="EmpIDColumn" msprop:Generator_UserColumnName="EmpID" type="xs:long" minOccurs="0" />
+              <xs:element name="EmpNo" msprop:Generator_ColumnVarNameInTable="columnEmpNo" msprop:Generator_ColumnPropNameInRow="EmpNo" msprop:Generator_ColumnPropNameInTable="EmpNoColumn" msprop:Generator_UserColumnName="EmpNo" type="xs:string" minOccurs="0" />
+              <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalAL" msprop:Generator_ColumnVarNameInTable="columnTotalAL" msprop:Generator_ColumnPropNameInRow="TotalAL" msprop:Generator_ColumnPropNameInTable="TotalALColumn" msprop:Generator_UserColumnName="TotalAL" type="xs:double" minOccurs="0" />
+              <xs:element name="BalAL" msprop:Generator_ColumnVarNameInTable="columnBalAL" msprop:Generator_ColumnPropNameInRow="BalAL" msprop:Generator_ColumnPropNameInTable="BalALColumn" msprop:Generator_UserColumnName="BalAL" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalCL" msprop:Generator_ColumnVarNameInTable="columnTotalCL" msprop:Generator_ColumnPropNameInRow="TotalCL" msprop:Generator_ColumnPropNameInTable="TotalCLColumn" msprop:Generator_UserColumnName="TotalCL" type="xs:double" minOccurs="0" />
+              <xs:element name="BalCL" msprop:Generator_ColumnVarNameInTable="columnBalCL" msprop:Generator_ColumnPropNameInRow="BalCL" msprop:Generator_ColumnPropNameInTable="BalCLColumn" msprop:Generator_UserColumnName="BalCL" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalSL" msprop:Generator_ColumnVarNameInTable="columnTotalSL" msprop:Generator_ColumnPropNameInRow="TotalSL" msprop:Generator_ColumnPropNameInTable="TotalSLColumn" msprop:Generator_UserColumnName="TotalSL" type="xs:double" minOccurs="0" />
+              <xs:element name="BalSL" msprop:Generator_ColumnVarNameInTable="columnBalSL" msprop:Generator_ColumnPropNameInRow="BalSL" msprop:Generator_ColumnPropNameInTable="BalSLColumn" msprop:Generator_UserColumnName="BalSL" type="xs:double" minOccurs="0" />
+              <xs:element name="JanAL" msprop:Generator_ColumnVarNameInTable="columnJanAL" msprop:Generator_ColumnPropNameInRow="JanAL" msprop:Generator_ColumnPropNameInTable="JanALColumn" msprop:Generator_UserColumnName="JanAL" type="xs:double" minOccurs="0" />
+              <xs:element name="JanCL" msprop:Generator_ColumnVarNameInTable="columnJanCL" msprop:Generator_ColumnPropNameInRow="JanCL" msprop:Generator_ColumnPropNameInTable="JanCLColumn" msprop:Generator_UserColumnName="JanCL" type="xs:double" minOccurs="0" />
+              <xs:element name="JanSL" msprop:Generator_ColumnVarNameInTable="columnJanSL" msprop:Generator_ColumnPropNameInRow="JanSL" msprop:Generator_ColumnPropNameInTable="JanSLColumn" msprop:Generator_UserColumnName="JanSL" type="xs:double" minOccurs="0" />
+              <xs:element name="FebAL" msprop:Generator_ColumnVarNameInTable="columnFebAL" msprop:Generator_ColumnPropNameInRow="FebAL" msprop:Generator_ColumnPropNameInTable="FebALColumn" msprop:Generator_UserColumnName="FebAL" type="xs:double" minOccurs="0" />
+              <xs:element name="FebCL" msprop:Generator_ColumnVarNameInTable="columnFebCL" msprop:Generator_ColumnPropNameInRow="FebCL" msprop:Generator_ColumnPropNameInTable="FebCLColumn" msprop:Generator_UserColumnName="FebCL" type="xs:double" minOccurs="0" />
+              <xs:element name="FebSL" msprop:Generator_ColumnVarNameInTable="columnFebSL" msprop:Generator_ColumnPropNameInRow="FebSL" msprop:Generator_ColumnPropNameInTable="FebSLColumn" msprop:Generator_UserColumnName="FebSL" type="xs:double" minOccurs="0" />
+              <xs:element name="MarchAL" msprop:Generator_ColumnVarNameInTable="columnMarchAL" msprop:Generator_ColumnPropNameInRow="MarchAL" msprop:Generator_ColumnPropNameInTable="MarchALColumn" msprop:Generator_UserColumnName="MarchAL" type="xs:double" minOccurs="0" />
+              <xs:element name="MarchCL" msprop:Generator_ColumnVarNameInTable="columnMarchCL" msprop:Generator_ColumnPropNameInRow="MarchCL" msprop:Generator_ColumnPropNameInTable="MarchCLColumn" msprop:Generator_UserColumnName="MarchCL" type="xs:double" minOccurs="0" />
+              <xs:element name="MarchSL" msprop:Generator_ColumnVarNameInTable="columnMarchSL" msprop:Generator_ColumnPropNameInRow="MarchSL" msprop:Generator_ColumnPropNameInTable="MarchSLColumn" msprop:Generator_UserColumnName="MarchSL" type="xs:double" minOccurs="0" />
+              <xs:element name="AprilAL" msprop:Generator_ColumnVarNameInTable="columnAprilAL" msprop:Generator_ColumnPropNameInRow="AprilAL" msprop:Generator_ColumnPropNameInTable="AprilALColumn" msprop:Generator_UserColumnName="AprilAL" type="xs:double" minOccurs="0" />
+              <xs:element name="AprilCL" msprop:Generator_ColumnVarNameInTable="columnAprilCL" msprop:Generator_ColumnPropNameInRow="AprilCL" msprop:Generator_ColumnPropNameInTable="AprilCLColumn" msprop:Generator_UserColumnName="AprilCL" type="xs:double" minOccurs="0" />
+              <xs:element name="AprilSL" msprop:Generator_ColumnVarNameInTable="columnAprilSL" msprop:Generator_ColumnPropNameInRow="AprilSL" msprop:Generator_ColumnPropNameInTable="AprilSLColumn" msprop:Generator_UserColumnName="AprilSL" type="xs:double" minOccurs="0" />
+              <xs:element name="MayAL" msprop:Generator_ColumnVarNameInTable="columnMayAL" msprop:Generator_ColumnPropNameInRow="MayAL" msprop:Generator_ColumnPropNameInTable="MayALColumn" msprop:Generator_UserColumnName="MayAL" type="xs:double" minOccurs="0" />
+              <xs:element name="MayCL" msprop:Generator_ColumnVarNameInTable="columnMayCL" msprop:Generator_ColumnPropNameInRow="MayCL" msprop:Generator_ColumnPropNameInTable="MayCLColumn" msprop:Generator_UserColumnName="MayCL" type="xs:double" minOccurs="0" />
+              <xs:element name="MaySL" msprop:Generator_ColumnVarNameInTable="columnMaySL" msprop:Generator_ColumnPropNameInRow="MaySL" msprop:Generator_ColumnPropNameInTable="MaySLColumn" msprop:Generator_UserColumnName="MaySL" type="xs:double" minOccurs="0" />
+              <xs:element name="JunAL" msprop:Generator_ColumnVarNameInTable="columnJunAL" msprop:Generator_ColumnPropNameInRow="JunAL" msprop:Generator_ColumnPropNameInTable="JunALColumn" msprop:Generator_UserColumnName="JunAL" type="xs:double" minOccurs="0" />
+              <xs:element name="JunCL" msprop:Generator_ColumnVarNameInTable="columnJunCL" msprop:Generator_ColumnPropNameInRow="JunCL" msprop:Generator_ColumnPropNameInTable="JunCLColumn" msprop:Generator_UserColumnName="JunCL" type="xs:double" minOccurs="0" />
+              <xs:element name="JunSL" msprop:Generator_ColumnVarNameInTable="columnJunSL" msprop:Generator_ColumnPropNameInRow="JunSL" msprop:Generator_ColumnPropNameInTable="JunSLColumn" msprop:Generator_UserColumnName="JunSL" type="xs:double" minOccurs="0" />
+              <xs:element name="JulyAL" msprop:Generator_ColumnVarNameInTable="columnJulyAL" msprop:Generator_ColumnPropNameInRow="JulyAL" msprop:Generator_ColumnPropNameInTable="JulyALColumn" msprop:Generator_UserColumnName="JulyAL" type="xs:double" minOccurs="0" />
+              <xs:element name="JulyCL" msprop:Generator_ColumnVarNameInTable="columnJulyCL" msprop:Generator_ColumnPropNameInRow="JulyCL" msprop:Generator_ColumnPropNameInTable="JulyCLColumn" msprop:Generator_UserColumnName="JulyCL" type="xs:double" minOccurs="0" />
+              <xs:element name="JulySL" msprop:Generator_ColumnVarNameInTable="columnJulySL" msprop:Generator_ColumnPropNameInRow="JulySL" msprop:Generator_ColumnPropNameInTable="JulySLColumn" msprop:Generator_UserColumnName="JulySL" type="xs:double" minOccurs="0" />
+              <xs:element name="AugAL" msprop:Generator_ColumnVarNameInTable="columnAugAL" msprop:Generator_ColumnPropNameInRow="AugAL" msprop:Generator_ColumnPropNameInTable="AugALColumn" msprop:Generator_UserColumnName="AugAL" type="xs:double" minOccurs="0" />
+              <xs:element name="AugCL" msprop:Generator_ColumnVarNameInTable="columnAugCL" msprop:Generator_ColumnPropNameInRow="AugCL" msprop:Generator_ColumnPropNameInTable="AugCLColumn" msprop:Generator_UserColumnName="AugCL" type="xs:double" minOccurs="0" />
+              <xs:element name="AugSL" msprop:Generator_ColumnVarNameInTable="columnAugSL" msprop:Generator_ColumnPropNameInRow="AugSL" msprop:Generator_ColumnPropNameInTable="AugSLColumn" msprop:Generator_UserColumnName="AugSL" type="xs:double" minOccurs="0" />
+              <xs:element name="SepAL" msprop:Generator_ColumnVarNameInTable="columnSepAL" msprop:Generator_ColumnPropNameInRow="SepAL" msprop:Generator_ColumnPropNameInTable="SepALColumn" msprop:Generator_UserColumnName="SepAL" type="xs:double" minOccurs="0" />
+              <xs:element name="SepCL" msprop:Generator_ColumnVarNameInTable="columnSepCL" msprop:Generator_ColumnPropNameInRow="SepCL" msprop:Generator_ColumnPropNameInTable="SepCLColumn" msprop:Generator_UserColumnName="SepCL" type="xs:double" minOccurs="0" />
+              <xs:element name="SepSL" msprop:Generator_ColumnVarNameInTable="columnSepSL" msprop:Generator_ColumnPropNameInRow="SepSL" msprop:Generator_ColumnPropNameInTable="SepSLColumn" msprop:Generator_UserColumnName="SepSL" type="xs:double" minOccurs="0" />
+              <xs:element name="OctAL" msprop:Generator_ColumnVarNameInTable="columnOctAL" msprop:Generator_ColumnPropNameInRow="OctAL" msprop:Generator_ColumnPropNameInTable="OctALColumn" msprop:Generator_UserColumnName="OctAL" type="xs:double" minOccurs="0" />
+              <xs:element name="OctCL" msprop:Generator_ColumnVarNameInTable="columnOctCL" msprop:Generator_ColumnPropNameInRow="OctCL" msprop:Generator_ColumnPropNameInTable="OctCLColumn" msprop:Generator_UserColumnName="OctCL" type="xs:double" minOccurs="0" />
+              <xs:element name="OctSL" msprop:Generator_ColumnVarNameInTable="columnOctSL" msprop:Generator_ColumnPropNameInRow="OctSL" msprop:Generator_ColumnPropNameInTable="OctSLColumn" msprop:Generator_UserColumnName="OctSL" type="xs:double" minOccurs="0" />
+              <xs:element name="NovAL" msprop:Generator_ColumnVarNameInTable="columnNovAL" msprop:Generator_ColumnPropNameInRow="NovAL" msprop:Generator_ColumnPropNameInTable="NovALColumn" msprop:Generator_UserColumnName="NovAL" type="xs:double" minOccurs="0" />
+              <xs:element name="NovCL" msprop:Generator_ColumnVarNameInTable="columnNovCL" msprop:Generator_ColumnPropNameInRow="NovCL" msprop:Generator_ColumnPropNameInTable="NovCLColumn" msprop:Generator_UserColumnName="NovCL" type="xs:double" minOccurs="0" />
+              <xs:element name="NovSL" msprop:Generator_ColumnVarNameInTable="columnNovSL" msprop:Generator_ColumnPropNameInRow="NovSL" msprop:Generator_ColumnPropNameInTable="NovSLColumn" msprop:Generator_UserColumnName="NovSL" type="xs:double" minOccurs="0" />
+              <xs:element name="DecAL" msprop:Generator_ColumnVarNameInTable="columnDecAL" msprop:Generator_ColumnPropNameInRow="DecAL" msprop:Generator_ColumnPropNameInTable="DecALColumn" msprop:Generator_UserColumnName="DecAL" type="xs:double" minOccurs="0" />
+              <xs:element name="DecCL" msprop:Generator_ColumnVarNameInTable="columnDecCL" msprop:Generator_ColumnPropNameInRow="DecCL" msprop:Generator_ColumnPropNameInTable="DecCLColumn" msprop:Generator_UserColumnName="DecCL" type="xs:double" minOccurs="0" />
+              <xs:element name="DecSL" msprop:Generator_ColumnVarNameInTable="columnDecSL" msprop:Generator_ColumnPropNameInRow="DecSL" msprop:Generator_ColumnPropNameInTable="DecSLColumn" msprop:Generator_UserColumnName="DecSL" type="xs:double" minOccurs="0" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" type="xs:string" minOccurs="0" />
+              <xs:element name="DeptName" msprop:Generator_ColumnVarNameInTable="columnDeptName" msprop:Generator_ColumnPropNameInRow="DeptName" msprop:Generator_ColumnPropNameInTable="DeptNameColumn" msprop:Generator_UserColumnName="DeptName" type="xs:string" minOccurs="0" />
+              <xs:element name="DeptID" msprop:Generator_ColumnVarNameInTable="columnDeptID" msprop:Generator_ColumnPropNameInRow="DeptID" msprop:Generator_ColumnPropNameInTable="DeptIDColumn" msprop:Generator_UserColumnName="DeptID" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="SecName" msprop:Generator_ColumnVarNameInTable="columnSecName" msprop:Generator_ColumnPropNameInRow="SecName" msprop:Generator_ColumnPropNameInTable="SecNameColumn" msprop:Generator_UserColumnName="SecName" type="xs:string" minOccurs="0" />
+              <xs:element name="SecID" msprop:Generator_ColumnVarNameInTable="columnSecID" msprop:Generator_ColumnPropNameInRow="SecID" msprop:Generator_ColumnPropNameInTable="SecIDColumn" msprop:Generator_UserColumnName="SecID" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="DesgName" msprop:Generator_ColumnVarNameInTable="columnDesgName" msprop:Generator_ColumnPropNameInRow="DesgName" msprop:Generator_ColumnPropNameInTable="DesgNameColumn" msprop:Generator_UserColumnName="DesgName" type="xs:string" minOccurs="0" />
+              <xs:element name="DesgID" msprop:Generator_ColumnVarNameInTable="columnDesgID" msprop:Generator_ColumnPropNameInRow="DesgID" msprop:Generator_ColumnPropNameInTable="DesgIDColumn" msprop:Generator_UserColumnName="DesgID" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="CrewName" msprop:Generator_ColumnVarNameInTable="columnCrewName" msprop:Generator_ColumnPropNameInRow="CrewName" msprop:Generator_ColumnPropNameInTable="CrewNameColumn" msprop:Generator_UserColumnName="CrewName" type="xs:string" minOccurs="0" />
+              <xs:element name="CrewID" msprop:Generator_ColumnVarNameInTable="columnCrewID" msprop:Generator_ColumnPropNameInRow="CrewID" msprop:Generator_ColumnPropNameInTable="CrewIDColumn" msprop:Generator_UserColumnName="CrewID" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="CompanyName" msprop:Generator_ColumnVarNameInTable="columnCompanyName" msprop:Generator_ColumnPropNameInRow="CompanyName" msprop:Generator_ColumnPropNameInTable="CompanyNameColumn" msprop:Generator_UserColumnName="CompanyName" type="xs:string" minOccurs="0" />
+              <xs:element name="CompanyID" msprop:Generator_ColumnVarNameInTable="columnCompanyID" msprop:Generator_ColumnPropNameInRow="CompanyID" msprop:Generator_ColumnPropNameInTable="CompanyIDColumn" msprop:Generator_UserColumnName="CompanyID" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="LocationName" msprop:Generator_ColumnVarNameInTable="columnLocationName" msprop:Generator_ColumnPropNameInRow="LocationName" msprop:Generator_ColumnPropNameInTable="LocationNameColumn" msprop:Generator_UserColumnName="LocationName" type="xs:string" minOccurs="0" />
+              <xs:element name="LocationID" msprop:Generator_ColumnVarNameInTable="columnLocationID" msprop:Generator_ColumnPropNameInRow="LocationID" msprop:Generator_ColumnPropNameInTable="LocationIDColumn" msprop:Generator_UserColumnName="LocationID" type="xs:unsignedShort" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DailySummary" msprop:Generator_TableClassName="DailySummaryDataTable" msprop:Generator_TableVarName="tableDailySummary" msprop:Generator_TablePropName="DailySummary" msprop:Generator_RowDeletingName="DailySummaryRowDeleting" msprop:Generator_RowChangingName="DailySummaryRowChanging" msprop:Generator_RowEvHandlerName="DailySummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="DailySummaryRowDeleted" msprop:Generator_UserTableName="DailySummary" msprop:Generator_RowChangedName="DailySummaryRowChanged" msprop:Generator_RowEvArgName="DailySummaryRowChangeEvent" msprop:Generator_RowClassName="DailySummaryRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SummaryDateCriteria" msprop:Generator_ColumnVarNameInTable="columnSummaryDateCriteria" msprop:Generator_ColumnPropNameInRow="SummaryDateCriteria" msprop:Generator_ColumnPropNameInTable="SummaryDateCriteriaColumn" msprop:Generator_UserColumnName="SummaryDateCriteria">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Criteria" msprop:Generator_ColumnVarNameInTable="columnCriteria" msprop:Generator_ColumnPropNameInRow="Criteria" msprop:Generator_ColumnPropNameInTable="CriteriaColumn" msprop:Generator_UserColumnName="Criteria" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TotalEmps" msprop:Generator_ColumnVarNameInTable="columnTotalEmps" msprop:Generator_ColumnPropNameInRow="TotalEmps" msprop:Generator_ColumnPropNameInTable="TotalEmpsColumn" msprop:Generator_UserColumnName="TotalEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="PresentEmps" msprop:Generator_ColumnVarNameInTable="columnPresentEmps" msprop:Generator_ColumnPropNameInRow="PresentEmps" msprop:Generator_ColumnPropNameInTable="PresentEmpsColumn" msprop:Generator_UserColumnName="PresentEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="AbsentEmps" msprop:Generator_ColumnVarNameInTable="columnAbsentEmps" msprop:Generator_ColumnPropNameInRow="AbsentEmps" msprop:Generator_ColumnPropNameInTable="AbsentEmpsColumn" msprop:Generator_UserColumnName="AbsentEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="LvEmps" msprop:Generator_ColumnVarNameInTable="columnLvEmps" msprop:Generator_ColumnPropNameInRow="LvEmps" msprop:Generator_ColumnPropNameInTable="LvEmpsColumn" msprop:Generator_UserColumnName="LvEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="ShortLvEmps" msprop:Generator_ColumnVarNameInTable="columnShortLvEmps" msprop:Generator_ColumnPropNameInRow="ShortLvEmps" msprop:Generator_ColumnPropNameInTable="ShortLvEmpsColumn" msprop:Generator_UserColumnName="ShortLvEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="HalfLvEmps" msprop:Generator_ColumnVarNameInTable="columnHalfLvEmps" msprop:Generator_ColumnPropNameInRow="HalfLvEmps" msprop:Generator_ColumnPropNameInTable="HalfLvEmpsColumn" msprop:Generator_UserColumnName="HalfLvEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="LIEmps" msprop:Generator_ColumnVarNameInTable="columnLIEmps" msprop:Generator_ColumnPropNameInRow="LIEmps" msprop:Generator_ColumnPropNameInTable="LIEmpsColumn" msprop:Generator_UserColumnName="LIEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="LOEmps" msprop:Generator_ColumnVarNameInTable="columnLOEmps" msprop:Generator_ColumnPropNameInRow="LOEmps" msprop:Generator_ColumnPropNameInTable="LOEmpsColumn" msprop:Generator_UserColumnName="LOEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="EIEmps" msprop:Generator_ColumnVarNameInTable="columnEIEmps" msprop:Generator_ColumnPropNameInRow="EIEmps" msprop:Generator_ColumnPropNameInTable="EIEmpsColumn" msprop:Generator_UserColumnName="EIEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="EOEmps" msprop:Generator_ColumnVarNameInTable="columnEOEmps" msprop:Generator_ColumnPropNameInRow="EOEmps" msprop:Generator_ColumnPropNameInTable="EOEmpsColumn" msprop:Generator_UserColumnName="EOEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="OTEmps" msprop:Generator_ColumnVarNameInTable="columnOTEmps" msprop:Generator_ColumnPropNameInRow="OTEmps" msprop:Generator_ColumnPropNameInTable="OTEmpsColumn" msprop:Generator_UserColumnName="OTEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="OnTimeEmps" msprop:Generator_ColumnVarNameInTable="columnOnTimeEmps" msprop:Generator_ColumnPropNameInRow="OnTimeEmps" msprop:Generator_ColumnPropNameInTable="OnTimeEmpsColumn" msprop:Generator_UserColumnName="OnTimeEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="DayOffEmps" msprop:Generator_ColumnVarNameInTable="columnDayOffEmps" msprop:Generator_ColumnPropNameInRow="DayOffEmps" msprop:Generator_ColumnPropNameInTable="DayOffEmpsColumn" msprop:Generator_UserColumnName="DayOffEmps" type="xs:short" minOccurs="0" />
+              <xs:element name="LIMins" msprop:Generator_ColumnVarNameInTable="columnLIMins" msprop:Generator_ColumnPropNameInRow="LIMins" msprop:Generator_ColumnPropNameInTable="LIMinsColumn" msprop:Generator_UserColumnName="LIMins" type="xs:int" minOccurs="0" />
+              <xs:element name="LOMins" msprop:Generator_ColumnVarNameInTable="columnLOMins" msprop:Generator_ColumnPropNameInRow="LOMins" msprop:Generator_ColumnPropNameInTable="LOMinsColumn" msprop:Generator_UserColumnName="LOMins" type="xs:int" minOccurs="0" />
+              <xs:element name="EIMins" msprop:Generator_ColumnVarNameInTable="columnEIMins" msprop:Generator_ColumnPropNameInRow="EIMins" msprop:Generator_ColumnPropNameInTable="EIMinsColumn" msprop:Generator_UserColumnName="EIMins" type="xs:int" minOccurs="0" />
+              <xs:element name="EOMins" msprop:Generator_ColumnVarNameInTable="columnEOMins" msprop:Generator_ColumnPropNameInRow="EOMins" msprop:Generator_ColumnPropNameInTable="EOMinsColumn" msprop:Generator_UserColumnName="EOMins" type="xs:int" minOccurs="0" />
+              <xs:element name="OTMins" msprop:Generator_ColumnVarNameInTable="columnOTMins" msprop:Generator_ColumnPropNameInRow="OTMins" msprop:Generator_ColumnPropNameInTable="OTMinsColumn" msprop:Generator_UserColumnName="OTMins" type="xs:int" minOccurs="0" />
+              <xs:element name="ExpectedWorkMins" msprop:Generator_ColumnVarNameInTable="columnExpectedWorkMins" msprop:Generator_ColumnPropNameInRow="ExpectedWorkMins" msprop:Generator_ColumnPropNameInTable="ExpectedWorkMinsColumn" msprop:Generator_UserColumnName="ExpectedWorkMins" type="xs:int" minOccurs="0" />
+              <xs:element name="ActualWorkMins" msprop:Generator_ColumnVarNameInTable="columnActualWorkMins" msprop:Generator_ColumnPropNameInRow="ActualWorkMins" msprop:Generator_ColumnPropNameInTable="ActualWorkMinsColumn" msprop:Generator_UserColumnName="ActualWorkMins" type="xs:int" minOccurs="0" />
+              <xs:element name="LossWorkMins" msprop:Generator_ColumnVarNameInTable="columnLossWorkMins" msprop:Generator_ColumnPropNameInRow="LossWorkMins" msprop:Generator_ColumnPropNameInTable="LossWorkMinsColumn" msprop:Generator_UserColumnName="LossWorkMins" type="xs:int" minOccurs="0" />
+              <xs:element name="ALIMins" msprop:Generator_ColumnVarNameInTable="columnALIMins" msprop:Generator_ColumnPropNameInRow="ALIMins" msprop:Generator_ColumnPropNameInTable="ALIMinsColumn" msprop:Generator_UserColumnName="ALIMins" type="xs:short" minOccurs="0" />
+              <xs:element name="ALOMins" msprop:Generator_ColumnVarNameInTable="columnALOMins" msprop:Generator_ColumnPropNameInRow="ALOMins" msprop:Generator_ColumnPropNameInTable="ALOMinsColumn" msprop:Generator_UserColumnName="ALOMins" type="xs:short" minOccurs="0" />
+              <xs:element name="AEIMins" msprop:Generator_ColumnVarNameInTable="columnAEIMins" msprop:Generator_ColumnPropNameInRow="AEIMins" msprop:Generator_ColumnPropNameInTable="AEIMinsColumn" msprop:Generator_UserColumnName="AEIMins" type="xs:short" minOccurs="0" />
+              <xs:element name="AEOMins" msprop:Generator_ColumnVarNameInTable="columnAEOMins" msprop:Generator_ColumnPropNameInRow="AEOMins" msprop:Generator_ColumnPropNameInTable="AEOMinsColumn" msprop:Generator_UserColumnName="AEOMins" type="xs:short" minOccurs="0" />
+              <xs:element name="AOTMins" msprop:Generator_ColumnVarNameInTable="columnAOTMins" msprop:Generator_ColumnPropNameInRow="AOTMins" msprop:Generator_ColumnPropNameInTable="AOTMinsColumn" msprop:Generator_UserColumnName="AOTMins" type="xs:short" minOccurs="0" />
+              <xs:element name="AExpectedMins" msprop:Generator_ColumnVarNameInTable="columnAExpectedMins" msprop:Generator_ColumnPropNameInRow="AExpectedMins" msprop:Generator_ColumnPropNameInTable="AExpectedMinsColumn" msprop:Generator_UserColumnName="AExpectedMins" type="xs:short" minOccurs="0" />
+              <xs:element name="AActualMins" msprop:Generator_ColumnVarNameInTable="columnAActualMins" msprop:Generator_ColumnPropNameInRow="AActualMins" msprop:Generator_ColumnPropNameInTable="AActualMinsColumn" msprop:Generator_UserColumnName="AActualMins" type="xs:short" minOccurs="0" />
+              <xs:element name="ALossMins" msprop:Generator_ColumnVarNameInTable="columnALossMins" msprop:Generator_ColumnPropNameInRow="ALossMins" msprop:Generator_ColumnPropNameInTable="ALossMinsColumn" msprop:Generator_UserColumnName="ALossMins" type="xs:short" minOccurs="0" />
+              <xs:element name="CriteriaValue" msprop:Generator_ColumnVarNameInTable="columnCriteriaValue" msprop:Generator_ColumnPropNameInRow="CriteriaValue" msprop:Generator_ColumnPropNameInTable="CriteriaValueColumn" msprop:Generator_UserColumnName="CriteriaValue" type="xs:short" minOccurs="0" />
+              <xs:element name="CriteriaName" msprop:Generator_ColumnVarNameInTable="columnCriteriaName" msprop:Generator_ColumnPropNameInRow="CriteriaName" msprop:Generator_ColumnPropNameInTable="CriteriaNameColumn" msprop:Generator_UserColumnName="CriteriaName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AvgTimeIn" msprop:Generator_ColumnVarNameInTable="columnAvgTimeIn" msprop:Generator_ColumnPropNameInRow="AvgTimeIn" msprop:Generator_ColumnPropNameInTable="AvgTimeInColumn" msprop:Generator_UserColumnName="AvgTimeIn" type="xs:duration" minOccurs="0" />
+              <xs:element name="AvgTimeOut" msprop:Generator_ColumnVarNameInTable="columnAvgTimeOut" msprop:Generator_ColumnPropNameInRow="AvgTimeOut" msprop:Generator_ColumnPropNameInTable="AvgTimeOutColumn" msprop:Generator_UserColumnName="AvgTimeOut" type="xs:duration" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ViewLvApp" msprop:Generator_TableClassName="ViewLvAppDataTable" msprop:Generator_TableVarName="tableViewLvApp" msprop:Generator_TablePropName="ViewLvApp" msprop:Generator_RowDeletingName="ViewLvAppRowDeleting" msprop:Generator_RowChangingName="ViewLvAppRowChanging" msprop:Generator_RowEvHandlerName="ViewLvAppRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewLvAppRowDeleted" msprop:Generator_UserTableName="ViewLvApp" msprop:Generator_RowChangedName="ViewLvAppRowChanged" msprop:Generator_RowEvArgName="ViewLvAppRowChangeEvent" msprop:Generator_RowClassName="ViewLvAppRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1" type="xs:int" />
+              <xs:element name="LvID" msprop:Generator_ColumnVarNameInTable="columnLvID" msprop:Generator_ColumnPropNameInRow="LvID" msprop:Generator_ColumnPropNameInTable="LvIDColumn" msprop:Generator_UserColumnName="LvID" type="xs:int" />
+              <xs:element name="LvDate" msprop:Generator_ColumnVarNameInTable="columnLvDate" msprop:Generator_ColumnPropNameInRow="LvDate" msprop:Generator_ColumnPropNameInTable="LvDateColumn" msprop:Generator_UserColumnName="LvDate" type="xs:dateTime" />
+              <xs:element name="LeaveTypeID" msprop:Generator_ColumnVarNameInTable="columnLeaveTypeID" msprop:Generator_ColumnPropNameInRow="LeaveTypeID" msprop:Generator_ColumnPropNameInTable="LeaveTypeIDColumn" msprop:Generator_UserColumnName="LeaveTypeID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FromDate" msprop:Generator_ColumnVarNameInTable="columnFromDate" msprop:Generator_ColumnPropNameInRow="FromDate" msprop:Generator_ColumnPropNameInTable="FromDateColumn" msprop:Generator_UserColumnName="FromDate" type="xs:dateTime" />
+              <xs:element name="ToDate" msprop:Generator_ColumnVarNameInTable="columnToDate" msprop:Generator_ColumnPropNameInRow="ToDate" msprop:Generator_ColumnPropNameInTable="ToDateColumn" msprop:Generator_UserColumnName="ToDate" type="xs:dateTime" />
+              <xs:element name="NoOfDays" msprop:Generator_ColumnVarNameInTable="columnNoOfDays" msprop:Generator_ColumnPropNameInRow="NoOfDays" msprop:Generator_ColumnPropNameInTable="NoOfDaysColumn" msprop:Generator_UserColumnName="NoOfDays" type="xs:float" />
+              <xs:element name="IsHalf" msprop:Generator_ColumnVarNameInTable="columnIsHalf" msprop:Generator_ColumnPropNameInRow="IsHalf" msprop:Generator_ColumnPropNameInTable="IsHalfColumn" msprop:Generator_UserColumnName="IsHalf" type="xs:boolean" minOccurs="0" />
+              <xs:element name="FirstHalf" msprop:Generator_ColumnVarNameInTable="columnFirstHalf" msprop:Generator_ColumnPropNameInRow="FirstHalf" msprop:Generator_ColumnPropNameInTable="FirstHalfColumn" msprop:Generator_UserColumnName="FirstHalf" type="xs:boolean" minOccurs="0" />
+              <xs:element name="HalfAbsent" msprop:Generator_ColumnVarNameInTable="columnHalfAbsent" msprop:Generator_ColumnPropNameInRow="HalfAbsent" msprop:Generator_ColumnPropNameInTable="HalfAbsentColumn" msprop:Generator_UserColumnName="HalfAbsent" type="xs:boolean" minOccurs="0" />
+              <xs:element name="LvReason" msprop:Generator_ColumnVarNameInTable="columnLvReason" msprop:Generator_ColumnPropNameInRow="LvReason" msprop:Generator_ColumnPropNameInTable="LvReasonColumn" msprop:Generator_UserColumnName="LvReason" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LvAddress" msprop:Generator_ColumnVarNameInTable="columnLvAddress" msprop:Generator_ColumnPropNameInRow="LvAddress" msprop:Generator_ColumnPropNameInTable="LvAddressColumn" msprop:Generator_UserColumnName="LvAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CreatedBy" msprop:Generator_ColumnVarNameInTable="columnCreatedBy" msprop:Generator_ColumnPropNameInRow="CreatedBy" msprop:Generator_ColumnPropNameInTable="CreatedByColumn" msprop:Generator_UserColumnName="CreatedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="LvStatus" msprop:Generator_ColumnVarNameInTable="columnLvStatus" msprop:Generator_ColumnPropNameInRow="LvStatus" msprop:Generator_ColumnPropNameInTable="LvStatusColumn" msprop:Generator_UserColumnName="LvStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ManagerID" msprop:Generator_ColumnVarNameInTable="columnManagerID" msprop:Generator_ColumnPropNameInRow="ManagerID" msprop:Generator_ColumnPropNameInTable="ManagerIDColumn" msprop:Generator_UserColumnName="ManagerID" type="xs:int" minOccurs="0" />
+              <xs:element name="ApprovedBy" msprop:Generator_ColumnVarNameInTable="columnApprovedBy" msprop:Generator_ColumnPropNameInRow="ApprovedBy" msprop:Generator_ColumnPropNameInTable="ApprovedByColumn" msprop:Generator_UserColumnName="ApprovedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="IsRevoked" msprop:Generator_ColumnVarNameInTable="columnIsRevoked" msprop:Generator_ColumnPropNameInRow="IsRevoked" msprop:Generator_ColumnPropNameInTable="IsRevokedColumn" msprop:Generator_UserColumnName="IsRevoked" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Stage" msprop:Generator_ColumnVarNameInTable="columnStage" msprop:Generator_ColumnPropNameInRow="Stage" msprop:Generator_ColumnPropNameInTable="StageColumn" msprop:Generator_UserColumnName="Stage" type="xs:unsignedByte" />
+              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DeptName" msprop:Generator_ColumnVarNameInTable="columnDeptName" msprop:Generator_ColumnPropNameInRow="DeptName" msprop:Generator_ColumnPropNameInTable="DeptNameColumn" msprop:Generator_UserColumnName="DeptName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DesignationName" msprop:Generator_ColumnVarNameInTable="columnDesignationName" msprop:Generator_ColumnPropNameInRow="DesignationName" msprop:Generator_ColumnPropNameInTable="DesignationNameColumn" msprop:Generator_UserColumnName="DesignationName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpID" msprop:Generator_ColumnVarNameInTable="columnEmpID" msprop:Generator_ColumnPropNameInRow="EmpID" msprop:Generator_ColumnPropNameInTable="EmpIDColumn" msprop:Generator_UserColumnName="EmpID" type="xs:int" />
+              <xs:element name="EmpNo" msprop:Generator_ColumnVarNameInTable="columnEmpNo" msprop:Generator_ColumnPropNameInRow="EmpNo" msprop:Generator_ColumnPropNameInTable="EmpNoColumn" msprop:Generator_UserColumnName="EmpNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DesigID" msprop:Generator_ColumnVarNameInTable="columnDesigID" msprop:Generator_ColumnPropNameInRow="DesigID" msprop:Generator_ColumnPropNameInTable="DesigIDColumn" msprop:Generator_UserColumnName="DesigID" type="xs:int" minOccurs="0" />
+              <xs:element name="ShiftID" msprop:Generator_ColumnVarNameInTable="columnShiftID" msprop:Generator_ColumnPropNameInRow="ShiftID" msprop:Generator_ColumnPropNameInTable="ShiftIDColumn" msprop:Generator_UserColumnName="ShiftID" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="LocID" msprop:Generator_ColumnVarNameInTable="columnLocID" msprop:Generator_ColumnPropNameInRow="LocID" msprop:Generator_ColumnPropNameInTable="LocIDColumn" msprop:Generator_UserColumnName="LocID" type="xs:short" minOccurs="0" />
+              <xs:element name="TypeID" msprop:Generator_ColumnVarNameInTable="columnTypeID" msprop:Generator_ColumnPropNameInRow="TypeID" msprop:Generator_ColumnPropNameInTable="TypeIDColumn" msprop:Generator_UserColumnName="TypeID" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SecID" msprop:Generator_ColumnVarNameInTable="columnSecID" msprop:Generator_ColumnPropNameInRow="SecID" msprop:Generator_ColumnPropNameInTable="SecIDColumn" msprop:Generator_UserColumnName="SecID" type="xs:short" minOccurs="0" />
+              <xs:element name="CardNo" msprop:Generator_ColumnVarNameInTable="columnCardNo" msprop:Generator_ColumnPropNameInRow="CardNo" msprop:Generator_ColumnPropNameInTable="CardNoColumn" msprop:Generator_UserColumnName="CardNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NicNo" msprop:Generator_ColumnVarNameInTable="columnNicNo" msprop:Generator_ColumnPropNameInRow="NicNo" msprop:Generator_ColumnPropNameInTable="NicNoColumn" msprop:Generator_UserColumnName="NicNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FatherName" msprop:Generator_ColumnVarNameInTable="columnFatherName" msprop:Generator_ColumnPropNameInRow="FatherName" msprop:Generator_ColumnPropNameInTable="FatherNameColumn" msprop:Generator_UserColumnName="FatherName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BloodGroup" msprop:Generator_ColumnVarNameInTable="columnBloodGroup" msprop:Generator_ColumnPropNameInRow="BloodGroup" msprop:Generator_ColumnPropNameInTable="BloodGroupColumn" msprop:Generator_UserColumnName="BloodGroup" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JoinDate" msprop:Generator_ColumnVarNameInTable="columnJoinDate" msprop:Generator_ColumnPropNameInRow="JoinDate" msprop:Generator_ColumnPropNameInTable="JoinDateColumn" msprop:Generator_UserColumnName="JoinDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BirthDate" msprop:Generator_ColumnVarNameInTable="columnBirthDate" msprop:Generator_ColumnPropNameInRow="BirthDate" msprop:Generator_ColumnPropNameInTable="BirthDateColumn" msprop:Generator_UserColumnName="BirthDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ValidDate" msprop:Generator_ColumnVarNameInTable="columnValidDate" msprop:Generator_ColumnPropNameInRow="ValidDate" msprop:Generator_ColumnPropNameInTable="ValidDateColumn" msprop:Generator_UserColumnName="ValidDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IssueDate" msprop:Generator_ColumnVarNameInTable="columnIssueDate" msprop:Generator_ColumnPropNameInRow="IssueDate" msprop:Generator_ColumnPropNameInTable="IssueDateColumn" msprop:Generator_UserColumnName="IssueDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ResignDate" msprop:Generator_ColumnVarNameInTable="columnResignDate" msprop:Generator_ColumnPropNameInRow="ResignDate" msprop:Generator_ColumnPropNameInTable="ResignDateColumn" msprop:Generator_UserColumnName="ResignDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
+              <xs:element name="TypeName" msprop:Generator_ColumnVarNameInTable="columnTypeName" msprop:Generator_ColumnPropNameInRow="TypeName" msprop:Generator_ColumnPropNameInTable="TypeNameColumn" msprop:Generator_UserColumnName="TypeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LocName" msprop:Generator_ColumnVarNameInTable="columnLocName" msprop:Generator_ColumnPropNameInRow="LocName" msprop:Generator_ColumnPropNameInTable="LocNameColumn" msprop:Generator_UserColumnName="LocName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ShiftName" msprop:Generator_ColumnVarNameInTable="columnShiftName" msprop:Generator_ColumnPropNameInRow="ShiftName" msprop:Generator_ColumnPropNameInTable="ShiftNameColumn" msprop:Generator_UserColumnName="ShiftName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DeptID" msprop:Generator_ColumnVarNameInTable="columnDeptID" msprop:Generator_ColumnPropNameInRow="DeptID" msprop:Generator_ColumnPropNameInTable="DeptIDColumn" msprop:Generator_UserColumnName="DeptID" type="xs:short" />
+              <xs:element name="Deleted" msprop:Generator_ColumnVarNameInTable="columnDeleted" msprop:Generator_ColumnPropNameInRow="Deleted" msprop:Generator_ColumnPropNameInTable="DeletedColumn" msprop:Generator_UserColumnName="Deleted" type="xs:boolean" minOccurs="0" />
+              <xs:element name="LvDesc" msprop:Generator_ColumnVarNameInTable="columnLvDesc" msprop:Generator_ColumnPropNameInRow="LvDesc" msprop:Generator_ColumnPropNameInTable="LvDescColumn" msprop:Generator_UserColumnName="LvDesc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FldName" msprop:Generator_ColumnVarNameInTable="columnFldName" msprop:Generator_ColumnPropNameInRow="FldName" msprop:Generator_ColumnPropNameInTable="FldNameColumn" msprop:Generator_UserColumnName="FldName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HalfLeave" msprop:Generator_ColumnVarNameInTable="columnHalfLeave" msprop:Generator_ColumnPropNameInRow="HalfLeave" msprop:Generator_ColumnPropNameInTable="HalfLeaveColumn" msprop:Generator_UserColumnName="HalfLeave" type="xs:boolean" minOccurs="0" />
+              <xs:element name="HalfLvCode" msprop:Generator_ColumnVarNameInTable="columnHalfLvCode" msprop:Generator_ColumnPropNameInRow="HalfLvCode" msprop:Generator_ColumnPropNameInTable="HalfLvCodeColumn" msprop:Generator_UserColumnName="HalfLvCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HalfAbCode" msprop:Generator_ColumnVarNameInTable="columnHalfAbCode" msprop:Generator_ColumnPropNameInRow="HalfAbCode" msprop:Generator_ColumnPropNameInTable="HalfAbCodeColumn" msprop:Generator_UserColumnName="HalfAbCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MaxDays" msprop:Generator_ColumnVarNameInTable="columnMaxDays" msprop:Generator_ColumnPropNameInRow="MaxDays" msprop:Generator_ColumnPropNameInTable="MaxDaysColumn" msprop:Generator_UserColumnName="MaxDays" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_UserColumnName="UserID" type="xs:int" />
+              <xs:element name="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_UserColumnName="UserName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ViewAttData" msprop:Generator_TableClassName="ViewAttDataDataTable" msprop:Generator_TableVarName="tableViewAttData" msprop:Generator_RowChangedName="ViewAttDataRowChanged" msprop:Generator_TablePropName="ViewAttData" msprop:Generator_RowDeletingName="ViewAttDataRowDeleting" msprop:Generator_RowChangingName="ViewAttDataRowChanging" msprop:Generator_RowEvHandlerName="ViewAttDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewAttDataRowDeleted" msprop:Generator_RowClassName="ViewAttDataRow" msprop:Generator_UserTableName="ViewAttData" msprop:Generator_RowEvArgName="ViewAttDataRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeptName" msprop:Generator_ColumnVarNameInTable="columnDeptName" msprop:Generator_ColumnPropNameInRow="DeptName" msprop:Generator_ColumnPropNameInTable="DeptNameColumn" msprop:Generator_UserColumnName="DeptName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DesignationName" msprop:Generator_ColumnVarNameInTable="columnDesignationName" msprop:Generator_ColumnPropNameInRow="DesignationName" msprop:Generator_ColumnPropNameInTable="DesignationNameColumn" msprop:Generator_UserColumnName="DesignationName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpNo" msprop:Generator_ColumnVarNameInTable="columnEmpNo" msprop:Generator_ColumnPropNameInRow="EmpNo" msprop:Generator_ColumnPropNameInTable="EmpNoColumn" msprop:Generator_UserColumnName="EmpNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpName" msprop:Generator_ColumnVarNameInTable="columnEmpName" msprop:Generator_ColumnPropNameInRow="EmpName" msprop:Generator_ColumnPropNameInTable="EmpNameColumn" msprop:Generator_UserColumnName="EmpName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DesigID" msprop:Generator_ColumnVarNameInTable="columnDesigID" msprop:Generator_ColumnPropNameInRow="DesigID" msprop:Generator_ColumnPropNameInTable="DesigIDColumn" msprop:Generator_UserColumnName="DesigID" type="xs:int" minOccurs="0" />
+              <xs:element name="ShiftID" msprop:Generator_ColumnVarNameInTable="columnShiftID" msprop:Generator_ColumnPropNameInRow="ShiftID" msprop:Generator_ColumnPropNameInTable="ShiftIDColumn" msprop:Generator_UserColumnName="ShiftID" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="LocID" msprop:Generator_ColumnVarNameInTable="columnLocID" msprop:Generator_ColumnPropNameInRow="LocID" msprop:Generator_ColumnPropNameInTable="LocIDColumn" msprop:Generator_UserColumnName="LocID" type="xs:short" minOccurs="0" />
+              <xs:element name="TypeID" msprop:Generator_ColumnVarNameInTable="columnTypeID" msprop:Generator_ColumnPropNameInRow="TypeID" msprop:Generator_ColumnPropNameInTable="TypeIDColumn" msprop:Generator_UserColumnName="TypeID" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SecID" msprop:Generator_ColumnVarNameInTable="columnSecID" msprop:Generator_ColumnPropNameInRow="SecID" msprop:Generator_ColumnPropNameInTable="SecIDColumn" msprop:Generator_UserColumnName="SecID" type="xs:short" minOccurs="0" />
+              <xs:element name="CardNo" msprop:Generator_ColumnVarNameInTable="columnCardNo" msprop:Generator_ColumnPropNameInRow="CardNo" msprop:Generator_ColumnPropNameInTable="CardNoColumn" msprop:Generator_UserColumnName="CardNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NicNo" msprop:Generator_ColumnVarNameInTable="columnNicNo" msprop:Generator_ColumnPropNameInRow="NicNo" msprop:Generator_ColumnPropNameInTable="NicNoColumn" msprop:Generator_UserColumnName="NicNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FatherName" msprop:Generator_ColumnVarNameInTable="columnFatherName" msprop:Generator_ColumnPropNameInRow="FatherName" msprop:Generator_ColumnPropNameInTable="FatherNameColumn" msprop:Generator_UserColumnName="FatherName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JoinDate" msprop:Generator_ColumnVarNameInTable="columnJoinDate" msprop:Generator_ColumnPropNameInRow="JoinDate" msprop:Generator_ColumnPropNameInTable="JoinDateColumn" msprop:Generator_UserColumnName="JoinDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" minOccurs="0" />
+              <xs:element name="TypeName" msprop:Generator_ColumnVarNameInTable="columnTypeName" msprop:Generator_ColumnPropNameInRow="TypeName" msprop:Generator_ColumnPropNameInTable="TypeNameColumn" msprop:Generator_UserColumnName="TypeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LocName" msprop:Generator_ColumnVarNameInTable="columnLocName" msprop:Generator_ColumnPropNameInRow="LocName" msprop:Generator_ColumnPropNameInTable="LocNameColumn" msprop:Generator_UserColumnName="LocName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ShiftName" msprop:Generator_ColumnVarNameInTable="columnShiftName" msprop:Generator_ColumnPropNameInRow="ShiftName" msprop:Generator_ColumnPropNameInTable="ShiftNameColumn" msprop:Generator_UserColumnName="ShiftName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpID" msprop:Generator_ColumnVarNameInTable="columnEmpID" msprop:Generator_ColumnPropNameInRow="EmpID" msprop:Generator_ColumnPropNameInTable="EmpIDColumn" msprop:Generator_UserColumnName="EmpID" type="xs:int" minOccurs="0" />
+              <xs:element name="AttDate" msprop:Generator_ColumnVarNameInTable="columnAttDate" msprop:Generator_ColumnPropNameInRow="AttDate" msprop:Generator_ColumnPropNameInTable="AttDateColumn" msprop:Generator_UserColumnName="AttDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EmpDate" msprop:Generator_ColumnVarNameInTable="columnEmpDate" msprop:Generator_ColumnPropNameInRow="EmpDate" msprop:Generator_ColumnPropNameInTable="EmpDateColumn" msprop:Generator_UserColumnName="EmpDate">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DutyCode" msprop:Generator_ColumnVarNameInTable="columnDutyCode" msprop:Generator_ColumnPropNameInRow="DutyCode" msprop:Generator_ColumnPropNameInTable="DutyCodeColumn" msprop:Generator_UserColumnName="DutyCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DutyTime" msprop:Generator_ColumnVarNameInTable="columnDutyTime" msprop:Generator_ColumnPropNameInRow="DutyTime" msprop:Generator_ColumnPropNameInTable="DutyTimeColumn" msprop:Generator_UserColumnName="DutyTime" type="xs:duration" minOccurs="0" />
+              <xs:element name="TimeIn" msprop:Generator_ColumnVarNameInTable="columnTimeIn" msprop:Generator_ColumnPropNameInRow="TimeIn" msprop:Generator_ColumnPropNameInTable="TimeInColumn" msprop:Generator_UserColumnName="TimeIn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TimeOut" msprop:Generator_ColumnVarNameInTable="columnTimeOut" msprop:Generator_ColumnPropNameInRow="TimeOut" msprop:Generator_ColumnPropNameInTable="TimeOutColumn" msprop:Generator_UserColumnName="TimeOut" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="WorkMin" msprop:Generator_ColumnVarNameInTable="columnWorkMin" msprop:Generator_ColumnPropNameInRow="WorkMin" msprop:Generator_ColumnPropNameInTable="WorkMinColumn" msprop:Generator_UserColumnName="WorkMin" type="xs:short" minOccurs="0" />
+              <xs:element name="LateIn" msprop:Generator_ColumnVarNameInTable="columnLateIn" msprop:Generator_ColumnPropNameInRow="LateIn" msprop:Generator_ColumnPropNameInTable="LateInColumn" msprop:Generator_UserColumnName="LateIn" type="xs:short" minOccurs="0" />
+              <xs:element name="LateOut" msprop:Generator_ColumnVarNameInTable="columnLateOut" msprop:Generator_ColumnPropNameInRow="LateOut" msprop:Generator_ColumnPropNameInTable="LateOutColumn" msprop:Generator_UserColumnName="LateOut" type="xs:short" minOccurs="0" />
+              <xs:element name="EarlyIn" msprop:Generator_ColumnVarNameInTable="columnEarlyIn" msprop:Generator_ColumnPropNameInRow="EarlyIn" msprop:Generator_ColumnPropNameInTable="EarlyInColumn" msprop:Generator_UserColumnName="EarlyIn" type="xs:short" minOccurs="0" />
+              <xs:element name="EarlyOut" msprop:Generator_ColumnVarNameInTable="columnEarlyOut" msprop:Generator_ColumnPropNameInRow="EarlyOut" msprop:Generator_ColumnPropNameInTable="EarlyOutColumn" msprop:Generator_UserColumnName="EarlyOut" type="xs:short" minOccurs="0" />
+              <xs:element name="OTMin" msprop:Generator_ColumnVarNameInTable="columnOTMin" msprop:Generator_ColumnPropNameInRow="OTMin" msprop:Generator_ColumnPropNameInTable="OTMinColumn" msprop:Generator_UserColumnName="OTMin" type="xs:short" minOccurs="0" />
+              <xs:element name="GZOTMin" msprop:Generator_ColumnVarNameInTable="columnGZOTMin" msprop:Generator_ColumnPropNameInRow="GZOTMin" msprop:Generator_ColumnPropNameInTable="GZOTMinColumn" msprop:Generator_UserColumnName="GZOTMin" type="xs:short" minOccurs="0" />
+              <xs:element name="BreakMin" msprop:Generator_ColumnVarNameInTable="columnBreakMin" msprop:Generator_ColumnPropNameInRow="BreakMin" msprop:Generator_ColumnPropNameInTable="BreakMinColumn" msprop:Generator_UserColumnName="BreakMin" type="xs:short" minOccurs="0" />
+              <xs:element name="SLMin" msprop:Generator_ColumnVarNameInTable="columnSLMin" msprop:Generator_ColumnPropNameInRow="SLMin" msprop:Generator_ColumnPropNameInTable="SLMinColumn" msprop:Generator_UserColumnName="SLMin" type="xs:short" minOccurs="0" />
+              <xs:element name="StatusP" msprop:Generator_ColumnVarNameInTable="columnStatusP" msprop:Generator_ColumnPropNameInRow="StatusP" msprop:Generator_ColumnPropNameInTable="StatusPColumn" msprop:Generator_UserColumnName="StatusP" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusAB" msprop:Generator_ColumnVarNameInTable="columnStatusAB" msprop:Generator_ColumnPropNameInRow="StatusAB" msprop:Generator_ColumnPropNameInTable="StatusABColumn" msprop:Generator_UserColumnName="StatusAB" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusLI" msprop:Generator_ColumnVarNameInTable="columnStatusLI" msprop:Generator_ColumnPropNameInRow="StatusLI" msprop:Generator_ColumnPropNameInTable="StatusLIColumn" msprop:Generator_UserColumnName="StatusLI" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusLO" msprop:Generator_ColumnVarNameInTable="columnStatusLO" msprop:Generator_ColumnPropNameInRow="StatusLO" msprop:Generator_ColumnPropNameInTable="StatusLOColumn" msprop:Generator_UserColumnName="StatusLO" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusEI" msprop:Generator_ColumnVarNameInTable="columnStatusEI" msprop:Generator_ColumnPropNameInRow="StatusEI" msprop:Generator_ColumnPropNameInTable="StatusEIColumn" msprop:Generator_UserColumnName="StatusEI" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusEO" msprop:Generator_ColumnVarNameInTable="columnStatusEO" msprop:Generator_ColumnPropNameInRow="StatusEO" msprop:Generator_ColumnPropNameInTable="StatusEOColumn" msprop:Generator_UserColumnName="StatusEO" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusOT" msprop:Generator_ColumnVarNameInTable="columnStatusOT" msprop:Generator_ColumnPropNameInRow="StatusOT" msprop:Generator_ColumnPropNameInTable="StatusOTColumn" msprop:Generator_UserColumnName="StatusOT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusGZOT" msprop:Generator_ColumnVarNameInTable="columnStatusGZOT" msprop:Generator_ColumnPropNameInRow="StatusGZOT" msprop:Generator_ColumnPropNameInTable="StatusGZOTColumn" msprop:Generator_UserColumnName="StatusGZOT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusGZ" msprop:Generator_ColumnVarNameInTable="columnStatusGZ" msprop:Generator_ColumnPropNameInRow="StatusGZ" msprop:Generator_ColumnPropNameInTable="StatusGZColumn" msprop:Generator_UserColumnName="StatusGZ" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusDO" msprop:Generator_ColumnVarNameInTable="columnStatusDO" msprop:Generator_ColumnPropNameInRow="StatusDO" msprop:Generator_ColumnPropNameInTable="StatusDOColumn" msprop:Generator_UserColumnName="StatusDO" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusHD" msprop:Generator_ColumnVarNameInTable="columnStatusHD" msprop:Generator_ColumnPropNameInRow="StatusHD" msprop:Generator_ColumnPropNameInTable="StatusHDColumn" msprop:Generator_UserColumnName="StatusHD" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusSL" msprop:Generator_ColumnVarNameInTable="columnStatusSL" msprop:Generator_ColumnPropNameInRow="StatusSL" msprop:Generator_ColumnPropNameInTable="StatusSLColumn" msprop:Generator_UserColumnName="StatusSL" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusOD" msprop:Generator_ColumnVarNameInTable="columnStatusOD" msprop:Generator_ColumnPropNameInRow="StatusOD" msprop:Generator_ColumnPropNameInTable="StatusODColumn" msprop:Generator_UserColumnName="StatusOD" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusHL" msprop:Generator_ColumnVarNameInTable="columnStatusHL" msprop:Generator_ColumnPropNameInRow="StatusHL" msprop:Generator_ColumnPropNameInTable="StatusHLColumn" msprop:Generator_UserColumnName="StatusHL" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusLeave" msprop:Generator_ColumnVarNameInTable="columnStatusLeave" msprop:Generator_ColumnPropNameInRow="StatusLeave" msprop:Generator_ColumnPropNameInTable="StatusLeaveColumn" msprop:Generator_UserColumnName="StatusLeave" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusMN" msprop:Generator_ColumnVarNameInTable="columnStatusMN" msprop:Generator_ColumnPropNameInRow="StatusMN" msprop:Generator_ColumnPropNameInTable="StatusMNColumn" msprop:Generator_UserColumnName="StatusMN" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusIN" msprop:Generator_ColumnVarNameInTable="columnStatusIN" msprop:Generator_ColumnPropNameInRow="StatusIN" msprop:Generator_ColumnPropNameInTable="StatusINColumn" msprop:Generator_UserColumnName="StatusIN" type="xs:boolean" minOccurs="0" />
+              <xs:element name="StatusBreak" msprop:Generator_ColumnVarNameInTable="columnStatusBreak" msprop:Generator_ColumnPropNameInRow="StatusBreak" msprop:Generator_ColumnPropNameInTable="StatusBreakColumn" msprop:Generator_UserColumnName="StatusBreak" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ShifMin" msprop:Generator_ColumnVarNameInTable="columnShifMin" msprop:Generator_ColumnPropNameInRow="ShifMin" msprop:Generator_ColumnPropNameInTable="ShifMinColumn" msprop:Generator_UserColumnName="ShifMin" type="xs:short" minOccurs="0" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DeptID" msprop:Generator_ColumnVarNameInTable="columnDeptID" msprop:Generator_ColumnPropNameInRow="DeptID" msprop:Generator_ColumnPropNameInTable="DeptIDColumn" msprop:Generator_UserColumnName="DeptID" type="xs:short" />
+              <xs:element name="Deleted" msprop:Generator_ColumnVarNameInTable="columnDeleted" msprop:Generator_ColumnPropNameInRow="Deleted" msprop:Generator_ColumnPropNameInTable="DeletedColumn" msprop:Generator_UserColumnName="Deleted" type="xs:boolean" minOccurs="0" />
+              <xs:element name="PDays" msprop:Generator_ColumnVarNameInTable="columnPDays" msprop:Generator_ColumnPropNameInRow="PDays" msprop:Generator_ColumnPropNameInTable="PDaysColumn" msprop:Generator_UserColumnName="PDays" type="xs:double" minOccurs="0" />
+              <xs:element name="ABDays" msprop:Generator_ColumnVarNameInTable="columnABDays" msprop:Generator_ColumnPropNameInRow="ABDays" msprop:Generator_ColumnPropNameInTable="ABDaysColumn" msprop:Generator_UserColumnName="ABDays" type="xs:double" minOccurs="0" />
+              <xs:element name="LeaveDays" msprop:Generator_ColumnVarNameInTable="columnLeaveDays" msprop:Generator_ColumnPropNameInRow="LeaveDays" msprop:Generator_ColumnPropNameInTable="LeaveDaysColumn" msprop:Generator_UserColumnName="LeaveDays" type="xs:double" minOccurs="0" />
+              <xs:element name="ApprovedOT" msprop:Generator_ColumnVarNameInTable="columnApprovedOT" msprop:Generator_ColumnPropNameInRow="ApprovedOT" msprop:Generator_ColumnPropNameInTable="ApprovedOTColumn" msprop:Generator_UserColumnName="ApprovedOT" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="VMTimeAverage" msprop:Generator_TableClassName="VMTimeAverageDataTable" msprop:Generator_TableVarName="tableVMTimeAverage" msprop:Generator_TablePropName="VMTimeAverage" msprop:Generator_RowDeletingName="VMTimeAverageRowDeleting" msprop:Generator_RowChangingName="VMTimeAverageRowChanging" msprop:Generator_RowEvHandlerName="VMTimeAverageRowChangeEventHandler" msprop:Generator_RowDeletedName="VMTimeAverageRowDeleted" msprop:Generator_UserTableName="VMTimeAverage" msprop:Generator_RowChangedName="VMTimeAverageRowChanged" msprop:Generator_RowEvArgName="VMTimeAverageRowChangeEvent" msprop:Generator_RowClassName="VMTimeAverageRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Totals" msdata:Caption="EmpID" msprop:Generator_ColumnVarNameInTable="columnTotals" msprop:Generator_ColumnPropNameInRow="Totals" msprop:Generator_ColumnPropNameInTable="TotalsColumn" msprop:Generator_UserColumnName="Totals" type="xs:string" minOccurs="0" />
+              <xs:element name="Actuals" msprop:Generator_ColumnVarNameInTable="columnActuals" msprop:Generator_ColumnPropNameInRow="Actuals" msprop:Generator_ColumnPropNameInTable="ActualsColumn" msprop:Generator_UserColumnName="Actuals" type="xs:string" minOccurs="0" />
+              <xs:element name="Time" msprop:Generator_ColumnVarNameInTable="columnTime" msprop:Generator_ColumnPropNameInRow="Time" msprop:Generator_ColumnPropNameInTable="TimeColumn" msprop:Generator_UserColumnName="Time" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="VMTimeAverageDeptWise" msprop:Generator_TableClassName="VMTimeAverageDeptWiseDataTable" msprop:Generator_TableVarName="tableVMTimeAverageDeptWise" msprop:Generator_RowChangedName="VMTimeAverageDeptWiseRowChanged" msprop:Generator_TablePropName="VMTimeAverageDeptWise" msprop:Generator_RowDeletingName="VMTimeAverageDeptWiseRowDeleting" msprop:Generator_RowChangingName="VMTimeAverageDeptWiseRowChanging" msprop:Generator_RowEvHandlerName="VMTimeAverageDeptWiseRowChangeEventHandler" msprop:Generator_RowDeletedName="VMTimeAverageDeptWiseRowDeleted" msprop:Generator_RowClassName="VMTimeAverageDeptWiseRow" msprop:Generator_UserTableName="VMTimeAverageDeptWise" msprop:Generator_RowEvArgName="VMTimeAverageDeptWiseRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeptActuals" msdata:Caption="EmpID" msprop:Generator_ColumnVarNameInTable="columnDeptActuals" msprop:Generator_ColumnPropNameInRow="DeptActuals" msprop:Generator_ColumnPropNameInTable="DeptActualsColumn" msprop:Generator_UserColumnName="DeptActuals" type="xs:string" minOccurs="0" />
+              <xs:element name="DeptTotals" msdata:Caption="Actuals" msprop:Generator_ColumnVarNameInTable="columnDeptTotals" msprop:Generator_ColumnPropNameInRow="DeptTotals" msprop:Generator_ColumnPropNameInTable="DeptTotalsColumn" msprop:Generator_UserColumnName="DeptTotals" type="xs:string" minOccurs="0" />
+              <xs:element name="Time" msprop:Generator_ColumnVarNameInTable="columnTime" msprop:Generator_ColumnPropNameInRow="Time" msprop:Generator_ColumnPropNameInTable="TimeColumn" msprop:Generator_UserColumnName="Time" type="xs:long" minOccurs="0" />
+              <xs:element name="DeptName" msprop:Generator_ColumnVarNameInTable="columnDeptName" msprop:Generator_ColumnPropNameInRow="DeptName" msprop:Generator_ColumnPropNameInTable="DeptNameColumn" msprop:Generator_UserColumnName="DeptName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:EmpView" />
       <xs:field xpath="mstns:EmpID" />
-    </xs:unique>
-    <xs:unique name="ViewAttData_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:ViewAttData" />
-      <xs:field xpath="mstns:EmpDate" />
     </xs:unique>
     <xs:unique name="ViewDetailAttData_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ViewDetailAttData" />
@@ -1162,6 +1934,14 @@
     <xs:unique name="ViewLvApplication_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ViewLvApplication" />
       <xs:field xpath="mstns:LvID" />
+    </xs:unique>
+    <xs:unique name="DailySummary_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DailySummary" />
+      <xs:field xpath="mstns:SummaryDateCriteria" />
+    </xs:unique>
+    <xs:unique name="ViewAttData_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ViewAttData" />
+      <xs:field xpath="mstns:EmpDate" />
     </xs:unique>
   </xs:element>
 </xs:schema>

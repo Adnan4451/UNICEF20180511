@@ -31,48 +31,44 @@
 </script>
 <p>
 </p>
-<br />
+ <div>
+      <form class ="form-inline" role="form">
+          <div class="form-group "> <h3>Edit Employee with <span class="h4">Employee ID: @Model.EmpID</span></h3> </div>
+      </form>  
+    </div>
+ <hr />
 @using (Html.BeginForm("Edit","Emp", FormMethod.Post, new { enctype ="multipart/form-data" }))
 {
-    <div class="well bs-component">
-        <form class="form-horizontal" action="~/Views/Emp/Edit" enctype="multipart/form-data" method="post">
-             @Html.AntiForgeryToken()
-            <fieldset>
-        <div>
-            <form class ="form-inline" role="form">
-                <div class="form-group "> <h3>Edit Employee with <span class="h4">Employee No: @Model.EmpNo"</span></h3> </div>
-            </form>  
-        </div>
-        <hr />
+    @Html.AntiForgeryToken()
      <div class="form-horizontal">
        <section class ="col-sm-6 col-md-6"> 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.EmpID)
            @Html.HiddenFor(model => model.EmpNo)
            <div style="color:red">@ViewBag.Message</div>
-            @*<div class="form-group">
-                <label class="control-label col-md-3"> DHS/DHO<span style="color:red;"> *</span></label>
+           @* <div class="form-group">
+                <label class="control-label col-md-3">Employee No<span style="color:red;"> *</span></label>
                 <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.EmpNo, new { @class = "form-control"})
+                    @Html.TextBoxFor(model => model.EmpNo, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.EmpNo)
                 </div>
             </div>*@
             <div class="form-group">
-                <label class="control-label col-md-4">Employee Name<span style="color:red;"> *</span></label>
+                <label class="control-label col-md-3">Employee Name<span style="color:red;"> *</span></label>
                     <div class="col-md-6">
                         @Html.TextBoxFor(model => model.EmpName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.EmpName)
                     </div>
             </div>
             <div class="form-group">
-            <label class="control-label col-md-4">Select Emp Photo</label>
+            <label class="control-label col-md-3">Select Emp Photo</label>
             <div class="col-md-6">
                 <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);"/>
                 @*<img id="blah" src="#" alt="your image" />*@      
                 <div class="upload-file-notice">Maximum size: <span id="avatar-max-size"></span> MB</div>
             </div>
          </div>
-           <div class="form-group" style="margin-left:35%">
+           <div class="form-group" style="margin-left:25%">
                 <img id="myimage" style="height:100px;width:100px;" runat="server" src="@Url.Action("RetrieveImage", "Emp", new { id = Model.EmpID})" />
             </div>
         </section>
@@ -81,6 +77,7 @@
                 <ul class="nav nav-tabs" role="tablist" id="myTab">
                     <li class="active"><a href="#home" role="tab" data-toggle="tab">Job</a></li>
                     <li><a href="#profile" role="tab" data-toggle="tab">Personel</a></li>
+                    <li><a href="#locationaccess" role="tab" data-toggle="tab">Location Access</a></li>
                 </ul> 
             </div>
         </section>
@@ -122,7 +119,12 @@
                             </div>
                         </div>
 
-
+                         @*<div class="form-group">
+                            <label class="control-label col-md-3">Grade</label>
+                            <div class="col-md-3">
+                                @Html.DropDownList("GradeID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                            </div>
+                        </div>*@
                         <div class="form-group" id="DeptDivID">
                             <div class = "control-label col-md-3">
                                 <label for="Deptartment">Group</label>
@@ -135,7 +137,7 @@
 
                         <div class="form-group" id="SectionDivID">
                             <div class = "control-label col-md-3">
-                                <label for="Section">Directorate</label>
+                                <label for="Section">Unit</label>
                             </div>
                             <div class="col-md-3 ">
                              <select class="btn btn-default dropdown-toggle dropdown ComboBoxWidth" id="SecID" name="SecID"></select>
@@ -216,7 +218,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-3" })
                             <div class="col-md-4">
-                                @Html.DropDownList("Status", new List<SelectListItem>
+                                @Html.DropDownList("Gender", new List<SelectListItem>
                                     { 
                                         new SelectListItem { Text = "Male", Value = "0", Selected=true},
                                         new SelectListItem { Text = "Female", Value = "1"},                                        new SelectListItem { Text = "Not Mentioned", Value = "2"}
@@ -315,6 +317,55 @@
                  </div>
                 </div>
              </div> @*end of div tab*@
+           <div class="tab-pane fade" id="locationaccess">
+                <p></p>
+                <div class="Outer">
+                    <div class="InnerLeft1">
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                <input type="checkbox" id="toggleAll" />
+                                <label>Select all</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Islamabad")
+                                <label>Islamabade</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Lahore")
+                                <label>Lahore</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Karachi")
+                                <label>Karachi</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Peshawar")
+                                <label>Peshawar</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Quetta")
+                                <label>Quetta</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -324,9 +375,6 @@
             </div>
         </div>
     </div>
-                </fieldset>
-            </form>
-        </div>
 }
 
 
@@ -336,10 +384,42 @@
 <link href="~/Content/site.avatar.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/jquery.jcrop.css" rel="stylesheet" type="text/css" />
 <script src="@Url.Content("~/Scripts/wingSection.js")"></script>
-<style>
-    hr {
-        color: #fff;
-        background-color: #fff;
-        height: 1px;
-    }
-</style>
+<script type="text/javascript">
+    $("#toggleAll").click(function () {
+        if ($("#toggleAll").is(':checked')) {
+            $("#Islamabad").each(function () {
+                $(this).prop("checked", true);
+            });
+            $("#Quetta").each(function () {
+                $(this).prop("checked", true);
+            });
+            $("#Lahore").each(function () {
+                $(this).prop("checked", true);
+            });
+            $("#Karachi").each(function () {
+                $(this).prop("checked", true);
+            });
+            $("#Peshawar").each(function () {
+                $(this).prop("checked", true);
+            });
+        }
+        else {
+            $("#Islamabad").each(function () {
+                $(this).prop("checked", false);
+            });
+            $("#Quetta").each(function () {
+                $(this).prop("checked", false);
+            });
+            $("#Lahore").each(function () {
+                $(this).prop("checked", false);
+            });
+            $("#Karachi").each(function () {
+                $(this).prop("checked", false);
+            });
+            $("#Peshawar").each(function () {
+                $(this).prop("checked", false);
+            });
+        }
+    });
+</script>
+

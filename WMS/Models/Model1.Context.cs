@@ -45,8 +45,10 @@ namespace WMS.Models
         public DbSet<Emp> Emps { get; set; }
         public DbSet<EmpFace> EmpFaces { get; set; }
         public DbSet<EmpFp> EmpFps { get; set; }
+        public DbSet<EmpLocation> EmpLocations { get; set; }
         public DbSet<EmpPhoto> EmpPhotoes { get; set; }
         public DbSet<EmpType> EmpTypes { get; set; }
+        public DbSet<Grade> Grades { get; set; }
         public DbSet<Holiday> Holidays { get; set; }
         public DbSet<JobCard> JobCards { get; set; }
         public DbSet<JobCardApp> JobCardApps { get; set; }
@@ -74,16 +76,23 @@ namespace WMS.Models
         public DbSet<Section> Sections { get; set; }
         public DbSet<ServiceLog> ServiceLogs { get; set; }
         public DbSet<Shift> Shifts { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserModule> UserModules { get; set; }
         public DbSet<UserSection> UserSections { get; set; }
         public DbSet<EmpView> EmpViews { get; set; }
         public DbSet<ViewAttData> ViewAttDatas { get; set; }
+        public DbSet<ViewAttMainEdit> ViewAttMainEdits { get; set; }
+        public DbSet<ViewDepartment> ViewDepartments { get; set; }
         public DbSet<ViewDetailAttData> ViewDetailAttDatas { get; set; }
         public DbSet<ViewEmpPic> ViewEmpPics { get; set; }
         public DbSet<ViewJobCardApp> ViewJobCardApps { get; set; }
+        public DbSet<ViewJobCardEmp> ViewJobCardEmps { get; set; }
+        public DbSet<ViewJobCardTime> ViewJobCardTimes { get; set; }
+        public DbSet<ViewLocation> ViewLocations { get; set; }
         public DbSet<ViewLvApplication> ViewLvApplications { get; set; }
         public DbSet<ViewMonthlyData> ViewMonthlyDatas { get; set; }
+        public DbSet<ViewMonthlyDataPer> ViewMonthlyDataPers { get; set; }
         public DbSet<ViewMultipleInOut> ViewMultipleInOuts { get; set; }
         public DbSet<ViewSection> ViewSections { get; set; }
     }

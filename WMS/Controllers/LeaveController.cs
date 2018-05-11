@@ -101,6 +101,7 @@ namespace WMS.Controllers
                             _EmpAttData.StatusEI = null;
                             _EmpAttData.StatusEO = null;
                             _EmpAttData.StatusLI = null;
+                            _EmpAttData.DutyCode = "L";
                             _EmpAttData.StatusLI= null;
                             _EmpAttData.StatusLO = null;
                             _EmpAttData.StatusDO = null;
@@ -108,7 +109,10 @@ namespace WMS.Controllers
                             _EmpAttData.StatusGZOT = null;
                             _EmpAttData.StatusMN = null;
                             _EmpAttData.StatusOD = null;
-                            _EmpAttData.Remarks = lvType.FldName;
+                            if (lvappl.NoOfDays == 0.5)
+                                _EmpAttData.Remarks = lvType.HalfLvCode;
+                            else
+                                _EmpAttData.Remarks = lvType.FldName;
                             context.SaveChanges();
                         }
                     }
@@ -134,6 +138,7 @@ namespace WMS.Controllers
                 _LVData.EmpID = lvappl.EmpID;
                 _LVData.EmpDate = _EmpDate;
                 _LVData.Remarks = lvappl.LvReason;
+                _LVData.HalfLeave = lvappl.IsHalf;
                 _LVData.LvID = lvappl.LvID;
                 _LVData.AttDate = datetime.Date;
                 _LVData.LvCode = lvappl.LeaveTypeID;

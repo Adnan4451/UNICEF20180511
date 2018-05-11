@@ -8,6 +8,7 @@ using PagedList;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Text;
+using WMS.CustomClass;
 namespace WMS.Controllers
 {
     public class LeaveSettingsController : Controller
@@ -19,7 +20,7 @@ namespace WMS.Controllers
         TAS2013Entities db = new TAS2013Entities();
         public ActionResult Index()
         {
-            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
             ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
             return View();
         }
@@ -32,7 +33,8 @@ namespace WMS.Controllers
             double SL = Convert.ToDouble(Request.Form["SLeaves"].ToString());
             DateTime QYear = Convert.ToDateTime(Request.Form["QYear"].ToString());
             ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
-            List<Emp> _Emp = new List<Emp>();
+            List<EmpView> emps = new List<EmpView>();
+            User LoggedInUser = Session["LoggedUser"] as User;
             List<LvType> _lvType = new List<LvType>();
 
 
@@ -40,50 +42,48 @@ namespace WMS.Controllers
             switch (rb)
             {
                 case "byAll":
-                    _Emp = db.Emps.Where(aa => aa.Status==true).ToList();
-
+                    emps = AssistantQuery.GetFilteredEmps(emps, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
                     break;
                 case "byEmpType":
                     int EmpType = Convert.ToInt32(Request.Form["TypeID"].ToString());
-                   _Emp = db.Emps.Where(aa => aa.TypeID == EmpType).ToList();
-
+                    emps = db.EmpViews.Where(aa => aa.TypeID == EmpType && aa.Status == true).ToList();
+                    emps = AssistantQuery.GetFilteredEmps(emps, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
                     break;
                 case "byEmp":
                     string empNo = Request.Form["EmpNo"].ToString();
-                    _Emp = db.Emps.Where(aa => aa.EmpNo == empNo).ToList();                   
+                    emps = db.EmpViews.Where(aa => aa.EmpNo == empNo && aa.Status == true).ToList();
+                    emps = AssistantQuery.GetFilteredEmps(emps, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
                     break;
+
             }
-            User LoggedInUser = Session["LoggedUser"] as User;
-            if (_Emp.Count > 0)
+            if (emps.Count > 0)
             {
                 _lvType = db.LvTypes.Where(aa => aa.UpdateBalance == true).ToList();
-                string val = CheckEmployeeLeaveQuota(_Emp, QYear.Year.ToString());
+                string val = CheckEmployeeLeaveQuota(emps, QYear.Year.ToString());
                 if (val == "OK")
                 {
-                    GenerateLeaveQuotaAttributes(_Emp, _lvType, AL, CL, SL, QYear.Year.ToString());
+                    GenerateLeaveQuotaAttributes(emps, _lvType, AL, CL, SL, QYear.Year.ToString());
                     ViewBag.CMessage = "Leave Balance is created";
                 }
                 else
                 {
-                    ViewBag.CMessage = "Already created quota for specific employee "+val;
+                    ViewBag.CMessage = "Already created quota for specific employee " + val;
                 }
             }
             else
             {
-                ViewBag.CMessage = "Employee No "+Request.Form["EmpNo"].ToString()+" not found";
-                
+                ViewBag.CMessage = "Employee No " + Request.Form["EmpNo"].ToString() + " not found";
+
             }
-            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
             ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
-
-
 
             return View("Index");
         }
 
-        private string CheckEmployeeLeaveQuota(List<Emp> _Emp, string year)
+        private string CheckEmployeeLeaveQuota(List<EmpView> emps, string year)
         {
-            foreach (var emp in _Emp)
+            foreach (var emp in emps)
             {
                 if (db.LvConsumeds.Where(aa => aa.EmpID == emp.EmpID && aa.LvYear == year).Count() > 0)
                     return emp.EmpNo;
@@ -100,9 +100,9 @@ namespace WMS.Controllers
         #region --Adjust Leave Quota--
         public ActionResult AdjustLeaveQuotaStepOne()
         {
-            string EmpNo= Request.Form["AdjustEmpNo"].ToString();
+            string EmpNo = Request.Form["AdjustEmpNo"].ToString();
             User LoggedInUser = Session["LoggedUser"] as User;
-            var emp = db.Emps.Where(aa => aa.EmpNo == EmpNo && aa.Status==true).ToList();
+            var emp = db.Emps.Where(aa => aa.EmpNo == EmpNo && aa.Status == true).ToList();
             if (emp.Count > 0)
             {
                 //Check for Employee lies under user permission
@@ -133,7 +133,7 @@ namespace WMS.Controllers
                                     break;
                             }
                         }
-                        return View("AdjustLeaves", lvModel); 
+                        return View("AdjustLeaves", lvModel);
                     }
                 }
                 else
@@ -146,8 +146,8 @@ namespace WMS.Controllers
                 ViewBag.CMessage = "Employee No " + Request.Form["EmpNo"].ToString() + " not found";
 
             }
-            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
-             ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
             return View("Index");
         }
         public ActionResult AdjustLeaves(FormCollection collection)
@@ -180,7 +180,7 @@ namespace WMS.Controllers
                 }
             }
             ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
-              ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
             return View("Index");
         }
 
@@ -313,7 +313,7 @@ namespace WMS.Controllers
                 ); // Add the original exception as the innerException
             }
         }
-        public void GenerateLeaveQuotaAttributes(List<Emp> _emp, List<LvType> _lvType, double AL, double CL, double SL, string year)
+        public void GenerateLeaveQuotaAttributes(List<EmpView> _emp, List<LvType> _lvType, double AL, double CL, double SL, string year)
         {
             using (var ctx = new TAS2013Entities())
             {
@@ -322,11 +322,11 @@ namespace WMS.Controllers
                     List<LvConsumed> lvcon = ctx.LvConsumeds.Where(aa => aa.EmpID == emp.EmpID).ToList();
                     foreach (var lvType in _lvType)
                     {
-                        string empLvType = emp.EmpID.ToString()+lvType.LvTypeID;
+                        string empLvType = emp.EmpID.ToString() + lvType.LvTypeID;
                         List<LvConsumed> lvConsumedlvType = new List<LvConsumed>();
                         if (lvcon.Where(aa => aa.EmpLvTypeYear == empLvType).Count() == 0)
                         {
-                            string empType = emp.EmpID.ToString() + lvType.LvTypeID+year;
+                            string empType = emp.EmpID.ToString() + lvType.LvTypeID + year;
                             LvConsumed lvConsumed = new LvConsumed();
                             lvConsumed.EmpLvTypeYear = empType;
                             lvConsumed.LvYear = year;

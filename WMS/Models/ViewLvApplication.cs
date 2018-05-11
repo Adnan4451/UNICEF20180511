@@ -48,5 +48,6 @@ namespace WMS.Models
         public string FldName { get; set; }
         public string LvDesc { get; set; }
         public Nullable<bool> Deleted { get; set; }
+        public Nullable<byte> Gender { get; set; }
     }
 }

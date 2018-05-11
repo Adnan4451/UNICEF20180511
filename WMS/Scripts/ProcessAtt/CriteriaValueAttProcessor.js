@@ -52,7 +52,7 @@
         $('#buttonId').click(function () {
             var empNo = document.getElementById("EmpNo").value;
             //var URL = '/WMS/LvApp/GetEmpInfo';
-            var URL = '/Emp/GetEmployeeInfo';
+            var URL = '/USAS/Emp/GetEmployeeInfo';
             $.getJSON(URL, { EmpNo: empNo }, function (data) {
                 var values = data.split('@');
                 document.getElementById("EName").innerHTML = values[0];

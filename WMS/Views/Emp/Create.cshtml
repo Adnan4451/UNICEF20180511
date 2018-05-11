@@ -2,8 +2,8 @@
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br />
 <script type="text/javascript">
     function fileCheck(obj) {
         var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
@@ -12,132 +12,137 @@
         }
     }
 </script>
-<br />
-<script>
+<h2>Create Employee</h2>
+<hr />
+
+@*<script>
     $(function () {
         $('#myTab a:last').tab('show')
     })
-</script>
-    
-@using (Html.BeginForm("Create", "Emp", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+</script>*@
+
+@using (Html.BeginForm("Create", "Emp", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <article class="row">
- <div class="well bs-component">     
-            <fieldset>
-           <h3>Create New Employees</h3>
-                <hr />
+    
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
-         <div class="form-group">
-            <label class="control-label col-md-2">Employee No<span style="color:red;"> *</span></label>
-            <div class="col-md-2">
-                @Html.TextBoxFor(model => model.EmpID, new { @class = "form-control", @type="number" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Employee ID<span style="color: red;"> *</span></label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.EmpID, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmpID)
             </div>
-         </div>
-         @*<div class="form-group">
-            <label class="control-label col-md-2">DHS/DHO<span style="color:red;"> *</span></label>
+        </div>
+        @*<div class="form-group">
+            <label class="control-label col-md-2">Employee No<span style="color: red;"> *</span></label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.EmpNo, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmpNo)
             </div>
-         </div>*@
+        </div>*@
 
-         <div class="form-group">
-            <label class="control-label col-md-2">Employee Name<span style="color:red;"> *</span></label>
+        <div class="form-group">
+            <label class="control-label col-md-2">Employee Name<span style="color: red;"> *</span></label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.EmpName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmpName)
             </div>
         </div>
-         <div class="form-group">
+        <div class="form-group">
             <label class="control-label col-md-2">Select Emp Photo</label>
             <div class="col-md-10">
-                <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);"/>
+                <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />
                 <img id="blah" src="#" alt="your image" />
-                <div class="upload-file-notice">Maximum size: <span id="avatar-max-size"></span> MB</div>
+                <div class="upload-file-notice">Maximum size: <span id="avatar-max-size"></span>MB</div>
             </div>
-         </div>
+        </div>
 
         <ul class="nav nav-tabs" role="tablist" id="myTab">
             <li class="active"><a href="#home" role="tab" data-toggle="tab">Job</a></li>
             <li><a href="#profile" role="tab" data-toggle="tab">Personel</a></li>
+            <li><a href="#locationaccess" role="tab" data-toggle="tab">Location Access</a></li>
         </ul>
-        <hr />
-                <div class="tab-content">
+
+        <div class="tab-content">
             <div class="tab-pane active fade in active" id="home">
                 <p></p>
-                 <div class="Outer">
-                    <div class="InnerLeft1">   
-                         
-                         <div class="form-group" id="EmpTypeDivID">
-                            <div class = "control-label col-md-3">
+                <div class="Outer">
+                    <div class="InnerLeft1">
+
+                        <div class="form-group" id="EmpTypeDivID">
+                            <div class="control-label col-md-3">
                                 <label for="EmpType">Employee Type</label>
                             </div>
                             <div class="col-md-3 ">
-                                  @Html.DropDownList("TypeID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.DropDownList("TypeID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                             </div>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label class="control-label col-md-3">Designation</label>
                             <div class="col-md-3">
-                                 @Html.DropDownList("DesigID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.DropDownList("DesigID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                             </div>
-                         </div>
-                         <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3">Shift</label>
                             <div class="col-md-3">
-                                @Html.DropDownList("ShiftID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.DropDownList("ShiftID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.ShiftID)
                             </div>
                         </div>
-                      @* <div class="form-group">
+                        @* <div class="form-group">
                             <label class="control-label col-md-3">Crew Name</label>
                             <div class="col-md-3">
                                @Html.DropDownList("CrewID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
                                 @Html.ValidationMessageFor(model => model.CrewID)
                             </div>
                         </div>*@
-                         <div class="form-group" id="DeptDivID">
-                            <div class = "control-label col-md-3">
+                       @* <div class="form-group">
+                            <label class="control-label col-md-3">Grade</label>
+                            <div class="col-md-3">
+                                @Html.DropDownList("GradeID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                            </div>
+                        </div>*@
+                        <div class="form-group" id="DeptDivID">
+                            <div class="control-label col-md-3">
                                 <label for="Deptartment">Group</label>
                             </div>
                             <div class="col-md-3 ">
-                                @Html.DropDownList("DeptID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.DropDownList("DeptID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                             </div>
                         </div>
-                         <div class="form-group" id="SectionDivID">
-                            <div class = "control-label col-md-3">
-                                <label for="Section">Directorate</label>
+                        <div class="form-group" id="SectionDivID">
+                            <div class="control-label col-md-3">
+                                <label for="Section">Unit</label>
                             </div>
                             <div class="col-md-3 ">
-                               
-                                 <select class="btn btn-default dropdown-toggle dropdown ComboBoxWidth" id="SecID" name="SecID"></select>
+
+                                <select class="btn btn-default dropdown-toggle dropdown ComboBoxWidth" id="SecID" name="SecID"></select>
                             </div>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label class="control-label col-md-3">Location</label>
                             <div class="col-md-3">
-                                @Html.DropDownList("LocID",null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
+                                @Html.DropDownList("LocID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.LocID)
                             </div>
-                         </div>        
+                        </div>
                     </div>
                     <div class="InnerRight1">
-                        
-                       
-                         <div class="form-group">
+
+
+                        <div class="form-group">
                             <label class="control-label col-md-3">Status</label>
                             <div class="col-md-3">
                                 @Html.DropDownList("Status", new List<SelectListItem>
                                     { 
                                         new SelectListItem { Text = "Active", Value = "true", Selected=true},
                                         new SelectListItem { Text = "Inactive", Value = "false"}
-                                    },new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"}) 
+                                    }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.Status)
                             </div>
-                        </div>   
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Card No</label>
                             <div class="col-md-6">
@@ -145,22 +150,23 @@
                                 @Html.ValidationMessageFor(model => model.CardNo)
                             </div>
                         </div>
-                        
-                         <div class="form-group">
+
+                        <div class="form-group">
                             <label class="control-label col-md-3">Over Time</label>
                             <div class="col-md-3">
                                 @Html.DropDownList("HasOT", new List<SelectListItem>
                                     { 
                                         new SelectListItem { Text = "Enable", Value = "true", Selected=true},
                                         new SelectListItem { Text = "Disable", Value = "false"}
-                                    },new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"}) 
+                                    }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.HasOT)
                             </div>
-                        </div>   
+                        </div>
                     </div>
                 </div>
-                
-            </div> @*// div of tab*@
+
+            </div>
+            @*// div of tab*@
 
             <div class="tab-pane fade" id="profile">
                 <p></p>
@@ -168,17 +174,17 @@
                     <div class="InnerLeft1">
 
                         <div class="form-group">
-                           <label class="control-label col-md-3">Father Name</label>
+                            <label class="control-label col-md-3">Father Name</label>
                             <div class="col-md-6">
-                                @Html.TextBoxFor(model => model.FatherName, new { @class = "form-control"})
+                                @Html.TextBoxFor(model => model.FatherName, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.FatherName)
                             </div>
-                         </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-3">Blood Group</label>
                             <div class="col-md-6">
-                                @Html.TextBoxFor(model => model.BloodGroup, new { @class = "form-control"})
+                                @Html.TextBoxFor(model => model.BloodGroup, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.BloodGroup)
                             </div>
                         </div>
@@ -190,7 +196,7 @@
                                     { 
                                         new SelectListItem { Text = "Male", Value = "0", Selected=true},
                                         new SelectListItem { Text = "Female", Value = "1"},                                        new SelectListItem { Text = "Not Mentioned", Value = "2"}
-                                    },new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidthSmall"}) 
+                                    }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidthSmall" })
                                 @Html.ValidationMessageFor(model => model.Gender)
                             </div>
                         </div>
@@ -198,18 +204,18 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">CNIC No</label>
                             <div class="col-md-6">
-                                @Html.TextBoxFor(model => model.NicNo, new { @class = "form-control"})
+                                @Html.TextBoxFor(model => model.NicNo, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.NicNo)
                             </div>
                         </div>
 
-                         <div class="form-group">
+                        <div class="form-group">
                             <label class="control-label col-md-3">Date Of Birth</label>
                             <div class="col-md-6">
                                 @Html.EditorFor(model => model.BirthDate)
                                 @Html.ValidationMessageFor(model => model.BirthDate)
                             </div>
-                         </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-3">Martial Status</label>
@@ -220,15 +226,15 @@
                                         new SelectListItem { Text = "Married", Value = "Married"},
                                          new SelectListItem { Text = "Widowed", Value = "Widowed"},
                                           new SelectListItem { Text = "Divorced", Value = "Divorced"}
-                                    },new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidthSmall"}) 
+                                    }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidthSmall" })
                                 @Html.ValidationMessageFor(model => model.MarStatus)
                             </div>
                         </div>
 
-                         <div class="form-group">
+                        <div class="form-group">
                             <label class="control-label col-md-3">Home Address</label>
                             <div class="col-md-6">
-                                @Html.TextBoxFor(model => model.HomeAdd, new { @class = "form-control"})
+                                @Html.TextBoxFor(model => model.HomeAdd, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.HomeAdd)
                             </div>
                         </div>
@@ -238,7 +244,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Join Date</label>
                             <div class="col-md-6">
-                                @Html.EditorFor(model => model.JoinDate, new { @class = "form-control"})
+                                @Html.EditorFor(model => model.JoinDate, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.JoinDate)
                             </div>
                         </div>
@@ -246,7 +252,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Valid Date</label>
                             <div class="col-md-6">
-                                @Html.EditorFor(model => model.ValidDate, new { @class = "form-control"})
+                                @Html.EditorFor(model => model.ValidDate, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.ValidDate)
                             </div>
                         </div>
@@ -254,64 +260,147 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Phone No</label>
                             <div class="col-md-6">
-                                @Html.TextBoxFor(model => model.PhoneNo, new { @class = "form-control"})
+                                @Html.TextBoxFor(model => model.PhoneNo, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.PhoneNo)
                             </div>
-                       </div>
-            
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-3">Cell No</label>
                             <div class="col-md-6">
-                                @Html.TextBoxFor(model => model.CellNo, new { @class = "form-control"})
+                                @Html.TextBoxFor(model => model.CellNo, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.CellNo)
                             </div>
-                         </div>
+                        </div>
 
                         <div class="form-group">
-                        <label class="control-label col-md-3">E-mail</label>
-                        <div class="col-md-6">
-                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control"})
-                            @Html.ValidationMessageFor(model => model.Email)
+                            <label class="control-label col-md-3">E-mail</label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-3">Remarks</label>
-                        <div class="col-md-6">
-                            @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control"})
-                            @Html.ValidationMessageFor(model => model.Remarks)
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Remarks</label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Remarks, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Remarks)
+                            </div>
                         </div>
                     </div>
-                 </div>
                 </div>
-             </div> @*end of div tab*@
+            </div>
+            @*end of div tab*@
+            <div class="tab-pane fade" id="locationaccess">
+                <p></p>
+                <div class="Outer">
+                    <div class="InnerLeft1">                       
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                <input type="checkbox" id="toggleAll"/> <label> Select all</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Islamabad")
+                                <label>Islamabade</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Lahore")
+                                <label>Lahore</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Karachi")
+                                <label>Karachi</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Peshawar")
+                                <label>Peshawar</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-md-2"></div>
+                            <div class="col-md-6">
+                                @Html.CheckBox("Quetta")
+                                <label>Quetta</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*end of div tab*@
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default btn-success" />
-                 @Html.ActionLink("Back to List", "Index",null,new { @class = "btn btn-primary " })
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary " })
             </div>
         </div>
     </div>
-                </fieldset>
-            
-     </div>
-        </article>
 }
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.Jcrop.js"></script>
-    <script src="~/Scripts/jquery.form.js"></script>
-    <script src="~/Scripts/respond.js"></script>
-    <script src="~/Scripts/site.avatar.js"></script>
+<script src="~/Scripts/jquery.Jcrop.js"></script>
+<script src="~/Scripts/jquery.form.js"></script>
+<script src="~/Scripts/respond.js"></script>
+<script src="~/Scripts/site.avatar.js"></script>
 
 <link href="~/Content/site.avatar.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/jquery.jcrop.css" rel="stylesheet" type="text/css" />
 
 <script src="@Url.Content("~/Scripts/wingSectionCreate.js")"></script>
-
+   <script type="text/javascript">
+       $("#toggleAll").click(function () {
+           if ($("#toggleAll").is(':checked')) {
+               $("#Islamabad").each(function () {
+                   $(this).prop("checked", true);
+               });
+               $("#Quetta").each(function () {
+                   $(this).prop("checked", true);
+               });
+               $("#Lahore").each(function () {
+                   $(this).prop("checked", true);
+               });
+               $("#Karachi").each(function () {
+                   $(this).prop("checked", true);
+               });
+               $("#Peshawar").each(function () {
+                   $(this).prop("checked", true);
+               });
+           }
+           else {
+               $("#Islamabad").each(function () {
+                   $(this).prop("checked", false);
+               });
+               $("#Quetta").each(function () {
+                   $(this).prop("checked", false);
+               });
+               $("#Lahore").each(function () {
+                   $(this).prop("checked", false);
+               });
+               $("#Karachi").each(function () {
+                   $(this).prop("checked", false);
+               });
+               $("#Peshawar").each(function () {
+                   $(this).prop("checked", false);
+               });
+           }
+       });
+   </script>
 <script type="text/javascript">
     function fileCheck(input) {
         if (input.files && input.files[0]) {
@@ -330,10 +419,3 @@
         }
     }
 </script>
-<style>
-    hr {
-        color: #fff;
-        background-color: #fff;
-        height: 1px;
-    }
-</style>

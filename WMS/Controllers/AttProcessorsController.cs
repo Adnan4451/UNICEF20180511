@@ -19,7 +19,7 @@ using System.Configuration;
 using System.Reflection;
 namespace WMS.Controllers
 {
-    
+
     public class AttProcessorsController : Controller
     {
         private TAS2013Entities context = new TAS2013Entities();
@@ -39,19 +39,19 @@ namespace WMS.Controllers
 
             if (searchString != null)
                 page = 1;
-             else
-               searchString = currentFilter;
+            else
+                searchString = currentFilter;
             DateTime dtS = DateTime.Today.AddDays(-10);
             DateTime dtE = DateTime.Today.AddDays(1);
-            List<AttProcessorScheduler> attprocess = context.AttProcessorSchedulers.Where(aa=>aa.CreatedDate>=dtS&&aa.CreatedDate<=dtE).ToList();
+            List<AttProcessorScheduler> attprocess = context.AttProcessorSchedulers.Where(aa => aa.CreatedDate >= dtS && aa.CreatedDate <= dtE).ToList();
             switch (sortOrder)
             {
-                case "tag_desc": attprocess = attprocess.OrderByDescending(s => s.PeriodTag).ToList();                   break;
+                case "tag_desc": attprocess = attprocess.OrderByDescending(s => s.PeriodTag).ToList(); break;
                 case "from_desc":
                     attprocess = attprocess.OrderByDescending(s => s.DateFrom).ToList();
                     break;
                 case "from":
-                   attprocess = attprocess.OrderBy(s => s.DateFrom).ToList();
+                    attprocess = attprocess.OrderBy(s => s.DateFrom).ToList();
                     break;
                 case "to_desc":
                     attprocess = attprocess.OrderByDescending(s => s.DateTo).ToList();
@@ -59,7 +59,7 @@ namespace WMS.Controllers
                 case "to":
                     attprocess = attprocess.OrderBy(s => s.DateTo).ToList();
                     break;
-               
+
                 default:
                     attprocess = attprocess.OrderBy(s => s.PeriodTag).ToList();
                     break;
@@ -67,7 +67,7 @@ namespace WMS.Controllers
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(attprocess.ToPagedList(pageNumber, pageSize));
-           
+
         }
 
         //
@@ -94,7 +94,7 @@ namespace WMS.Controllers
                 new SelectListItem { Selected = false, Text = "Monthly", Value = "M"},
                 new SelectListItem { Selected = false, Text = "Summary", Value = "S"},
 
-            }, "Value" , "Text",1);
+            }, "Value", "Text", 1);
             ViewBag.CriteriaID = new SelectList(new List<SelectListItem>
             {
                 new SelectListItem { Selected = true, Text = "Company", Value = "C"},
@@ -104,11 +104,11 @@ namespace WMS.Controllers
             }, "Value", "Text", 1);
             query = qb.QueryForLocationTableSegerationForLinq(LoggedInUser);
 
-            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
+            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
 
-            
-              return View();
-        } 
+
+            return View();
+        }
 
         //
         // POST: /AttProcessors/Create
@@ -116,7 +116,9 @@ namespace WMS.Controllers
         [HttpPost]
         public ActionResult Create(AttProcessorScheduler attprocessor)
         {
+            User LoggedInUser = Session["LoggedUser"] as User;
             string d = Request.Form["CriteriaID"].ToString();
+            string Message = "";
             switch (d)
             {
                 case "C":
@@ -125,14 +127,38 @@ namespace WMS.Controllers
                 case "L": attprocessor.Criteria = "L"; break;
                 case "E":
                     {
+                        TAS2013Entities db = new TAS2013Entities();
                         attprocessor.Criteria = "E";
-                        string ee = Request.Form["EmpNo"].ToString();
-                        List<Emp> empss = new List<Emp>();
-                        empss = context.Emps.Where(aa => aa.EmpNo == ee).ToList();
-                        if (empss.Count() > 0)
+                        string EmpNo = Request.Form["EmpNo"].ToString();
+                        List<EmpView> emps = new List<EmpView>();
+                        emps = db.EmpViews.Where(aa => aa.EmpNo == EmpNo && aa.Status == true).ToList();
+                        emps = AssistantQuery.GetFilteredEmps(emps, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
+                        if (emps.Count() > 0)
                         {
-                            attprocessor.EmpID = empss.First().EmpID;
-                            attprocessor.EmpNo = empss.First().EmpNo;
+                            attprocessor.EmpID = emps.First().EmpID;
+                            attprocessor.EmpNo = emps.First().EmpNo;
+                        }
+                        else
+                        {
+                            Message = "There is no employee found";
+                            ViewBag.CMessage = Message;
+                            ViewBag.PeriodTag = new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Selected = true, Text = "Daily", Value = "D"},
+                                new SelectListItem { Selected = false, Text = "Monthly", Value = "M"},
+                                new SelectListItem { Selected = false, Text = "Summary", Value = "S"},
+
+                            }, "Value", "Text", 1);
+                                            ViewBag.CriteriaID = new SelectList(new List<SelectListItem>
+                            {
+                                new SelectListItem { Selected = true, Text = "Company", Value = "C"},
+                                new SelectListItem { Selected = false, Text = "Location", Value = "L"},
+                                new SelectListItem { Selected = false, Text = "Employee", Value = "E"},
+
+                            }, "Value", "Text", 1);
+
+                            ViewBag.LocationID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+                            return View(attprocessor);
                         }
                     }
                     break;
@@ -145,14 +171,14 @@ namespace WMS.Controllers
                 attprocessor.CreatedDate = DateTime.Today;
                 context.AttProcessorSchedulers.Add(attprocessor);
                 context.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
             return View(attprocessor);
         }
-        
+
         //
         // GET: /AttProcessors/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserSchedulerID == id);
@@ -176,7 +202,7 @@ namespace WMS.Controllers
 
         //
         // GET: /AttProcessors/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             AttProcessorScheduler attprocessor = context.AttProcessorSchedulers.Single(x => x.AttProcesserSchedulerID == id);
@@ -197,7 +223,8 @@ namespace WMS.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing) {
+            if (disposing)
+            {
                 context.Dispose();
             }
             base.Dispose(disposing);

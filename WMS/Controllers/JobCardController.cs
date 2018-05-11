@@ -19,7 +19,6 @@ namespace WMS.Controllers
             return RedirectToAction("JCCreate");
         }
         private TAS2013Entities db = new TAS2013Entities();
-
         public ActionResult JCCreate(string sortOrder, string searchString, string currentFilter, int? page)
         {
             ViewData["JobDateFrom"] = DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd");
@@ -35,9 +34,6 @@ namespace WMS.Controllers
             User LoggedInUser = Session["LoggedUser"] as User;
             string Message = "";
             string MessageSuccess = "";
-            QueryBuilder qb = new QueryBuilder();
-            string query = qb.MakeCustomizeQuery(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
             string criteria = Request.Form["CreateJCCriteria"].ToString();
             short _WorkCardID = Convert.ToInt16(Request.Form["JobCardType"].ToString());
             //First Save Job Card Application
@@ -47,15 +43,15 @@ namespace WMS.Controllers
             jobCardApp.DateStarted = Convert.ToDateTime(Request.Form["JobDateFrom"]);
             jobCardApp.DateEnded = Convert.ToDateTime(Request.Form["JobDateTo"]);
             jobCardApp.Status = false;
-            string Remakrs = Request.Form["Remakrs"].ToString();  
-      
+            string Remakrs = Request.Form["Remakrs"].ToString();
+
             if (Remakrs != "")
                 jobCardApp.Remarks = Remakrs;
             jobCardApp.UserID = LoggedInUser.UserID;
             int NoOfDays = (int)(jobCardApp.DateEnded.Value - jobCardApp.DateStarted.Value).TotalDays;
             if (NoOfDays < 400)
             {
-                if (jobCardApp.DateStarted < jobCardApp.DateEnded)
+                if (jobCardApp.DateStarted <= jobCardApp.DateEnded)
                 {
                     switch (criteria)
                     {
@@ -72,12 +68,13 @@ namespace WMS.Controllers
                                 Message = "Job Card Validation failed";
                             break;
                         case "ByEmployee":
-                            string EmpNo = "";
-                            EmpNo = Request.Form["EmpNo"];
-                            List<Emp> emptemp = db.Emps.Where(aa => aa.EmpNo == EmpNo).ToList();
-                            if (emptemp.Count > 0)
+                            string EmpNo = Request.Form["EmpNo"].ToString();
+                            List<EmpView> emps = new List<EmpView>();
+                            emps = db.EmpViews.Where(aa => aa.EmpNo == EmpNo && aa.Status == true).ToList();
+                            emps = AssistantQuery.GetFilteredEmps(emps, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
+                            if (emps.Count > 0)
                             {
-                                jobCardApp.CriteriaDate = emptemp.FirstOrDefault().EmpID;
+                                jobCardApp.CriteriaDate = emps.FirstOrDefault().EmpID;
                                 jobCardApp.JobCardCriteria = "E";
                                 if (ValidateJobCard(jobCardApp))
                                 {
@@ -109,7 +106,6 @@ namespace WMS.Controllers
             ViewBag.CMessage = Message;
             return View("JCCreate");
         }
-
         public ActionResult JobCardList(string sortOrder, string searchString, string currentFilter, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -174,7 +170,6 @@ namespace WMS.Controllers
             int pageNumber = (page ?? 1);
             return View(jobCardsApps.ToPagedList(pageNumber, pageSize));
         }
-
         #region -- Job Card Create Helper --
         private bool ValidateJobCard(JobCardApp jobCardApp)
         {
@@ -263,7 +258,7 @@ namespace WMS.Controllers
             {
                 _empDate = _selEmp.EmpID + _Date.ToString("yyMMdd");
                 AddJobCardDataToDatabase(_empDate, _empID, _Date, _userID, jcApp);
-                if (db.AttProcesses.Where(aa => aa.ProcessDate == _Date).Count() > 0)
+                if (db.AttDatas.Where(aa => aa.EmpDate == _empDate).Count() > 0)
                 {
                     //1	Official Duty
                     //2	Present
@@ -326,6 +321,7 @@ namespace WMS.Controllers
                         if (_attdata.StatusDO == true)
                             _attdata.WorkMin = 0;
                         _attdata.Remarks = Remarks;
+                        _attdata.DutyCode = "O";
                     }
                     context.SaveChanges();
                     if (context.SaveChanges() > 0)
@@ -339,9 +335,6 @@ namespace WMS.Controllers
             return check;
         }
         #endregion
-
-
-
         public ActionResult DeleteJC(int? id)
         {
             if (id == null)
@@ -368,7 +361,6 @@ namespace WMS.Controllers
             }
             return RedirectToAction("JobCardList");
         }
-
         private void RemoveFromAttData(JobCardDetail item)
         {
             try
@@ -382,9 +374,6 @@ namespace WMS.Controllers
             {
             }
         }
-
-
-
         // GET: /JobCard/Details/5
         public ActionResult Details(int? id)
         {
@@ -399,13 +388,11 @@ namespace WMS.Controllers
             }
             return View(jobcardapp);
         }
-
         // GET: /JobCard/Create
         public ActionResult Create()
         {
             return View();
         }
-
         // POST: /JobCard/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -422,7 +409,6 @@ namespace WMS.Controllers
 
             return View(jobcardapp);
         }
-
         // GET: /JobCard/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -437,7 +423,6 @@ namespace WMS.Controllers
             }
             return View(jobcardapp);
         }
-
         // POST: /JobCard/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -453,7 +438,6 @@ namespace WMS.Controllers
             }
             return View(jobcardapp);
         }
-
         // GET: /JobCard/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -468,7 +452,6 @@ namespace WMS.Controllers
             }
             return View(jobcardapp);
         }
-
         // POST: /JobCard/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -479,7 +462,6 @@ namespace WMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -15,13 +15,13 @@ namespace WMS.Reports.Filters
     public partial class StepFiveFilter : System.Web.UI.Page
     {
         private TAS2013Entities da = new TAS2013Entities();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 // Bind Grid View According to Filters
                 BindGridViewEmployee("");
+                BindGridViewGender("");
                 List<string> list = Session["ReportSession"] as List<string>;
                 dateFrom.Value = list[0];
                 dateTo.Value = list[1];
@@ -30,12 +30,45 @@ namespace WMS.Reports.Filters
             else
             {
                 SaveEmployeeIDs();
+                SaveGenderDs();
             }
             if (Session["FiltersModel"] != null)
             {
                 // Check and Uncheck Items in grid view according to Session Filters Model
                 WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
+                WMSLibrary.Filters.SetGridViewCheckState(GridViewGender, Session["FiltersModel"] as FiltersModel, "Gender");
             }
+        }
+        private void BindGridViewGender(string search)
+        {
+            List<VMGender> vmg = new List<VMGender>();
+            {
+                VMGender vm = new VMGender();
+                vm.ID = 0;
+                vm.GenderName = "Male";
+                vmg.Add(vm);
+            }
+            {
+                VMGender vm = new VMGender();
+                vm.ID = 1;
+                vm.GenderName = "Female";
+                vmg.Add(vm);
+            }
+            FiltersModel fm = Session["FiltersModel"] as FiltersModel;
+            List<VMGender> _View = new List<VMGender>();
+            List<VMGender> _TempView = new List<VMGender>();
+            User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
+            _View = vmg;
+            //_View = _View.Where(aa => aa. == true).ToList();            
+            GridViewGender.DataSource = _View.Where(aa => aa.GenderName.ToUpper().Contains(search.ToUpper())).ToList();
+            GridViewGender.DataBind();
+        }
+        private void SaveGenderDs()
+        {
+            //Session["FiltersModel"] = fml;
+            WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
+            WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewGender, Session["FiltersModel"] as FiltersModel, "Gender");
+            Session["FiltersModel"] = FM;
         }
         protected void ButtonSearchEmployee_Click(object sender, EventArgs e)
         {
@@ -56,7 +89,6 @@ namespace WMS.Reports.Filters
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
         }
-
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
@@ -89,17 +121,15 @@ namespace WMS.Reports.Filters
             WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewEmployee, Session["FiltersModel"] as FiltersModel, "Employee");
             Session["FiltersModel"] = FM;
         }
-
+        TAS2013Entities db = new TAS2013Entities();
         private void BindGridViewEmployee(string search)
         {
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
             List<EmpView> _View = new List<EmpView>();
             List<EmpView> _TempView = new List<EmpView>();
             User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
-            QueryBuilder qb = new QueryBuilder();
-            string query = qb.MakeCustomizeQueryForEmp(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from EmpView " + query);
-            _View = dt.ToList<EmpView>().AsQueryable().SortBy("DeptName").ToList();
+            _View = db.EmpViews.Where(aa => aa.Status == true && aa.Deleted != true).ToList();
+            _View = AssistantQuery.GetFilteredEmps(_View, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
             _View = _View.Where(aa => aa.Status == true).ToList();
             //if (fm.DivisionFilter.Count > 0)
             //{
@@ -184,8 +214,13 @@ namespace WMS.Reports.Filters
             GridViewEmployee.DataSource = _View.Where(aa => aa.EmpName.ToUpper().Contains(search.ToUpper()) || aa.EmpNo.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewEmployee.DataBind();
         }
-
-
+        protected void GridViewGender_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                e.Row.Cells[0].Text = "Page " + (GridViewGender.PageIndex + 1) + " of " + GridViewGender.PageCount;
+            }
+        }
         protected void GridViewEmployee_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Footer)
@@ -193,7 +228,6 @@ namespace WMS.Reports.Filters
                 e.Row.Cells[0].Text = "Page " + (GridViewEmployee.PageIndex + 1) + " of " + GridViewEmployee.PageCount;
             }
         }
-
         private void SaveDateSession()
         {
             List<string> list = Session["ReportSession"] as List<string>;
@@ -221,52 +255,50 @@ namespace WMS.Reports.Filters
                     return DateTime.Parse(dateTo.Value);
             }
         }
-
-
         #region Navigation Buttons
         private void NavigationCommonCalls(string path)
         {
             SaveDateSession();
             SaveEmployeeIDs();
+            SaveGenderDs();
             Response.Redirect(path);
         }
         protected void btnStepOne_Click(object sender, EventArgs e)
         {
             NavigationCommonCalls("~/Reports/Filters/StepOneFilter.aspx");
         }
-
         protected void btnStepTwo_Click(object sender, EventArgs e)
         {
             NavigationCommonCalls("~/Reports/Filters/StepTwoFilter.aspx");
         }
-
         protected void btnStepThree_Click(object sender, EventArgs e)
         {
             NavigationCommonCalls("~/Reports/Filters/StepThreeFilter.aspx");
         }
-
         protected void btnStepFour_Click(object sender, EventArgs e)
         {
             NavigationCommonCalls("~/Reports/Filters/StepFourFilter.aspx");
         }
-
         protected void btnStepFive_Click(object sender, EventArgs e)
         {
             NavigationCommonCalls("~/Reports/Filters/StepFiveFilter.aspx");
         }
-
         protected void btnStepSix_Click(object sender, EventArgs e)
         {
             SaveDateSession();
             SaveEmployeeIDs();
+            SaveGenderDs();
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
             if (MyHelper.UserHasValuesInSession(fm))
             {
                 Response.Redirect("~/Reports/Filters/StepSixFilter.aspx");
             }
         }
-
-
         #endregion
+    }
+    public class VMGender
+    {
+        public int ID { get; set; }
+        public string GenderName { get; set; }
     }
 }

@@ -90,5 +90,6 @@ namespace WMS.Models
         public Nullable<System.DateTime> Tin12 { get; set; }
         public Nullable<System.DateTime> Tout12 { get; set; }
         public Nullable<bool> Deleted { get; set; }
+        public Nullable<byte> Gender { get; set; }
     }
 }

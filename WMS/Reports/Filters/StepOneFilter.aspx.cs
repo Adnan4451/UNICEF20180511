@@ -15,9 +15,9 @@ using System.Web.Services;
 namespace WMS.Reports.Filters
 {
     public partial class StepOneFilter : System.Web.UI.Page
-    {   
+    {
         private TAS2013Entities da = new TAS2013Entities();
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,7 +51,7 @@ namespace WMS.Reports.Filters
             WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
             //fml = Session["FiltersModel"] as FiltersModel;
         }
-         private void SaveSectionIDs()
+        private void SaveSectionIDs()
         {
             WMSLibrary.Filters filterHelper = new WMSLibrary.Filters();
             WMSLibrary.FiltersModel FM = filterHelper.SyncGridViewIDs(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
@@ -69,7 +69,7 @@ namespace WMS.Reports.Filters
             // Check and set Check box state
             WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
         }
-         protected void GridViewSection_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void GridViewSection_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Footer)
             {
@@ -77,28 +77,24 @@ namespace WMS.Reports.Filters
             }
         }
 
-         private void BindGridViewSection(string search)
+        private void BindGridViewSection(string search)
         {
             FiltersModel fm = Session["FiltersModel"] as FiltersModel;
             List<ViewSection> _View = new List<ViewSection>();
             List<ViewSection> _TempView = new List<ViewSection>();
-            User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
+            User LoggedInUser = Session["LoggedUser"] as User;
+            TAS2013Entities db = new TAS2013Entities();
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForSectionRptFilters(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from ViewSection "+query);
-            _View = dt.ToList<ViewSection>().AsQueryable().SortBy("DeptName").ToList();
-            
-            if (fm.DepartmentFilter.Count > 0)
+            DataTable dt = qb.GetValuesfromDB("select * from ViewSection " + query);
+            List<ViewSection> _Viewsec = new List<ViewSection>();
+            List<ViewSection> _TempViewsec = new List<ViewSection>();
+            _View = dt.ToList<ViewSection>().AsQueryable().SortBy("SectionName").ToList();
+            foreach (var item in db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID && aa.LocationOrSection == "Section").ToList())
             {
-                _TempView.Clear();
-                foreach (var Sec in fm.DepartmentFilter)
-                {
-                    short _SecID = Convert.ToInt16(Sec.ID);
-                    _TempView.AddRange(_View.Where(aa => aa.SectionID == _SecID).ToList());
-                }
-                _View = _TempView.ToList();
+                _TempView.AddRange(_View.Where(aa => aa.SectionID == item.SectionID).ToList());
             }
-            GridViewSection.DataSource = _View.Where(aa => aa.SectionName.ToUpper().Contains(search.ToUpper())|| aa.DeptName.ToUpper().Contains(search.ToUpper())).ToList();
+            GridViewSection.DataSource = _TempView.Where(aa => aa.SectionName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewSection.DataBind();
         }
 
@@ -111,9 +107,9 @@ namespace WMS.Reports.Filters
             //fml = Session["FiltersModel"] as FiltersModel;
         }
 
-       
 
-       
+
+
         #region --DeleteAll Filters--
         protected void ButtonDeleteAll_Click(object sender, EventArgs e)
         {
@@ -136,10 +132,10 @@ namespace WMS.Reports.Filters
             WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Section");
             //WMSLibrary.Filters.SetGridViewCheckState(GridViewLocation, Session["FiltersModel"] as FiltersModel, "Crew");
             WMSLibrary.Filters.SetGridViewCheckState(GridViewSection, Session["FiltersModel"] as FiltersModel, "Employee");
-      
+
 
         }
-        #endregion 
+        #endregion
         protected void ButtonSearchLoc_Click(object sender, EventArgs e)
         {
             // Save selected Company ID and Name in Session
@@ -181,13 +177,19 @@ namespace WMS.Reports.Filters
 
         private void BindGridViewLocation(string search)
         {
-            User LoggedInUser = HttpContext.Current.Session["LoggedUser"] as User;
+            TAS2013Entities db = new TAS2013Entities();
+            User LoggedInUser = Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
             string query = qb.QueryForCompanyViewLinq(LoggedInUser);
             DataTable dt = qb.GetValuesfromDB("select * from Location ");
             List<Location> _View = new List<Location>();
+            List<Location> _TempView = new List<Location>();
             _View = dt.ToList<Location>().AsQueryable().SortBy("LocName").ToList();
-            GridViewLocation.DataSource = _View.Where(aa => aa.LocName.ToUpper().Contains(search.ToUpper())).ToList();
+            foreach (var item in db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID && aa.LocationOrSection == "Location").ToList())
+            {
+                _TempView.AddRange(_View.Where(aa => aa.LocID == item.LocationID).ToList());
+            }
+            GridViewLocation.DataSource = _TempView.Where(aa => aa.LocName.ToUpper().Contains(search.ToUpper())).ToList();
             GridViewLocation.DataBind();
         }
 
@@ -211,10 +213,10 @@ namespace WMS.Reports.Filters
         [WebMethod(EnableSession = true)]
         public static string DeleteSingleFilter(string id, string parentid)
         {
-           FiltersModel fml = new FiltersModel();
-           fml = HttpContext.Current.Session["FiltersModel"] as FiltersModel;
-           fml = WMSLibrary.Filters.DeleteSingleFilter(fml, id, parentid); 
-           return DateTime.Now.ToString();
+            FiltersModel fml = new FiltersModel();
+            fml = HttpContext.Current.Session["FiltersModel"] as FiltersModel;
+            fml = WMSLibrary.Filters.DeleteSingleFilter(fml, id, parentid);
+            return DateTime.Now.ToString();
         }
 
         //[WebMethod(EnableSession = true)]

@@ -201,7 +201,21 @@
                     }%>
 
                          </div>
+                        <div class="panel-group" id="Div7">
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter.Count > 0)
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#Div3' href='#collapseType'>Gender</a>  <span style ='float:right;' class='badge' id ='GenderSpan'>" + d + "</span></h4></div><div id='collapseType' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter)
+                           {
+                               { Response.Write("<a class='list-group-item' id='Shift'>" + item.FilterName + "<button type='button' id='" + item.ID + "' onclick = 'deleteFromFilters(this)' class='btn btn-danger btn-sm' style='float:right;'>[X]</button></a>"); }
+                           } 
+                                { Response.Write("</div></div></div>"); }
+                    }%>
 
+                       </div>
                          <div class="panel-group" id="Div6">
                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter.Count > 0)
                        {
@@ -247,5 +261,6 @@
         </div>
     </section>
        <script src="../../Scripts/Filters/DeleteSingleFilters.js"></script>
+    <script src="../../Scripts/Filters/FilterScripts.js"></script>
 </asp:Content>
 

@@ -38,11 +38,12 @@ namespace WMS.Controllers
             //string query = qb.MakeCustomizeQuery(LoggedInUser);
             DateTime dt1 = DateTime.Today;
             DateTime dt2 = new DateTime(dt1.Year, 1, 1);
+
             string date = dt2.Year.ToString()+"-"+dt2.Month.ToString()+"-"+dt2.Day.ToString()+" ";
             DataTable dt = qb.GetValuesfromDB("select * from ViewLvApplication  where(ToDate >= '" + date + "') order by LvID desc");
             List<ViewLvApplication> lvapplications = dt.ToList<ViewLvApplication>();
 
-
+            lvapplications = AssistantQuery.GetFilteredLeaveApplication(lvapplications, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
             ViewBag.CurrentFilter = searchString;
             //var lvapplications = db.LvApplications.Where(aa=>aa.ToDate>=dt2).Include(l => l.Emp).Include(l => l.LvType1);
             if (!String.IsNullOrEmpty(searchString))
@@ -75,7 +76,7 @@ namespace WMS.Controllers
             }
             int pageSize = 8;
             int pageNumber = (page ?? 1);
-            return View(lvapplications.OrderBy(aa=>aa.LvDate).ToPagedList(pageNumber, pageSize));
+            return View(lvapplications.OrderBy(aa => aa.LvDate).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /LvApp/Details/5
@@ -95,7 +96,6 @@ namespace WMS.Controllers
         }
 
         // GET: /LvApp/Create
-          [CustomActionAttribute]
         public ActionResult Create()
         {
             ViewBag.EmpID = new SelectList(db.Emps.OrderBy(s=>s.EmpName), "EmpID", "EmpNo");
@@ -108,7 +108,6 @@ namespace WMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomActionAttribute]
           public ActionResult Create([Bind(Include = "LvID,LvDate,LeaveTypeID,EmpID,FromDate,ToDate,NoOfDays,IsHalf,FirstHalf,HalfAbsent,LvReason,LvAddress,CreatedBy,ApprovedBy,Status")] LvApplication lvapplication)
             {
             User LoggedInUser = Session["LoggedUser"] as User;

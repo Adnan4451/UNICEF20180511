@@ -14,15 +14,32 @@ namespace WMS.Models
     
     public partial class ViewMonthlyData
     {
+        public string GradeName { get; set; }
+        public string SectionName { get; set; }
+        public short DeptID { get; set; }
+        public string TypeName { get; set; }
+        public string LocName { get; set; }
+        public string ShiftName { get; set; }
+        public string DesignationName { get; set; }
+        public Nullable<int> DesigID { get; set; }
+        public Nullable<byte> TypeID { get; set; }
+        public Nullable<int> GradeID { get; set; }
+        public Nullable<short> SecID { get; set; }
+        public string CardNo { get; set; }
+        public Nullable<System.DateTime> JoinDate { get; set; }
+        public Nullable<System.DateTime> ResignDate { get; set; }
         public int EmpID { get; set; }
-        public string EmpMonth { get; set; }
+        public string DeptName { get; set; }
+        public Nullable<byte> ShiftID { get; set; }
+        public Nullable<short> LocID { get; set; }
         public string Period { get; set; }
+        public string EmpMonth { get; set; }
         public string EmpNo { get; set; }
         public string EmpName { get; set; }
         public string D1 { get; set; }
         public string D2 { get; set; }
-        public string D4 { get; set; }
         public string D3 { get; set; }
+        public string D4 { get; set; }
         public string D5 { get; set; }
         public string D6 { get; set; }
         public string D7 { get; set; }
@@ -39,12 +56,12 @@ namespace WMS.Models
         public string D18 { get; set; }
         public string D19 { get; set; }
         public string D20 { get; set; }
+        public string D21 { get; set; }
         public string D22 { get; set; }
         public string D23 { get; set; }
-        public string D21 { get; set; }
         public string D24 { get; set; }
-        public string D26 { get; set; }
         public string D25 { get; set; }
+        public string D26 { get; set; }
         public string D27 { get; set; }
         public string D28 { get; set; }
         public string D29 { get; set; }
@@ -128,30 +145,7 @@ namespace WMS.Models
         public string L28 { get; set; }
         public string L29 { get; set; }
         public string L30 { get; set; }
-        public string L31 { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
-        public string Expr1 { get; set; }
-        public string DesignationName { get; set; }
-        public string SectionName { get; set; }
-        public string DeptName { get; set; }
-        public string Expr2 { get; set; }
-        public Nullable<int> DesigID { get; set; }
-        public Nullable<byte> ShiftID { get; set; }
-        public Nullable<short> LocID { get; set; }
-        public Nullable<byte> TypeID { get; set; }
-        public Nullable<short> SecID { get; set; }
-        public string CardNo { get; set; }
-        public string NicNo { get; set; }
-        public string FatherName { get; set; }
-        public string BloodGroup { get; set; }
-        public Nullable<System.DateTime> JoinDate { get; set; }
-        public Nullable<System.DateTime> BirthDate { get; set; }
         public Nullable<bool> Status { get; set; }
-        public string TypeName { get; set; }
-        public string LocName { get; set; }
-        public string ShiftName { get; set; }
-        public short DeptID { get; set; }
-        public Nullable<bool> Deleted { get; set; }
+        public Nullable<byte> Gender { get; set; }
     }
 }

@@ -23,13 +23,13 @@
                         <h4>Filters Navigation</h4>
                     </li>
                     <li >
-                        <asp:LinkButton ID="btnStepOne" runat="server" CssClass="active-link" OnClick="btnStepOne_Click" >Step One<p>Directorates, Locations</p></asp:LinkButton>
+                        <asp:LinkButton ID="btnStepOne" runat="server" CssClass="active-link" OnClick="btnStepOne_Click" >Step One<p>Units, Locations</p></asp:LinkButton>
                     </li>
                     <li>
                         <asp:LinkButton ID="btnStepFour" runat="server" CssClass="inactive-link" OnClick="btnStepFour_Click" >Step Two<p>Types, Shifts</p></asp:LinkButton>
                     </li>
                     <li>
-                        <asp:LinkButton ID="btnStepFive" runat="server"  CssClass="inactive-link" OnClick="btnStepFive_Click" >Step Three<p>Employee</p></asp:LinkButton>
+                        <asp:LinkButton ID="btnStepFive" runat="server"  CssClass="inactive-link" OnClick="btnStepFive_Click" >Step Three<p>Employee, Gender</p></asp:LinkButton>
                     </li>
                     <li>
                         <asp:LinkButton ID="btnStepSix" runat="server" CssClass="inactive-link" OnClick="btnStepSix_Click" >Finish<p>Generate Report</p></asp:LinkButton>
@@ -40,16 +40,16 @@
             <!-- /#sidebar-wrapper -->
         </div>
         </div>
-        
         <div class="col-sm-9 col-md-9 col-lg-9">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row"> 
-                           
+                            <div class="col-md-8">
+                                <h3>Choose Units or Location</h3>
+                                 </div>
                             
-                               <div class="col-md-3 pull-right">
-                                   <br />
-                              <asp:Button ID="Button3" runat="server" style="margin-bottom:18px"  Text="Clear All Filters" CssClass="btn-warning" OnClick="ButtonDeleteAll_Click" />
+                               <div class="col-md-3">
+                              <asp:Button ID="Button3" runat="server" style="margin-top:18px" Text="Clear All Filters" CssClass="btn-warning" OnClick="ButtonDeleteAll_Click" />
                                 </div>
                                  </div>
                        
@@ -63,7 +63,7 @@
                         </div>
                         <hr />
                          <div class="row">
-                             <div class="filterHeader"><span class="FilterNameHeading">Directorates</span>
+                             <div class="filterHeader"><span class="FilterNameHeading">Units</span>
                                  <span style="margin-left:10px"><asp:TextBox ID="TextBoxSearch" CssClass="input-field" runat="server" /> <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn-primary" OnClick="ButtonSearchSection_Click" /></span>
                         </div>
                              <section>
@@ -83,8 +83,8 @@
                                         <ItemStyle Width="10%" />
                                     </asp:TemplateField>
                                         
-                                        <asp:BoundField DataField="SectionName" HeaderText="Directorates" />
-                                       <%-- <asp:BoundField DataField ="DeptName" HeaderText ="Groups" />  --%>
+                                        <asp:BoundField DataField="SectionName" HeaderText="Units" />
+                                        <asp:BoundField DataField ="DeptName" HeaderText ="Groups" />  
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#EEEEEE" Font-Bold="False" ForeColor="Black" Wrap="False" />
@@ -152,7 +152,7 @@
                        {
                            {
                                int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter.Count;
-                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#accordion' href='#collapseSection'>Directorates</a>  <span style ='float:right;' class='badge' id='SectionSpan'>" + d + "</span></h4></div><div id='collapseSection' class='panel-collapse collapse out'><div class='list-group'>");
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#accordion' href='#collapseSection'>Units</a>  <span style ='float:right;' class='badge' id='SectionSpan'>" + d + "</span></h4></div><div id='collapseSection' class='panel-collapse collapse out'><div class='list-group'>");
                            }
                            foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter)
                            {
@@ -222,7 +222,21 @@
                     }%>
 
                          </div>
+                       <div class="panel-group" id="Div2">
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter.Count > 0)
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#Div3' href='#collapseType'>Gender</a>  <span style ='float:right;' class='badge' id ='GenderSpan'>" + d + "</span></h4></div><div id='collapseType' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter)
+                           {
+                               { Response.Write("<a class='list-group-item' id='Shift'>" + item.FilterName + "<button type='button' id='" + item.ID + "' onclick = 'deleteFromFilters(this)' class='btn btn-danger btn-sm' style='float:right;'>[X]</button></a>"); }
+                           } 
+                                { Response.Write("</div></div></div>"); }
+                    }%>
 
+                       </div>
                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).EmployeeFilter.Count > 0)
                        {
                            {
@@ -267,7 +281,7 @@
         
     </script>--%>
    <script src="../../Scripts/Filters/DeleteSingleFilters.js"></script>
-    <%--<script src="../../Scripts/Filters/ClearSessionOnPageClose.js" />--%>
+   <script src="../../Scripts/Filters/FilterScripts.js"></script>
 
 </asp:Content>
 

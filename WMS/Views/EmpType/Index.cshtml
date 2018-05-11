@@ -4,11 +4,14 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@{ WMS.Models.User user = (WMS.Models.User)HttpContext.Current.Session["LoggedUser"]; }
 <div>
     <form class ="form-inline" role="form">
         <div class="form-group"> <h3>Employee Types</h3> </div>
+ @if (user.CanAdd == true)
+{
         <div class="form-group CreateBtnMargin"><p>@Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-xs btn-success" })</p></div>
+}
         <div class="form-group pull-right SearchBtnMargin">
             @using (Html.BeginForm("Index", "EmpType", FormMethod.Get))
             {<p>Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control"})  
@@ -21,11 +24,11 @@
         <th>
              @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
-        @*<th>
-            @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CatSortParm })
-        </th>*@
+        <th>
+            @Html.ActionLink("ALIncrement", "Index", new { sortOrder = ViewBag.CatSortParm })
+        </th>
        
-        <th>Edit | Delete</th>
+        <th>Edit | View | Delete</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -33,21 +36,30 @@
         <td>
             @Html.DisplayFor(modelItem => item.TypeName)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Category.CatName)
-        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.ALIncrement)
+        </td>
         
         <td>
+ @if (user.CanEdit == true)
+{
             @Html.ActionLink(" ", "Edit", new { id=item.TypeID }, new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-xs" }) 
-            @*@Html.ActionLink(" ", "Details", new { id=item.TypeID }, new { @class = "glyphicon glyphicon-list btn btn-info btn-xs" })*@ 
+}
+ @if (user.CanView == true)
+{
+            @Html.ActionLink(" ", "Details", new { id=item.TypeID }, new { @class = "glyphicon glyphicon-list btn btn-info btn-xs" }) 
+}
+ @if (user.CanDelete == true)
+{
             @Html.ActionLink(" ", "Delete", new { id=item.TypeID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-xs" })
+}
         </td>
     </tr>
 }
 
 </table>
-@*<div class="form-inline">
+<div class="form-inline">
           <div class="form-group ">@Html.PagedListPager(Model, page => Url.Action("Index", 
                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))</div>
           <div class="form-group pull-right">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
-</div>*@
+</div>

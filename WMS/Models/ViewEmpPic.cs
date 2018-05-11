@@ -18,5 +18,6 @@ namespace WMS.Models
         public int EmpID { get; set; }
         public string EmpName { get; set; }
         public string EmpNo { get; set; }
+        public Nullable<byte> Gender { get; set; }
     }
 }

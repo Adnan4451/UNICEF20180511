@@ -4,11 +4,14 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@{ WMS.Models.User user = (WMS.Models.User)HttpContext.Current.Session["LoggedUser"]; }
 <div>
       <form class ="form-inline" role="form">
           <div class="form-group"> <h3>Departments</h3> </div>
+ @if (user.CanAdd == true)
+{
           <div class="form-group CreateBtnMargin"><p>@Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-xs btn-success btn-lg sharp" })</p></div>
+}
           <div class="form-group pull-right SearchBtnMargin">
               @using (Html.BeginForm("Index", "Designation", FormMethod.Get))
                 {<p>Find @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control"})  
@@ -34,9 +37,14 @@
         
        
         <td>
+ @if (user.CanEdit == true)
+{
             @Html.ActionLink(" ", "Edit", new { id=item.DeptID }, new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-xs" })
-            @*@Html.ActionLink(" ", "Details", new { id=item.DeptID }, new { @class = "glyphicon glyphicon-list btn btn-info btn-xs" })*@
+}
+ @if (user.CanDelete == true)
+{
             @Html.ActionLink(" ", "Delete", new { id=item.DeptID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-xs" })
+}
         </td>
     </tr>
 }

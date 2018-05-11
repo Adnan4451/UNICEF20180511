@@ -4,98 +4,102 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c5a529707ed946a6a0a3d53e5d2df7d9" Name="Diagram1" ZoomLevel="31">
-        <EntityTypeShape EntityType="TASDHAModel.AttData" Width="1.5" PointX="8.25" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.AttDataManEdit" Width="1.5" PointX="8.25" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.AttMnData" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.AttMnDataPer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.AttProcess" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.AttProcessorScheduler" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.AuditForm" Width="1.5" PointX="2.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.AuditLog" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.AuditOperation" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Crew" Width="1.5" PointX="3.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.DailySummary" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.DaysName" Width="1.5" PointX="1.5" PointY="46.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Department" Width="1.5" PointX="1.5" PointY="41" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Designation" Width="1.5" PointX="3.75" PointY="18.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.DownloadTime" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.DutyCode" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.DutyTime" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Emp" Width="1.5" PointX="6" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.EmpFace" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.EmpFp" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.EmpPhoto" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.EmpType" Width="1.5" PointX="3.75" PointY="33.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Holiday" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.JobCard" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.JobCardApp" Width="1.5" PointX="9" PointY="36.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.JobCardDetail" Width="1.5" PointX="11.25" PointY="28.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.LicenseDeviceInfo" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.LicenseInfo" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Location" Width="1.5" PointX="0.75" PointY="29.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.LvApplication" Width="1.5" PointX="11.25" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.LvConsumed" Width="1.5" PointX="8.25" PointY="45.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.LvData" Width="1.5" PointX="13.5" PointY="27.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.LvShort" Width="1.5" PointX="8.25" PointY="51.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.LvType" Width="1.5" PointX="9" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Option" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.PollData" Width="1.5" PointX="11.25" PointY="32.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.PollDataError" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.RdrDutyCode" Width="1.5" PointX="0.75" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.RdrEventLog" Width="1.5" PointX="15.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Reader" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ReaderType" Width="1.5" PointX="0.75" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Reason" Width="1.5" PointX="15.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Remark" Width="1.5" PointX="15.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.RosterApp" Width="1.5" PointX="6" PointY="45" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.RosterDetail" Width="1.5" PointX="8.25" PointY="41.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.RosterType" Width="1.5" PointX="3.75" PointY="52.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Section" Width="1.5" PointX="3.75" PointY="40.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ServiceLog" Width="1.5" PointX="15.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.Shift" Width="1.5" PointX="3.75" PointY="43.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.User" Width="1.5" PointX="0.75" PointY="32.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.UserModule" Width="1.5" PointX="15.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.UserSection" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.EmpView" Width="1.5" PointX="17.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ViewAttData" Width="1.5" PointX="17.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ViewDetailAttData" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ViewEmpPic" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ViewJobCardApp" Width="1.5" PointX="19.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ViewLvApplication" Width="1.5" PointX="21.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ViewMonthlyData" Width="1.5" PointX="21.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ViewMultipleInOut" Width="1.5" PointX="23.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TASDHAModel.ViewSection" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
-        <AssociationConnector Association="TASDHAModel.FK_AttData_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_AttDataManEdit_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_AttProcessorScheduler_Location" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_AttProcessorScheduler_User" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Emp_Crew" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Shift_DaysName" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Shift_DaysName1" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Section_Department" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Emp_Designation" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Emp_EmpType" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Emp_Location" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Emp_Section" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Emp_Shift" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_JobCardDetail_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_LvApplication_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_LvConsumed_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_LvData_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_LvShort_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_PollData_Emp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_JobCardDetail_JobCardApp" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Reader_Location" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_LvApplication_LvType" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_LvData_LvApplications" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_LvData_LvType" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Reader_RdrID" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Reader_RdrDutyCode" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_Reader_ReaderType1" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_RosterApp_RosterType" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_RosterApp_Shift" ManuallyRouted="false" />
-        <AssociationConnector Association="TASDHAModel.FK_RosterDetail_RosterApp" ManuallyRouted="false" />
+      <Diagram DiagramId="40ad474534414ac9989e5ecd1e72e00d" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="UNICEFModel.AttData" Width="1.5" PointX="0.544964874417039" PointY="3.2644263521136838" />
+        <EntityTypeShape EntityType="UNICEFModel.AttDataManEdit" Width="1.5" PointX="0.4676101619692567" PointY="15.849812470306555" />
+        <EntityTypeShape EntityType="UNICEFModel.AttMnData" Width="1.5" PointX="10.877413266746984" PointY="28.340739427293062" />
+        <EntityTypeShape EntityType="UNICEFModel.AttMnDataPer" Width="1.5" PointX="2.4409348938804749" PointY="26.265978706193145" />
+        <EntityTypeShape EntityType="UNICEFModel.AttProcess" Width="1.5" PointX="1.4263750731136535" PointY="31.973001435386482" />
+        <EntityTypeShape EntityType="UNICEFModel.AttProcessorScheduler" Width="1.5" PointX="11.729663684838295" PointY="13.914012676996185" />
+        <EntityTypeShape EntityType="UNICEFModel.AuditForm" Width="1.5" PointX="0.81113534458500114" PointY="20.466153556698075" />
+        <EntityTypeShape EntityType="UNICEFModel.AuditLog" Width="1.5" PointX="3.2606545198991217" PointY="18.565367260279771" />
+        <EntityTypeShape EntityType="UNICEFModel.AuditOperation" Width="1.5" PointX="6.84368176331915" PointY="13.948842025338132" />
+        <EntityTypeShape EntityType="UNICEFModel.Crew" Width="1.5" PointX="0.14731190360491719" PointY="25.811805185774251" />
+        <EntityTypeShape EntityType="UNICEFModel.DailySummary" Width="1.5" PointX="10.423004177595956" PointY="24.880903166197662" />
+        <EntityTypeShape EntityType="UNICEFModel.DaysName" Width="1.5" PointX="8.1086665485560268" PointY="17.332293935740502" />
+        <EntityTypeShape EntityType="UNICEFModel.Department" Width="1.5" PointX="7.5213919447368909" PointY="16.173799492499697" />
+        <EntityTypeShape EntityType="UNICEFModel.Designation" Width="1.5" PointX="6.3603229272925867" PointY="0.87100265960721424" />
+        <EntityTypeShape EntityType="UNICEFModel.DownloadTime" Width="1.5" PointX="9.2866820587248924" PointY="5.4265522088047824" />
+        <EntityTypeShape EntityType="UNICEFModel.DutyCode" Width="1.5" PointX="1.4642185557001357" PointY="4.8585279904578478" />
+        <EntityTypeShape EntityType="UNICEFModel.DutyTime" Width="1.5" PointX="9.0196013362238183" PointY="9.262123156926652" />
+        <EntityTypeShape EntityType="UNICEFModel.Emp" Width="1.5" PointX="10.728429486382954" PointY="6.6629254401954476" />
+        <EntityTypeShape EntityType="UNICEFModel.EmpFace" Width="1.5" PointX="11.823848029516565" PointY="11.269334157588581" />
+        <EntityTypeShape EntityType="UNICEFModel.EmpFp" Width="1.5" PointX="11.145867213209098" PointY="12.898289015934937" />
+        <EntityTypeShape EntityType="UNICEFModel.EmpLocation" Width="1.5" PointX="5.7081628822293888" PointY="10.841897701305289" />
+        <EntityTypeShape EntityType="UNICEFModel.EmpPhoto" Width="1.5" PointX="0.86115717369185629" PointY="15.754462741201028" />
+        <EntityTypeShape EntityType="UNICEFModel.EmpType" Width="1.5" PointX="8.4510755466535112" PointY="3.1285287901426333" />
+        <EntityTypeShape EntityType="UNICEFModel.Grade" Width="1.5" PointX="2.7689927549888345" PointY="0.7936234626889338" />
+        <EntityTypeShape EntityType="UNICEFModel.Holiday" Width="1.5" PointX="9.3753880529549853" PointY="1.6671916403189262" />
+        <EntityTypeShape EntityType="UNICEFModel.JobCard" Width="1.5" PointX="2.2597158226462621" PointY="4.0955018867251933" />
+        <EntityTypeShape EntityType="UNICEFModel.JobCardApp" Width="1.5" PointX="2.0776691222925061" PointY="28.769436357901171" />
+        <EntityTypeShape EntityType="UNICEFModel.JobCardDetail" Width="1.5" PointX="1.1070491266935361" PointY="8.5723364989144439" />
+        <EntityTypeShape EntityType="UNICEFModel.LicenseDeviceInfo" Width="1.5" PointX="5.1154933334866044" PointY="15.914666496177514" />
+        <EntityTypeShape EntityType="UNICEFModel.LicenseInfo" Width="1.5" PointX="10.422287731628067" PointY="12.832635885492262" />
+        <EntityTypeShape EntityType="UNICEFModel.Location" Width="1.5" PointX="4.2674543579423121" PointY="5.6381570574073852" />
+        <EntityTypeShape EntityType="UNICEFModel.LvApplication" Width="1.5" PointX="0.56305995609753767" PointY="30.377114652831626" />
+        <EntityTypeShape EntityType="UNICEFModel.LvConsumed" Width="1.5" PointX="10.525656982569796" PointY="26.42057516911094" />
+        <EntityTypeShape EntityType="UNICEFModel.LvData" Width="1.5" PointX="8.198153417649749" PointY="24.90090442863335" />
+        <EntityTypeShape EntityType="UNICEFModel.LvShort" Width="1.5" PointX="8.9463780973788261" PointY="2.0321532795355437" />
+        <EntityTypeShape EntityType="UNICEFModel.LvType" Width="1.5" PointX="7.1381646930883473" PointY="6.9804838779291529" />
+        <EntityTypeShape EntityType="UNICEFModel.Option" Width="1.5" PointX="6.0849485462927024" PointY="19.49454272701151" />
+        <EntityTypeShape EntityType="UNICEFModel.PollData" Width="1.5" PointX="3.9712640624359548" PointY="16.952780105617261" />
+        <EntityTypeShape EntityType="UNICEFModel.PollDataError" Width="1.5" PointX="8.4691815136322663" PointY="5.8686480549483786" />
+        <EntityTypeShape EntityType="UNICEFModel.RdrDutyCode" Width="1.5" PointX="10.048534679249178" PointY="16.928516395822406" />
+        <EntityTypeShape EntityType="UNICEFModel.RdrEventLog" Width="1.5" PointX="3.2961820546985519" PointY="16.167237676757964" />
+        <EntityTypeShape EntityType="UNICEFModel.Reader" Width="1.5" PointX="2.9512379443977208" PointY="23.097293849614118" />
+        <EntityTypeShape EntityType="UNICEFModel.ReaderType" Width="1.5" PointX="11.775241255655532" PointY="31.809080928475169" />
+        <EntityTypeShape EntityType="UNICEFModel.Reason" Width="1.5" PointX="11.744278874129186" PointY="27.282833872029016" />
+        <EntityTypeShape EntityType="UNICEFModel.Remark" Width="1.5" PointX="2.3662470571539584" PointY="20.036808798106765" />
+        <EntityTypeShape EntityType="UNICEFModel.RosterApp" Width="1.5" PointX="9.383103706586688" PointY="15.615594915866664" />
+        <EntityTypeShape EntityType="UNICEFModel.RosterDetail" Width="1.5" PointX="5.8037125774676506" PointY="16.889676683065332" />
+        <EntityTypeShape EntityType="UNICEFModel.RosterType" Width="1.5" PointX="0.5694040230332893" PointY="9.5836106285376523" />
+        <EntityTypeShape EntityType="UNICEFModel.Section" Width="1.5" PointX="3.5026516818919458" PointY="3.9193044770133239" />
+        <EntityTypeShape EntityType="UNICEFModel.ServiceLog" Width="1.5" PointX="7.38226654538059" PointY="28.115626288631756" />
+        <EntityTypeShape EntityType="UNICEFModel.Shift" Width="1.5" PointX="4.9750448786537369" PointY="14.483076251336875" />
+        <EntityTypeShape EntityType="UNICEFModel.sysdiagram" Width="1.5" PointX="3.3512307011295253" PointY="22.968881528344415" />
+        <EntityTypeShape EntityType="UNICEFModel.User" Width="1.5" PointX="5.48703217203125" PointY="31.045424982460879" />
+        <EntityTypeShape EntityType="UNICEFModel.UserModule" Width="1.5" PointX="7.4508646612292457" PointY="18.045908265768507" />
+        <EntityTypeShape EntityType="UNICEFModel.UserSection" Width="1.5" PointX="6.8172745717769834" PointY="17.999350898898836" />
+        <EntityTypeShape EntityType="UNICEFModel.EmpView" Width="1.5" PointX="6.74544467346065" PointY="7.7726675010158992" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewAttData" Width="1.5" PointX="7.91946525681739" PointY="10.864250888519106" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewAttMainEdit" Width="1.5" PointX="1.5160564023610466" PointY="27.2126406110882" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewDepartment" Width="1.5" PointX="11.163070952130049" PointY="10.40419936664598" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewDetailAttData" Width="1.5" PointX="11.616176739156328" PointY="28.259337691710954" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewEmpPic" Width="1.5" PointX="10.163436814287415" PointY="26.578908575036987" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewJobCardApp" Width="1.5" PointX="6.9715921035835482" PointY="3.8201994615701023" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewJobCardEmp" Width="1.5" PointX="3.3789537732391404" PointY="3.41951093236893" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewJobCardTime" Width="1.5" PointX="8.8139688767557818" PointY="31.336852773715208" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewLocation" Width="1.5" PointX="6.7410494995960271" PointY="1.0064268712915605" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewLvApplication" Width="1.5" PointX="2.8546408577145268" PointY="18.665179559339386" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewMonthlyData" Width="1.5" PointX="6.8184764752250517" PointY="30.680466189366051" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewMonthlyDataPer" Width="1.5" PointX="1.3731487697796658" PointY="26.306742561192596" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewMultipleInOut" Width="1.5" PointX="2.7114834276547115" PointY="16.901086323382838" />
+        <EntityTypeShape EntityType="UNICEFModel.ViewSection" Width="1.5" PointX="3.1744530215740454" PointY="0.35521836595387124" />
+        <AssociationConnector Association="UNICEFModel.FK_AttData_Emp" />
+        <AssociationConnector Association="UNICEFModel.FK_AttProcessorScheduler_Location" />
+        <AssociationConnector Association="UNICEFModel.FK_AttProcessorScheduler_User" />
+        <AssociationConnector Association="UNICEFModel.FK_Emp_Crew" />
+        <AssociationConnector Association="UNICEFModel.FK_Shift_DaysName" />
+        <AssociationConnector Association="UNICEFModel.FK_Shift_DaysName1" />
+        <AssociationConnector Association="UNICEFModel.FK_Section_Department" />
+        <AssociationConnector Association="UNICEFModel.FK_Emp_Designation" />
+        <AssociationConnector Association="UNICEFModel.FK_Emp_EmpType" />
+        <AssociationConnector Association="UNICEFModel.FK_Emp_Location" />
+        <AssociationConnector Association="UNICEFModel.FK_Emp_Section" />
+        <AssociationConnector Association="UNICEFModel.FK_Emp_Shift" />
+        <AssociationConnector Association="UNICEFModel.FK_LvApplication_Emp" />
+        <AssociationConnector Association="UNICEFModel.FK_LvConsumed_Emp" />
+        <AssociationConnector Association="UNICEFModel.FK_JobCardDetail_JobCardApp" />
+        <AssociationConnector Association="UNICEFModel.FK_Reader_Location" />
+        <AssociationConnector Association="UNICEFModel.FK_LvApplication_LvType" />
+        <AssociationConnector Association="UNICEFModel.FK_LvData_LvApplications" />
+        <AssociationConnector Association="UNICEFModel.FK_LvData_LvType" />
+        <AssociationConnector Association="UNICEFModel.FK_Reader_RdrID" />
+        <AssociationConnector Association="UNICEFModel.FK_Reader_RdrDutyCode" />
+        <AssociationConnector Association="UNICEFModel.FK_Reader_ReaderType1" />
+        <AssociationConnector Association="UNICEFModel.FK_RosterApp_RosterType" />
+        <AssociationConnector Association="UNICEFModel.FK_RosterApp_Shift" />
+        <AssociationConnector Association="UNICEFModel.FK_RosterDetail_RosterApp" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

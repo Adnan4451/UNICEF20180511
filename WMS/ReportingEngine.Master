@@ -36,7 +36,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class = "navbar-brand">
-                       <a href="~/DHA/Home" ><span>  WMS Reporting</span></a>
+                       <a href="~/DHA/Home" ><span>UNICEF Security & Attendance System</span></a>
                     </div>
                 </div>
                 <div class="navbar-collapse collapse pull-right">
@@ -50,25 +50,25 @@
                       <% if(Session["MHR"].ToString() == "1")%>
                        <%{ %>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-folder-close"></span><span>  Company</span> <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-folder-close"></span><span>  HR</span> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/DHA/Emp">Employees</a></li>
-                                <li><a href="/DHA/Shift">Shifts</a></li>
-                                <li><a href="/DHA/Holiday">Holidays</a></li>                       
+                                <li><a href="/USAS/Emp">Employees</a></li>
+                                <li><a href="/USAS/Shift">Shifts</a></li>
+                                <li><a href="/USAS/Holiday">Holidays</a></li>                       
                                 <li class="divider"></li>
-                                <li><a href="/DHA/Designation">Designations</a></li>   
-                               <li><a href="/DHA/EmpType">Employee Type</a></li>
-                                <li><a href="/DHA/Crew">Crews</a></li>
+                                <li><a href="/USAS/Designation">Designations</a></li>   
+                               <li><a href="/USAS/EmpType">Employee Type</a></li>
+                                <li><a href="/USAS/Crew">Crews</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/DHA/Dept">Groups</a></li>
-                                <li><a href="/DHA/Section">Units</a></li>                     
+                                <li><a href="/USAS/Dept">Groups</a></li>
+                                <li><a href="/USAS/Section">Units</a></li>                     
                                 <li class="divider"></li>
-                                <li><a href="/DHA/Location">Locations</a></li>    
-                                <li><a href="/DHA/Roster">Rosters</a></li>    
-                                <li><a href="/DHA/Option">Options</a></li>             
+                                <li><a href="/USAS/Location">Locations</a></li>    
+                                <li><a href="/USAS/Roster">Rosters</a></li>    
+                                <li><a href="/USAS/Option">Options</a></li>             
                                 <% if(Session["MUser"].ToString() == "1")%>
                                 <%{ %>
-                                    <li><a href="/DHA/User">Users</a></li>
+                                    <li><a href="/WMS/User">Users</a></li>
                                 <%} %>
                             </ul>
                         </li>
@@ -80,9 +80,9 @@
                           <ul class="dropdown-menu">                     
                              <% if(Session["MProcess"].ToString() == "1")%>
                             <%{ %>
-                                 <li><a href="/DHA/EditAttendance">Edit Attendance</a></li>
-                                 <li><a href="/DHA/JobCard">Job Card</a></li>
-                             <li><a href="/DHA/AttProcessors">Process Attendance</a></li>
+                                 <li><a href="/USAS/EditAttendance">Edit Attendance</a></li>
+                                 <li><a href="/USAS/JobCard">Job Card</a></li>
+                             <li><a href="/USAS/AttProcessors">Process Attendance</a></li>
                             <%} %>
                           </ul>
                         </li>
@@ -92,7 +92,7 @@
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-phone"></i>  Readers <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                            <li><a href="/DHA/Reader">Readers</a></li>
+                            <li><a href="/USAS/Reader">Readers</a></li>
                           </ul>
                         </li>
                       <%} %>
@@ -101,18 +101,18 @@
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-large"></i>  Leaves <b class="caret"></b></a>
                           <ul class="dropdown-menu">                      
-                            <li><a href="/DHA/LvApp">Leaves Application</a></li> 
-                          <li><a href="/DHA/LeaveType">Leave Type</a></li>           
+                            <li><a href="/USAS/LvApp">Leaves Application</a></li> 
+                          <li><a href="/USAS/LeaveType">Leave Type</a></li>           
                         <%--<li><a href="~/LvShort">Short Leaves</a></li> --%>                     
-                          <li><a href="/DHA/LeaveSettings">Leave Quota</a></li>                       
+                          <li><a href="/USAS/LeaveSettings">Leave Quota</a></li>                       
                           </ul>
                         </li>
                       <%} %>
-                        <li><a href="/DHA/Reports/Filters/StepOneFilter.aspx"><i class="glyphicon glyphicon-stats"></i> Reports</a></li>
+                        <li><a href="/USAS/Reports/Filters/StepOneFilter.aspx"><i class="glyphicon glyphicon-stats"></i> Reports</a></li>
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>  <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                            <li><a href="/DHA/Home/LogOut" ><span>  LogOut</span></a></li>
+                            <li><a href="/USAS/Home/LogOut" ><span>  LogOut</span></a></li>
                               
                           </ul>
                         </li>

@@ -37,23 +37,23 @@ namespace WMS.Controllers
 
             ViewBag.CurrentFilter = searchString;
             User LoggedInUser = HttpContext.Session["LoggedUser"] as User;
-            QueryBuilder qb = new QueryBuilder();
-            string query = qb.QueryForCompanyViewForLinq(LoggedInUser);
-            var sections = db.Sections.AsQueryable();
+            List<Section> sections = new List<Section>();
+            sections = db.Sections.ToList();
+            sections = AssistantQuery.GetFilteredSections(sections, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 sections = sections.Where(s => s.SectionName.ToUpper().Contains(searchString.ToUpper())
-                    || s.Department.DeptName.ToUpper().Contains(searchString.ToUpper()));
+                    || s.Department.DeptName.ToUpper().Contains(searchString.ToUpper())).ToList();
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    sections = sections.OrderByDescending(s => s.SectionName);
+                    sections = sections.OrderByDescending(s => s.SectionName).ToList();
                     break;
                 default:
-                    sections = sections.OrderBy(s => s.SectionName);
+                    sections = sections.OrderBy(s => s.SectionName).ToList();
                     break;
             }
             int pageSize = 8;

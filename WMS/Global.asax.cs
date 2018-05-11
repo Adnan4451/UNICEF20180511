@@ -141,7 +141,11 @@ namespace WMS
             Session["LogedUserID"] = null;
             Session["LoggedUser"] = null;
         }
-
+        protected void Application_Error()
+        {
+           HttpContext httpContext = HttpContext.Current;
+           httpContext.Response.Redirect("~/Home/Index");
+        }
 
     }
 

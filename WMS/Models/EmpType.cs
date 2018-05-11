@@ -21,6 +21,7 @@ namespace WMS.Models
     
         public byte TypeID { get; set; }
         public string TypeName { get; set; }
+        public Nullable<double> ALIncrement { get; set; }
     
         public virtual ICollection<Emp> Emps { get; set; }
     }

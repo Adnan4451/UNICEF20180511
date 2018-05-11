@@ -16,6 +16,8 @@ namespace WMS.Models
     {
         public int ID { get; set; }
         public Nullable<int> UserID { get; set; }
-        public Nullable<short> SecID { get; set; }
+        public Nullable<short> SectionID { get; set; }
+        public string LocationOrSection { get; set; }
+        public Nullable<short> LocationID { get; set; }
     }
 }

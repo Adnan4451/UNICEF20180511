@@ -1,17 +1,16 @@
 ﻿@model WMS.Models.Emp
-
 @{
     ViewBag.Title = "Employee Details";
 }
 <br />
 <h2>Employee Details</h2>
  <div class="well bs-component">
-        <form class="form-horizontal" action="~/Views/Emp/Details" enctype="multipart/form-data" method="post">
-             @Html.AntiForgeryToken()
+              
             <fieldset>
 <div>
 	<hr />
     <dl class="dl-horizontal">
+        @Html.AntiForgeryToken()
         <section class="col-md-12">
             <section class="col-md-6">
                 <dt>
@@ -260,5 +259,5 @@
 </div>
       
 </fieldset>
-            </form>
+            
      </div>

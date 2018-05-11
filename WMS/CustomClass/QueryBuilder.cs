@@ -680,29 +680,31 @@ namespace WMS.CustomClass
             else
             {
                 TAS2013Entities ctx = new TAS2013Entities();
-                List<UserSection> userSection = new List<UserSection>();
-                userSection = ctx.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList();
-                if (userSection.Count == 1)
-                { query = query + " and SecID = "+userSection.FirstOrDefault().SecID; }
+                List<UserSection> userlocation = new List<UserSection>();
+                List<UserSection> userSections = new List<UserSection>();
+                userlocation = ctx.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID && aa.LocationOrSection=="Location").ToList();
+                if (userlocation.Count == 1)
+                {
+                   query = query + " and (LocID = " + userlocation.FirstOrDefault().LocationID+")";
+                }
                 else
                 {
                     List<string> _CriteriaForSection = new List<string>();
-                    string querySec = "";
-                    foreach (var usec in userSection)
+                    string queryloc = " ";
+                    foreach (var usec in userlocation)
                     {
-                        _CriteriaForSection.Add(" SecID = " + usec.SecID + " ");
+                        _CriteriaForSection.Add(" LocID = " + usec.LocationID + " ");
                     }
                     for (int i = 0; i < _CriteriaForSection.Count - 1; i++)
                     {
-                        querySec = querySec + _CriteriaForSection[i] + " or ";
+                        queryloc = queryloc + _CriteriaForSection[i] + " or ";
                     }
-                    querySec = querySec + _CriteriaForSection[_CriteriaForSection.Count - 1];
-                    query = query +"and ( "+querySec+" )";
+                    queryloc = queryloc + _CriteriaForSection[_CriteriaForSection.Count - 1];
+                    queryloc = query + "and ( " + queryloc + " )";               
                 }
             }
             return query;
         }
-
         internal string QueryForSectionRptFilters(User LoggedInUser)
         {
             string query = " ";
@@ -716,14 +718,17 @@ namespace WMS.CustomClass
                 List<UserSection> userSection = new List<UserSection>();
                 userSection = ctx.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList();
                 if (userSection.Count == 1)
-                { query = query + " where SectionID = " + userSection.FirstOrDefault().SecID; }
+                { query = query + "where"+ userSection.FirstOrDefault().SectionID; }
                 else
                 {
                     List<string> _CriteriaForSection = new List<string>();
                     string querySec = "";
                     foreach (var usec in userSection)
                     {
-                        _CriteriaForSection.Add(" SectionID = " + usec.SecID + " ");
+                        if (usec.SectionID != null)
+                        {
+                            _CriteriaForSection.Add(" SectionID = " + usec.SectionID + " ");
+                        }
                     }
                     for (int i = 0; i < _CriteriaForSection.Count - 1; i++)
                     {
@@ -734,6 +739,79 @@ namespace WMS.CustomClass
                 }
             }
             return query;
+        }
+    }
+    public static class AssistantQuery
+    {
+
+        internal static List<EmpView> GetFilteredEmps(List<EmpView> emps, List<UserSection> list)
+        {
+            List<EmpView> tempEmps = new List<EmpView>();
+            List<EmpView> tempEmps2 = new List<EmpView>();
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Location").ToList())
+            {
+                tempEmps.AddRange(emps.Where(aa=>aa.LocID==item.LocationID).ToList());
+            }
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Section").ToList())
+            {
+                tempEmps2.AddRange(tempEmps.Where(aa => aa.SecID == item.SectionID).ToList());
+            }
+            return tempEmps2;
+        }
+
+        internal static List<ViewLvApplication> GetFilteredLeaveApplication(List<ViewLvApplication> lvapplications, List<UserSection> list)
+        {
+            List<ViewLvApplication> tempEmps = new List<ViewLvApplication>();
+            List<ViewLvApplication> tempEmps2 = new List<ViewLvApplication>();
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Location").ToList())
+            {
+                tempEmps.AddRange(lvapplications.Where(aa => aa.LocID == item.LocationID).ToList());
+            }
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Section").ToList())
+            {
+                tempEmps2.AddRange(tempEmps.Where(aa => aa.SecID == item.SectionID).ToList());
+            }
+            return tempEmps2;
+        }
+
+        internal static List<Section> GetFilteredSections(List<Section> sections, List<UserSection> list)
+        {
+            List<Section> tempEmps = new List<Section>();
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Section").ToList())
+            {
+                tempEmps.AddRange(sections.Where(aa => aa.SectionID == item.SectionID).ToList());
+            }
+            return tempEmps;
+        }
+
+        internal static List<ViewAttData> GetReportsEmps(List<ViewAttData> _ViewList4, List<UserSection> list)
+        {
+            List<ViewAttData> tempEmps = new List<ViewAttData>();
+            List<ViewAttData> tempEmps2 = new List<ViewAttData>();
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Location").ToList())
+            {
+                tempEmps.AddRange(_ViewList4.Where(aa => aa.LocID == item.LocationID).ToList());
+            }
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Section").ToList())
+            {
+                tempEmps2.AddRange(tempEmps.Where(aa => aa.SecID == item.SectionID).ToList());
+            }
+            return tempEmps2;
+        }
+
+        internal static List<ViewDetailAttData> GetReportsEmpsDetails(List<ViewDetailAttData> _TempViewList2, List<UserSection> list)
+        {
+            List<ViewDetailAttData> tempEmps = new List<ViewDetailAttData>();
+            List<ViewDetailAttData> tempEmps2 = new List<ViewDetailAttData>();
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Location").ToList())
+            {
+                tempEmps.AddRange(_TempViewList2.Where(aa => aa.LocID == item.LocationID).ToList());
+            }
+            foreach (var item in list.Where(aa => aa.LocationOrSection == "Section").ToList())
+            {
+                tempEmps2.AddRange(tempEmps.Where(aa => aa.SecID == item.SectionID).ToList());
+            }
+            return tempEmps2;
         }
     }
 }

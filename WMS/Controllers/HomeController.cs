@@ -35,15 +35,16 @@ namespace WMS.Controllers
         TAS2013Entities db = new TAS2013Entities();
         public ActionResult Index()
         {
+            ViewBag.Location = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
             try
             {
                 if (db.Options.ToList().Count > 0)
                 {
 
                     SetGlobalVaribale();
-                    Session["CompanyName"] = db.Options.FirstOrDefault().CompanyName; 
-                if (CheckForValidLicense("Client"))
-                {
+                    Session["CompanyName"] = db.Options.FirstOrDefault().CompanyName;
+                    if (CheckForValidLicense("Server"))
+                    {
                         if (Session["LogedUserID"] == null)
                         {
                             Session["LogedUserID"] = "";
@@ -101,11 +102,11 @@ namespace WMS.Controllers
                 string filePath = Path.GetFileName(uploadFile.FileName);
                 uploadFile.SaveAs(EPath + filePath);
                 //SaveImage("E:\\air.png");
-                SaveImage(EPath + filePath, CompanyName,EPath);
+                SaveImage(EPath + filePath, CompanyName, EPath);
             }
             return RedirectToAction("Index");
         }
-        private void SaveImage(string fileaddress,string ComName, string EPath)
+        private void SaveImage(string fileaddress, string ComName, string EPath)
         {
             //image to byteArray
             Image img = Image.FromFile(fileaddress);
@@ -129,7 +130,7 @@ namespace WMS.Controllers
                 lvApps = mydb.LvApplications.ToList();
                 foreach (var lv in lvApps)
                 {
-                    string empLvYear = lv.EmpID.ToString()+lv.LeaveTypeID.ToString()+"2016";
+                    string empLvYear = lv.EmpID.ToString() + lv.LeaveTypeID.ToString() + "2016";
                     List<LvConsumed> lvcon = new List<LvConsumed>();
                     lvcon = mydb.LvConsumeds.Where(aa => aa.EmpID == lv.EmpID && aa.EmpLvTypeYear == empLvYear).ToList();
                     if (lvcon.Count > 0)
@@ -179,14 +180,14 @@ namespace WMS.Controllers
             System.IO.StreamReader file = new System.IO.StreamReader(LicensePath);
             string line;
             int CurrentlineNo = 0;
-            string InvoiceNo="";
-            string CustomerName="";
-            string LicenseType="";
-            string DeviceType="";
-            string ClientMac="";
-            string NoOfEmps="";
-            string NoOfUsers="";
-            string NoOfDevices="";
+            string InvoiceNo = "";
+            string CustomerName = "";
+            string LicenseType = "";
+            string DeviceType = "";
+            string ClientMac = "";
+            string NoOfEmps = "";
+            string NoOfUsers = "";
+            string NoOfDevices = "";
             List<string> DeviceMacs = new List<string>();
             var fileLines = new List<string>();
             while ((line = file.ReadLine()) != null)
@@ -212,7 +213,7 @@ namespace WMS.Controllers
                 CurrentlineNo++;
             }
             TAS2013Entities db = new TAS2013Entities();
-            string DBMACAddress = StringCipher.Decrypt(ClientMac,"1234");
+            string DBMACAddress = StringCipher.Decrypt(ClientMac, "1234");
             string SystemMACAdress = GetClientMacAddress();
             if (DBMACAddress == SystemMACAdress)
             {
@@ -230,7 +231,7 @@ namespace WMS.Controllers
                 li.CustomerName = CustomerName;
                 li.ClientMAC = ClientMac;
                 li.DeviceType = DeviceType;
-                li.ValidLicense = StringCipher.Encrypt("1","1234");
+                li.ValidLicense = StringCipher.Encrypt("1", "1234");
                 if (db.LicenseInfoes.Count() == 0)
                 {
                     db.LicenseInfoes.Add(li);
@@ -241,7 +242,7 @@ namespace WMS.Controllers
                     db.LicenseDeviceInfoes.Remove(item);
                 }
                 db.SaveChanges();
-                byte count =1;
+                byte count = 1;
                 foreach (var item in DeviceMacs)
                 {
                     LicenseDeviceInfo ldi = new LicenseDeviceInfo();
@@ -290,21 +291,21 @@ namespace WMS.Controllers
         //private bool CheckForValidLicense()
         //{
         //    bool valid;
-            
+
         //    return true;
         //}
         public static string GetClientMacAddress()
         {
             IPGlobalProperties computerProperties = IPGlobalProperties.GetIPGlobalProperties();
             NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
-            string mac="";
+            string mac = "";
             foreach (NetworkInterface adapter in nics)
             {
                 if (adapter.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
                 {
-                    
-                             mac=  adapter.GetPhysicalAddress().ToString();
-                    
+
+                    mac = adapter.GetPhysicalAddress().ToString();
+
                 }
             }
             return mac;
@@ -319,7 +320,7 @@ namespace WMS.Controllers
             //Again convert byteArray to image and displayed in a picturebox
             TAS2013Entities ctx = new TAS2013Entities();
             Option oo = new Option();
-            oo = ctx.Options.First(aa=>aa.ID==1);
+            oo = ctx.Options.First(aa => aa.ID == 1);
             oo.CompanyLogo = bArr;
             ctx.SaveChanges();
         }
@@ -336,92 +337,95 @@ namespace WMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User u)
         {
+            ViewBag.Location = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
             try
             {
-                      if (ModelState.IsValid) // this is check validity
-                      {
-                          using (TAS2013Entities dc = new TAS2013Entities())
-                          {
-                              List<User> users = new List<Models.User>();
-                              int NoOfUsres = Convert.ToInt32(GlobalVaribales.NoOfUsers);
-                              users = dc.Users.Where(aa => aa.Deleted == false).ToList();
-                              var usr = users.Take(NoOfUsres);
-                              var v = usr.Where(a => a.UserName.ToUpper().Equals(u.UserName.ToUpper()) && a.Password.ToUpper() == u.Password.ToUpper()).FirstOrDefault();
-                              //login for emplioyee
-                              if (v != null)
-                              {
+                if (ModelState.IsValid) // this is check validity
+                {
+                    using (TAS2013Entities dc = new TAS2013Entities())
+                    {
+                        List<User> users = new List<Models.User>();
+                        //int NoOfUsres = Convert.ToInt32(GlobalVaribales.NoOfUsers);
+                        int NoOfUsres = 200;
+                        users = dc.Users.Where(aa => aa.Deleted == false).ToList();
+                        var usr = users.Take(NoOfUsres);
+                        var v = usr.Where(a => a.UserName.ToUpper().Equals(u.UserName.ToUpper()) && a.Password.ToUpper() == u.Password.ToUpper()).FirstOrDefault();
+                        //login for emplioyee
+                        if (v != null)
+                        {
 
-                                  Session["MDevice"] = "0";
-                                  Session["MHR"] = "0";
-                                  Session["MDevice"] = "0";
-                                  Session["MLeave"] = "0";
-                                  Session["MEditAtt"] = "0";
-                                  Session["MUser"] = "0";
-                                  Session["LogedUserFullname"] = "";
-                                  Session["UserCompany"] = "";
-                                  Session["MRDailyAtt"] = "0";
-                                  Session["MRLeave"] = "0";
-                                  Session["MRMonthly"] = "0";
-                                  Session["MRAudit"] = "0";
-                                  Session["MRManualEditAtt"] = "0";
-                                  Session["MREmployee"] = "0";
-                                  Session["MRDetail"] = "0";
-                                  Session["MRSummary"] = "0";
-                                  Session["LogedUserID"] = v.UserID.ToString();
-                                  Session["LogedUserFullname"] = v.UserName;
-                                  Session["LoggedUser"] = v;
-                                  if (v.MHR == true)
-                                      Session["MHR"] = "1";
-                                  if (v.MDevice == true)
-                                      Session["MDevice"] = "1";
-                                  if (v.MLeave == true)
-                                      Session["MLeave"] = "1";
-                                  if (v.MEditAtt == true)
-                                      Session["MEditAtt"] = "1";
-                                  if (v.MUser == true)
-                                      Session["MUser"] = "1";
-                                  if (v.MRDailyAtt == true)
-                                      Session["MRDailyAtt"] = "1";
-                                  if (v.MRLeave == true)
-                                      Session["MRLeave"] = "1";
-                                  if (v.MRMonthly == true)
-                                      Session["MRMonthly"] = "1";
-                                  if (v.MRAudit == true)
-                                      Session["MRAudit"] = "1";
-                                  if (v.MRManualEditAtt == true)
-                                      Session["MRManualEditAtt"] = "1";
-                                  if (v.MProcess == true)
-                                      Session["MProcess"] = "1";
-                                  if (v.MREmployee == true)
-                                      Session["MREmployee"] = "1";
-                                  if (v.MRDetail == true)
-                                      Session["MRDetail"] = "1";
-                                  
-                                  if (v.MRoster == true)
-                                      Session["MRoster"] = "1";
-                                  
-                                  HelperClass.MyHelper.SaveAuditLog(v.UserID, (byte)MyEnums.FormName.LogIn, (byte)MyEnums.Operation.LogIn, DateTime.Now);
-                                  return RedirectToAction("AfterLogin");
-                              }
-                              else
-                              {
-                                  int LoginCount = 0;
-                                  bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
-                                  if (successOnConversion == true)
-                                  {
-                                      LoginCount++;
-                                      Session["LoginCount"] = LoginCount + "";
-                                  }
-                                  else
-                                  {
-                                      Session["LoginCount"] = "1";
-                                  }
+                            Session["MDevice"] = "0";
+                            Session["MHR"] = "0";
+                            Session["MDevice"] = "0";
+                            Session["MLeave"] = "0";
+                            Session["MEditAtt"] = "0";
+                            Session["MUser"] = "0";
+                            Session["LogedUserFullname"] = "";
+                            Session["UserCompany"] = "";
+                            Session["MRDailyAtt"] = "0";
+                            Session["MRLeave"] = "0";
+                            Session["MRMonthly"] = "0";
+                            Session["MRAudit"] = "0";
+                            Session["MRManualEditAtt"] = "0";
+                            Session["MREmployee"] = "0";
+                            Session["MRDetail"] = "0";
+                            Session["MRSummary"] = "0";
+                            Session["LogedUserID"] = v.UserID.ToString();
+                            Session["LogedUserFullname"] = v.UserName;
+                            Session["LoggedUser"] = v;
+                            Session["UserLocations"] = dc.UserSections.Where(aa => aa.UserID == v.UserID).ToList();
+                            if (v.MHR == true)
+                                Session["MHR"] = "1";
+                            if (v.MDevice == true)
+                                Session["MDevice"] = "1";
+                            if (v.MLeave == true)
+                                Session["MLeave"] = "1";
+                            if (v.MEditAtt == true)
+                                Session["MEditAtt"] = "1";
+                            if (v.MUser == true)
+                                Session["MUser"] = "1";
+                            if (v.MRDailyAtt == true)
+                                Session["MRDailyAtt"] = "1";
+                            if (v.MRLeave == true)
+                                Session["MRLeave"] = "1";
+                            if (v.MRMonthly == true)
+                                Session["MRMonthly"] = "1";
+                            if (v.MRAudit == true)
+                                Session["MRAudit"] = "1";
+                            if (v.MRManualEditAtt == true)
+                                Session["MRManualEditAtt"] = "1";
+                            if (v.MProcess == true)
+                                Session["MProcess"] = "1";
+                            if (v.MREmployee == true)
+                                Session["MREmployee"] = "1";
+                            if (v.MRDetail == true)
+                                Session["MRDetail"] = "1";
+
+                            if (v.MRoster == true)
+                                Session["MRoster"] = "1";
+
+                            HelperClass.MyHelper.SaveAuditLog(v.UserID, (byte)MyEnums.FormName.LogIn, (byte)MyEnums.Operation.LogIn, DateTime.Now);
+                            return RedirectToAction("AfterLogin");
+                        }
+                        else
+                        {
+                            int LoginCount = 0;
+                            bool successOnConversion = int.TryParse(Session["LoginCount"] as string, out LoginCount);
+                            if (successOnConversion == true)
+                            {
+                                LoginCount++;
+                                Session["LoginCount"] = LoginCount + "";
+                            }
+                            else
+                            {
+                                Session["LoginCount"] = "1";
+                            }
 
 
-                              }
-                          }
-                      }
-                  return RedirectToAction("index");
+                        }
+                    }
+                }
+                return RedirectToAction("index");
 
             }
             catch (Exception ex)
@@ -432,6 +436,11 @@ namespace WMS.Controllers
         }
         public ActionResult AfterLogin()
         {
+            User LoggedInUser = Session["LoggedUser"] as User;
+            var locationid = db.UserSections.FirstOrDefault(aa => aa.UserID == LoggedInUser.UserID).LocationID;
+            var Ulocname = db.Locations.FirstOrDefault(aa => aa.LocID == locationid).LocName;
+            // ViewBag.Location = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+            ViewBag.Location = new SelectList(db.Locations.OrderByDescending(aa => aa.LocName == Ulocname).ToList(), "LocID", "LocName");
             try
             {
                 if (Session["LogedUserID"] != null)
@@ -481,7 +490,6 @@ namespace WMS.Controllers
                 return View("Index");
             }
         }
-       
         private string SerializeObject(object myObject)
         {
             var stream = new MemoryStream();
@@ -504,243 +512,102 @@ namespace WMS.Controllers
             return xmlSerial.Deserialize(xmlStream);
         }
         #region --Dashboard--
-        public ActionResult GetDahboard()
+        [HttpPost]
+        public ActionResult GetDahboard(int? Locationid, DateTime? Date)
         {
-            DateTime dt = DateTime.Today.AddDays(-1);
-            //DateTime dt = new DateTime(2016, 02, 02);
+            TAS2013Entities db = new TAS2013Entities();
+            User LoggedInUser = Session["LoggedUser"] as User;
             DashboardValues dv = new DashboardValues();
-            TAS2013Entities db = new TAS2013Entities();
-            List<DailySummary> ds = new List<DailySummary>();
+            List<Emp> emplist = new List<Emp>();
+            if (Date == null)
+                Date = DateTime.Today;
+            //if (DateEnd == null)
+            //    DateEnd = DateTime.Today;
+            List<ViewAttData> ViewAttDataList = new List<ViewAttData>();
+            List<ViewAttData> ViewAttDataListGH = new List<ViewAttData>();
             List<JobCardDetail> jcEmp = new List<JobCardDetail>();
-            if (dt.DayOfWeek == DayOfWeek.Saturday)
-                dt = dt.AddDays(-1);
-            if (dt.DayOfWeek == DayOfWeek.Sunday)
-                dt = dt.AddDays(-2);
-            jcEmp = db.JobCardDetails.Where(aa => aa.Dated == dt).ToList();
-            ds = db.DailySummaries.Where(aa => aa.Date == dt && aa.Criteria == "C").ToList();
-            if (ds.Count > 0)
+            jcEmp = db.JobCardDetails.Where(aa => aa.Dated == Date).ToList();
+            DateTime dts = new DateTime(Date.Value.Year, Date.Value.Month, 1);
+            DateTime dte = new DateTime(Date.Value.Year, Date.Value.Month, DateTime.DaysInMonth(Date.Value.Year, Date.Value.Month));
+
+            if (Locationid == 0)
             {
-                dv.DateTime = dt.ToString("dd-MMM-yyy");
-                dv.TotalEmps = (short)ds.FirstOrDefault().TotalEmps;
-                dv.Present = (short)ds.FirstOrDefault().PresentEmps;
-                dv.Absent = (short)ds.FirstOrDefault().AbsentEmps;
-                dv.Leaves = (short)ds.FirstOrDefault().LvEmps;
-                dv.LateIn = (short)ds.FirstOrDefault().LIEmps;
-                dv.LateOut = (short)ds.FirstOrDefault().LOEmps;
-                dv.EarlyIn = (short)ds.FirstOrDefault().EIEmps;
-                dv.EarlyOut = (short)ds.FirstOrDefault().EOEmps;
-                dv.OverTime = (short)ds.FirstOrDefault().OTEmps;
-                dv.ShortLeaves = (short)ds.FirstOrDefault().ShortLvEmps;
-                dv.JCFieldTour = jcEmp.Where(aa => aa.WrkCardID == 5).ToList().Count;
-                dv.JCTraining = jcEmp.Where(aa => aa.WrkCardID == 7).ToList().Count;
-                dv.JCSeminar = jcEmp.Where(aa => aa.WrkCardID == 8).ToList().Count;
-                dv.JCOD = jcEmp.Where(aa => aa.WrkCardID == 1).ToList().Count;
-                //dv.JCFieldTour = 80;
-                //dv.JCTraining = 90;
-                //dv.JCSeminar = 80;
-                //dv.JCOD = 80;
-                dv.EWork = (int)(ds.FirstOrDefault().ExpectedWorkMins / 60);
-                dv.AWork = (int)(ds.FirstOrDefault().ActualWorkMins / 60);
-                dv.LWork = (int)(ds.FirstOrDefault().LossWorkMins / 60);
+                emplist = db.Emps.Where(aa => aa.Status == true).ToList();
+                ViewAttDataListGH = db.ViewAttDatas.Where(aa => aa.AttDate >= dts && aa.AttDate <= dte).ToList();
+                ViewAttDataList = ViewAttDataListGH.Where(aa => aa.AttDate == Date && aa.DesigID != 24).ToList();
             }
             else
             {
-                var countOfRows = db.DailySummaries.Count();
-                if (countOfRows > 1)
-                {
-                    ds = db.DailySummaries.ToList();
-                    DailySummary dss = ds[countOfRows - 1];
-                    dv.DateTime = ds[countOfRows - 1].Date.Value.Date.ToString("dd-MMM-yyy");
-                    dv.TotalEmps = (short)ds[countOfRows - 1].TotalEmps;
-                    dv.Present = (short)ds[countOfRows - 1].PresentEmps;
-                    dv.Absent = (short)ds[countOfRows - 1].AbsentEmps;
-                    dv.Leaves = (short)ds[countOfRows - 1].LvEmps;
-                    dv.LateIn = (short)ds[countOfRows - 1].LIEmps;
-                    dv.LateOut = (short)ds[countOfRows - 1].LOEmps;
-                    dv.EarlyIn = (short)ds[countOfRows - 1].EIEmps;
-                    dv.EarlyOut = (short)ds[countOfRows - 1].EOEmps;
-                    dv.OverTime = (short)ds[countOfRows - 1].OTEmps;
-                    dv.ShortLeaves = (short)ds[countOfRows - 1].ShortLvEmps;
-                    dv.JCFieldTour = jcEmp.Where(aa => aa.WrkCardID == 5).ToList().Count;
-                    dv.JCTraining = jcEmp.Where(aa => aa.WrkCardID == 7).ToList().Count;
-                    dv.JCSeminar = jcEmp.Where(aa => aa.WrkCardID == 8).ToList().Count;
-                    dv.JCOD = jcEmp.Where(aa => aa.WrkCardID == 1).ToList().Count;
-                    //dv.JCFieldTour = 80;
-                    //dv.JCTraining = 90;
-                    //dv.JCSeminar = 80;
-                    //dv.JCOD = 80;
-                    dv.EWork = (int)(ds.FirstOrDefault().ExpectedWorkMins / 60);
-                    dv.AWork = (int)(ds.FirstOrDefault().ActualWorkMins / 60);
-                    dv.LWork = (int)(ds.FirstOrDefault().LossWorkMins / 60);
-                }
+                emplist = db.Emps.Where(aa => aa.LocID == Locationid && aa.Status == true).ToList();
+                ViewAttDataListGH = db.ViewAttDatas.Where(aa => aa.LocID == Locationid && aa.AttDate >= dts && aa.AttDate <= dte).ToList();
+                ViewAttDataList = ViewAttDataListGH.Where(aa => aa.LocID == Locationid && aa.AttDate == Date && aa.DesigID != 24).ToList();
+                jcEmp = db.JobCardDetails.Where(aa => aa.Dated == Date).ToList();
             }
+            dv.DateStart = (DateTime)Date;
+            dv.LocationName = db.Locations.First(aa => aa.LocID == Locationid).LocName;
+            //dv.DateEnd = (DateTime)DateEnd;
+            dv.TotalEmps = ViewAttDataList.Where(aa => aa.DesigID != 24).Select(aa => aa.EmpID).Distinct().Count();
+            dv.Present = ViewAttDataList.Where(aa => aa.StatusP == true).Count();
+            dv.Absent = ViewAttDataList.Where(aa => aa.StatusAB == true).Count();
+            dv.Leaves = ViewAttDataList.Where(aa => aa.StatusLeave == true).Count();
+            dv.TotalEmpAllLoc = db.Emps.Where(aa => aa.Status == true).Count();
+            dv.TotalPresent = db.AttDatas.Where(aa => aa.StatusP == true && aa.AttDate == Date).Count();
+            dv.TotalAbsent = db.ViewAttDatas.Where(aa => aa.StatusAB == true && aa.AttDate == Date).Count();
+            dv.TotalLeaves = db.AttDatas.Where(aa => aa.StatusLeave == true && aa.AttDate == Date).Count();
+            dv.TotalVisitors = db.ViewAttDatas.Where(aa => aa.AttDate == Date && aa.TimeIn != null).Count();
+            dv.JCTraining = jcEmp.Where(aa => aa.WrkCardID == 7).ToList().Count;
+            dv.JCFieldTour = jcEmp.Where(aa => aa.WrkCardID == 5).ToList().Count;
+            dv.JCOfficialDuty = jcEmp.Where(aa => aa.WrkCardID == 1).ToList().Count;
+            dv.DashboardGraphObj = GetDahboardGraph(dts, dte, ViewAttDataListGH);
             if (HttpContext.Request.IsAjaxRequest())
-                return Json(dv
-                           , JsonRequestBehavior.AllowGet);
+                return View("DashboardContainer", dv);
 
             return RedirectToAction("Index");
         }
-        public ActionResult GetDahboardGraph()
+
+        private List<DashboardGraph> GetDahboardGraph(DateTime? dts, DateTime? dte, List<ViewAttData> ViewAttDataListGH)
         {
-            //DateTime dtE =  new DateTime(2016,02,02);
-            DateTime dtE = DateTime.Today.AddDays(-1);
-            DateTime dtS = dtE.AddDays(-31);
-            TAS2013Entities db = new TAS2013Entities();
-            List<DailySummary> ds = new List<DailySummary>();
-            List<DailySummary> dsTemp = new List<DailySummary>();
-            DashboardGraph dg = new DashboardGraph();
-            ds = db.DailySummaries.Where(aa => aa.Date >= dtS && aa.Date <= dtE && aa.Criteria == "C").ToList();
-            if (ds.Count > 0)
+            List<DashboardGraph> vmList = new List<DashboardGraph>();
+            while (dts < dte)
             {
-                dg.DateTime1 = ds[0].Date.Value.ToString("dd-MMM");
-                dg.LateIn1 = (int)ds[0].LIEmps;
+                if (ViewAttDataListGH.Where(aa => aa.AttDate >= dts && aa.AttDate <= dte && aa.StatusP == true).Count() > 0)
+                {
 
-                if (ds.Count > 1)
-                {
-                    dg.DateTime2 = ds[2].Date.Value.ToString("dd-MMM");
-                    dg.LateIn2 = (int)ds[2].LIEmps;
+                    DashboardGraph obj = new DashboardGraph();
+                    obj.XAxis = dts.Value.ToString("dd-MMM-yyyy");
+                    obj.YAxis = ViewAttDataListGH.Where(aa => aa.AttDate == dts && aa.StatusP == true).Count();
+                    vmList.Add(obj);
                 }
-                else
-                {
-                    dg.DateTime2 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn2 = (int)ds[0].LIEmps;
-                }
-                if (ds.Count > 2)
-                {
-                    dg.DateTime3 = ds[4].Date.Value.ToString("dd-MMM");
-                    dg.LateIn3 = (int)ds[4].LIEmps;
-                }
-                else
-                {
-                    dg.DateTime3 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn3 = (int)ds[0].LIEmps;
-                }
-                if (ds.Count > 3)
-                {
-                    dg.DateTime4 = ds[7].Date.Value.ToString("dd-MMM");
-                    dg.LateIn4 = (int)ds[7].LIEmps;
-                }
-                else
-                {
-                    dg.DateTime4 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn4 = (int)ds[0].LIEmps;
-                }
-                if (ds.Count > 4)
-                {
-                    dg.DateTime5 = ds[10].Date.Value.ToString("dd-MMM");
-                    dg.LateIn5 = (int)ds[10].LIEmps;
-                }
-                else
-                {
-                    dg.DateTime5 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn5 = (int)ds[0].LIEmps;
-                }
-                if (ds.Count > 5)
-                {
-                    dg.DateTime6 = ds[12].Date.Value.ToString("dd-MMM");
-                    dg.LateIn6 = (int)ds[12].LIEmps;
-                }
-                else
-                {
-                    dg.DateTime6 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn6 = (int)ds[0].LIEmps;
-                }
-                if (ds.Count > 6)
-                {
-                    dg.DateTime7 = ds[15].Date.Value.ToString("dd-MMM");
-                    dg.LateIn7 = (int)ds[15].LIEmps;
-                }
-                else
-                {
-                    dg.DateTime7 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn7 = (int)ds[0].LIEmps;
-                }
-                if (ds.Count > 7)
-                {
-                    dg.DateTime8 = ds[17].Date.Value.ToString("dd-MMM");
-                    dg.LateIn8 = (int)ds[17].LIEmps;
-                }
-                else
-                {
-                    dg.DateTime8 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn8 = (int)ds[0].LIEmps;
-                }
-                if (ds.Count > 8)
-                {
-                    dg.DateTime9 = ds[19].Date.Value.ToString("dd-MMM");
-                    dg.LateIn9 = (int)ds[19].LIEmps;
-                }
-                else
-                {
-                    dg.DateTime9 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn9 = (int)ds[0].LIEmps;
-                }
-                if (ds.Count > 9)
-                {
-                    dg.DateTime10 = ds[ds.Count - 1].Date.Value.ToString("dd-MMM");
-                    dg.LateIn10 = (int)ds[ds.Count - 1].LIEmps;
-                }
-                else
-                {
-                    dg.DateTime10 = ds[0].Date.Value.ToString("dd-MMM");
-                    dg.LateIn10 = (int)ds[0].LIEmps;
-                }
+                dts = dts.Value.AddDays(1);
             }
-            else
-            {
-
-            }
-            if (HttpContext.Request.IsAjaxRequest())
-                return Json(dg
-                           , JsonRequestBehavior.AllowGet);
-
-            return RedirectToAction("Index");
+            return vmList;
         }
+
         #endregion
     }
     public class DashboardValues
     {
-        public string DateTime { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateEnd { get; set; }
         public int TotalEmps { get; set; }
+        public string LocationName { get; set; }
         public int Present { get; set; }
         public int Absent { get; set; }
         public int Leaves { get; set; }
-        public int LateIn { get; set; }
-        public int LateOut { get; set; }
-        public int EarlyIn { get; set; }
-        public int EarlyOut { get; set; }
-        public int OverTime { get; set; }
-        public int ShortLeaves { get; set; }
         public int JCFieldTour { get; set; }
         public int JCTraining { get; set; }
-        public int JCSeminar { get; set; }
-        public int JCOD { get; set; }
-        public int EWork { get; set; }
-        public int AWork { get; set; }
-        public int LWork { get; set; }
+        public int JCOfficialDuty { get; set; }
+        public int TotalEmpAllLoc { get; set; }
+        public int TotalPresent { get; set; }
+        public int TotalAbsent { get; set; }
+        public int TotalLeaves { get; set; }
+        public int TotalVisitors { get; set; }
+        public List<DashboardGraph> DashboardGraphObj { get; set; }
     }
 
     public class DashboardGraph
     {
-        public string DateTime1 { get; set; }
-        public int LateIn1 { get; set; }
-        public string DateTime2 { get; set; }
-        public int LateIn2 { get; set; }
-        public string DateTime3 { get; set; }
-        public int LateIn3 { get; set; }
-        public string DateTime4 { get; set; }
-        public int LateIn4 { get; set; }
-        public string DateTime5 { get; set; }
-        public int LateIn5 { get; set; }
-        public string DateTime6 { get; set; }
-        public int LateIn6 { get; set; }
-        public string DateTime7 { get; set; }
-        public int LateIn7 { get; set; }
-        public string DateTime8 { get; set; }
-        public int LateIn8 { get; set; }
-        public string DateTime9 { get; set; }
-        public int LateIn9 { get; set; }
-        public string DateTime10 { get; set; }
-        public int LateIn10 { get; set; }
+        public string XAxis { get; set; }
+        public int YAxis { get; set; }
     }
 }

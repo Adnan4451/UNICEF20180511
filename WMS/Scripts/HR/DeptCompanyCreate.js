@@ -2,7 +2,7 @@
 
     $('#DeptID').empty();
    // var URL = '/WMS/Emp/DepartmentList';
-   var URL = '/Emp/DepartmentList';
+    var URL = '/Emp/DepartmentList';
     $.getJSON(URL , function (data) {
         var items;
         $.each(data, function (i, state) {

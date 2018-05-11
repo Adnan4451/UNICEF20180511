@@ -22,7 +22,6 @@ namespace WMS.Models
         public string Remarks { get; set; }
         public Nullable<int> JCAppID { get; set; }
     
-        public virtual Emp Emp { get; set; }
         public virtual JobCardApp JobCardApp { get; set; }
     }
 }

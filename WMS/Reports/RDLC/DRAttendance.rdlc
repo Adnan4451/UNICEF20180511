@@ -15,6 +15,9 @@
               <Width>1.36599in</Width>
             </TablixColumn>
             <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
               <Width>0.85417in</Width>
             </TablixColumn>
             <TablixColumn>
@@ -52,7 +55,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>DHO/DHS</Value>
+                              <Value>P.No</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -156,6 +159,42 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox16">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Group</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox16</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                        </TopBorder>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Textbox15">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -163,7 +202,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Directorate</Value>
+                              <Value>Units</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -499,9 +538,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>11</ColSpan>
+                    <ColSpan>12</ColSpan>
                   </CellContents>
                 </TablixCell>
+                <TablixCell />
                 <TablixCell />
                 <TablixCell />
                 <TablixCell />
@@ -605,6 +645,39 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DesignationName</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DeptName">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DeptName.Value</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DeptName</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -913,6 +986,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -1031,7 +1105,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.03625in</Top>
         <Height>0.75in</Height>
-        <Width>7.97639in</Width>
+        <Width>8.97639in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1042,7 +1116,7 @@
     <Height>2.27584in</Height>
     <Style />
   </Body>
-  <Width>8.18059in</Width>
+  <Width>9.00351in</Width>
   <Page>
     <PageHeader>
       <Height>0.76958in</Height>
@@ -1119,8 +1193,8 @@
           <Value>=First(Fields!CompanyLogo.Value, "DataSet2")</Value>
           <MIMEType>image/jpeg</MIMEType>
           <Sizing>FitProportional</Sizing>
-          <Top>0.13486in</Top>
-          <Left>6.58945in</Left>
+          <Top>0.17236in</Top>
+          <Left>7.49157in</Left>
           <Height>0.57916in</Height>
           <Width>1.38694in</Width>
           <ZIndex>2</ZIndex>
@@ -1149,7 +1223,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>DHA I-R Attendance Management System</Value>
+                  <Value>Generated by Workforce Management System</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                     <Color>DimGray</Color>
@@ -1195,7 +1269,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox90</rd:DefaultName>
           <Top>0.06944in</Top>
-          <Left>7.12222in</Left>
+          <Left>7.99934in</Left>
           <Height>0.25in</Height>
           <Width>0.85417in</Width>
           <ZIndex>1</ZIndex>

@@ -35,29 +35,27 @@ namespace WMS.Controllers
             }
             User LoggedInUser = Session["LoggedUser"] as User;
             QueryBuilder qb = new QueryBuilder();
-            //string query = qb.MakeCustomizeQuery(LoggedInUser);         
-            DataTable dt = qb.GetValuesfromDB("select * from Department");
-            List<Department> lvapplications = dt.ToList<Department>();
+            var department = db.Departments.AsQueryable();
             ViewBag.CurrentFilter = searchString;
             //var lvapplications = db.LvApplications.Where(aa=>aa.ToDate>=dt2).Include(l => l.Emp).Include(l => l.LvType1);
             if (!String.IsNullOrEmpty(searchString))
             {
-                lvapplications = lvapplications.Where(s => s.DeptName.ToUpper().Contains(searchString.ToUpper())
-                     || s.DeptName.ToUpper().Contains(searchString.ToUpper())).ToList();
+                department = department.Where(s => s.DeptName.ToUpper().Contains(searchString.ToUpper())
+                     || s.DeptName.ToUpper().Contains(searchString.ToUpper()));
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    lvapplications = lvapplications.OrderByDescending(s => s.DeptName).ToList();
+                    department = department.OrderByDescending(s => s.DeptName);
                     break;            
                 default:
-                    lvapplications = lvapplications.OrderBy(s => s.DeptName).ToList();
+                    department = department.OrderBy(s => s.DeptName);
                     break;
             }
             int pageSize = 12;
             int pageNumber = (page ?? 1);
-            return View(lvapplications.OrderByDescending(aa => aa.DeptID).ToPagedList(pageNumber, pageSize));
+            return View(department.OrderByDescending(aa => aa.DeptID).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: /Dept/Details/5

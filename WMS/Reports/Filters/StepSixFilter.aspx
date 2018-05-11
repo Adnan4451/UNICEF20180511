@@ -17,7 +17,7 @@
                         <asp:LinkButton ID="btnStepFour" runat="server" CssClass="inactive-link" OnClick="btnStepFour_Click" >Step Two<p>Types, Shifts</p></asp:LinkButton>
                     </li>
                     <li>
-                        <asp:LinkButton ID="btnStepFive" runat="server"  CssClass="inactive-link" OnClick="btnStepFive_Click" >Step Three<p>Employee</p></asp:LinkButton>
+                        <asp:LinkButton ID="btnStepFive" runat="server"  CssClass="inactive-link" OnClick="btnStepFive_Click" >Step Three<p>Employee, Gender</p></asp:LinkButton>
                     </li>
                     <%--<li>
                         <asp:LinkButton ID="btnStepSix" runat="server" CssClass="inactive-link" OnClick="btnStepSix_Click" >Finish<p>Generate Report</p></asp:LinkButton>
@@ -63,11 +63,9 @@
                                         <li><a href="../ReportContainer.aspx?reportname=overtime">Overtime</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=missing_attendance">Missing Attendance</a></li>
                                         <li><a href="../ReportContainer.aspx?reportname=multiple_in_out">Multiple In/Out</a></li>
-                                        <%--<li><a href="../ReportContainer.aspx?reportname=Daily_Parade_Sheet">Parade State Sheet </a></li>--%>
 
                                     </ul>
                                 </li>
-
                                 <li>
                                     <h5>Monthly</h5>
                                     <ul>
@@ -78,8 +76,17 @@
                                     <h5>Detailed</h5>
                                     <ul>
                                         <li><a href="../ReportContainer.aspx?reportname=emp_att">Employee Attendance</a></li>
-                                        <%--<li><a href="../ReportContainer.aspx?reportname=emp_summary">Employee Summary</a></li>--%>
+                                        <li><a href="../ReportContainer.aspx?reportname=emp_summary">Employee Summary</a></li>
                                     </ul>
+                                </li>
+                                <li>
+                                    <h5>Graph Reports</h5>
+                                    <ul>
+                                        <li><a href="../ReportContainer.aspx?reportname=gtimein">Attendance Entry Time</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=gtimeout">Attendance Exit Time</a></li>                                        
+                                        <li><a href="../ReportContainer.aspx?reportname=gtimeInDeptwise">Attendance Entry Time Departmen Wise</a></li>
+                                        <li><a href="../ReportContainer.aspx?reportname=gtimeOutDeptwise">Attendance Exit Time Departmen Wise</a></li>
+                                     </ul>
                                 </li>
                             </ul>
                         </section>
@@ -95,7 +102,7 @@
                        {
                            {
                                int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter.Count;
-                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#accordion' href='#collapseOne'>Directorates</a>  <span style ='float:right;' class='badge' id='SectionSpan'>" + d + "</span></h4></div><div id='collapseOne' class='panel-collapse collapse out'><div class='list-group'>");
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#accordion' href='#collapseOne'>Units</a>  <span style ='float:right;' class='badge' id='SectionSpan'>" + d + "</span></h4></div><div id='collapseOne' class='panel-collapse collapse out'><div class='list-group'>");
                            }
                            foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).SectionFilter)
                            {
@@ -179,7 +186,21 @@
                     }%>
 
                          </div>
+                        <div class="panel-group" id="Div6">
+                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter.Count > 0)
+                       {
+                           {
+                               int d = ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter.Count;
+                               Response.Write("<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a style = 'text-decoration: none !important;' data-toggle='collapse' data-parent='#Div3' href='#collapseType'>Gender</a>  <span style ='float:right;' class='badge' id ='GenderSpan'>" + d + "</span></h4></div><div id='collapseType' class='panel-collapse collapse out'><div class='list-group'>");
+                           }
+                           foreach (var item in ((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).GenderFilter)
+                           {
+                               { Response.Write("<a class='list-group-item' id='Shift'>" + item.FilterName + "<button type='button' id='" + item.ID + "' onclick = 'deleteFromFilters(this)' class='btn btn-danger btn-sm' style='float:right;'>[X]</button></a>"); }
+                           } 
+                                { Response.Write("</div></div></div>"); }
+                    }%>
 
+                       </div>
                         <%-- <div class="panel-group" id="Div6">
                         <% if (((WMSLibrary.FiltersModel)HttpContext.Current.Session["FiltersModel"]).CrewFilter.Count > 0)
                        {

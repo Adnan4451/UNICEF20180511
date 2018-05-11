@@ -76,6 +76,15 @@ namespace WMS.Reports.Filters {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl dateTo;
         
         /// <summary>
+        /// GridViewGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewGender;
+        
+        /// <summary>
         /// tbSearch_Employee control.
         /// </summary>
         /// <remarks>

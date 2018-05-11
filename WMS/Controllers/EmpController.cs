@@ -36,7 +36,7 @@ namespace WMS.Controllers
             ViewBag.DepartmentSortParm = sortOrder == "wing" ? "wing_desc" : "wing";
             ViewBag.ShiftSortParm = sortOrder == "shift" ? "shift_desc" : "shift";
             ViewBag.TypeSortParm = sortOrder == "type" ? "type_desc" : "type";
-           
+
             if (searchString != null)
             {
                 page = 1;
@@ -46,14 +46,12 @@ namespace WMS.Controllers
                 searchString = currentFilter;
             }
             User LoggedInUser = Session["LoggedUser"] as User;
-            int NoOfEmps = Convert.ToInt32(GlobalVaribales.NoOfEmps);
-            QueryBuilder qb = new QueryBuilder();
-            string query = qb.MakeCustomizeQueryForEmp(LoggedInUser);
-            DataTable dt = qb.GetValuesfromDB("select * from EmpView"+query);
+            int NoOfEmps = 4000;
             List<EmpView> emps = new List<EmpView>();
-            emps = dt.ToList<EmpView>();
+            emps = db.EmpViews.Where(aa => aa.Status == true && aa.Deleted != true).ToList();
 
             emps = emps.Take(NoOfEmps).ToList();
+            emps = AssistantQuery.GetFilteredEmps(emps, db.UserSections.Where(aa => aa.UserID == LoggedInUser.UserID).ToList());
             ViewBag.CurrentFilter = searchString;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -77,10 +75,10 @@ namespace WMS.Controllers
 
                     catch (Exception)
                     {
-                        
+
                         throw;
-                    }       
-                    
+                    }
+
                 }
             }
 
@@ -137,7 +135,7 @@ namespace WMS.Controllers
         }
 
         // GET: /Emp/Details/5
-         [CustomActionAttribute]
+        [CustomActionAttribute]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -161,17 +159,18 @@ namespace WMS.Controllers
             {
                 //_wings = context.Divisions.ToList();
             }
-             
+
             ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s => s.CrewName), "CrewID", "CrewName");
             ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName");
+            // ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s => s.GradeID), "GradeID", "GradeName");
             //ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName");
             //ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1");
-            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
-            ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
-            ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
-            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName");
+            ViewBag.LocID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+            ViewBag.SecID = new SelectList(db.Sections.OrderBy(s => s.SectionName), "SectionID", "SectionName");
+            ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s => s.ShiftName), "ShiftID", "ShiftName");
+            ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
             //ViewBag.CatID = new SelectList(dbCategories.OrderBy(s=>s.CatName), "CatID", "CatName");
-            ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
+            ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s => s.DeptName), "DeptID", "DeptName");
             return View();
         }
 
@@ -181,13 +180,13 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-        public ActionResult Create([Bind(Include="EmpID,EmpNo,EmpName,DesigID,JobID,Gender,ShiftID,LocID,TypeID,GradeID,SecID,CardNo,FpID,PinCode,NicNo,FatherName,BloodGroup,BirthDate,MarStatus,JoinDate,ValidDate,IssueDate,ResignDate,HomeAdd,ProcessAtt,ProcessIn,Status,PhoneNo,Remarks,Email,CellNo,CrewID,FlagFP,FlagFace,FlagCard,EmpImageID,HasOT")] Emp emp)
+        public ActionResult Create([Bind(Include = "EmpID,EmpNo,EmpName,DesigID,JobID,Gender,ShiftID,LocID,TypeID,GradeID,SecID,CardNo,FpID,PinCode,NicNo,FatherName,BloodGroup,BirthDate,MarStatus,JoinDate,ValidDate,IssueDate,ResignDate,HomeAdd,ProcessAtt,ProcessIn,Status,PhoneNo,Remarks,Email,CellNo,CrewID,FlagFP,FlagFace,FlagCard,EmpImageID,HasOT,Islamabad,Lahore,Karachi,Peshawar,Quetta,Gender")] Emp emp)
         {
             string empNo = "";
-            int cardno = Convert.ToInt32(emp.CardNo);
             emp.EmpNo = emp.EmpID.ToString();
+            int cardno = Convert.ToInt32(emp.CardNo);
             emp.CardNo = cardno.ToString("0000000000");
-            if (db.Emps.Where(aa => aa.Status == true && aa.Deleted != true).Count() >= Convert.ToInt32(GlobalVaribales.NoOfEmps))
+            if (db.Emps.Where(aa => aa.Status == true && aa.Deleted != true).Count() >= 4000)
                 ModelState.AddModelError("EmpNo", "Active Number of employees are exceeded from license ");
             if (string.IsNullOrEmpty(emp.EmpNo))
                 ModelState.AddModelError("EmpNo", "Emp No is required!");
@@ -227,10 +226,10 @@ namespace WMS.Controllers
                 ModelState.AddModelError("TypeID", "Please Specify Type!");
             //if (emp.GradeID == null)
             //ModelState.AddModelError("GradeID", "Please Specify Grade!");
-            if (db.Emps.Where(aa => aa.Status == true).Count() > Convert.ToInt32(GlobalVaribales.NoOfEmps))
+            if (db.Emps.Where(aa => aa.Status == true).Count() > 4000)
                 ModelState.AddModelError("EmpNo", "Your Employees has exceeded from License, Please upgrade your license");
             if (ModelState.IsValid)
-            {
+            {              
                 emp.ProcessAtt = true;
                 //emp.ProcessI = true;
                 emp.EmpNo = emp.EmpNo.ToUpper();
@@ -245,6 +244,7 @@ namespace WMS.Controllers
                 }
                 empNo = emp.EmpNo;
                 emp.Deleted = false;
+                AddEmpLocation(emp);
                 //emp.FpID = emp.EmpID;
                 db.Emps.Add(emp);
                 //db.SaveChanges();
@@ -284,6 +284,7 @@ namespace WMS.Controllers
                 User LoggedInUser = Session["LoggedUser"] as User;
                 //ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
                 ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName");
+                //ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s => s.GradeID), "GradeID", "GradeName");
                 //ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName");
                 //ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1");
                 ViewBag.LocID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
@@ -294,6 +295,101 @@ namespace WMS.Controllers
                 ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s => s.DeptName), "DeptID", "DeptName");
             }
             return View(emp);
+        }
+
+        private void AddEmpLocation(Emp emp)
+        {
+            EmpLocation emploc = new EmpLocation();
+            if (emp.Islamabad == true)
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Islamabad").LocID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = true;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            else
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.IsFresh = true;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Islamabad").LocID;
+                emploc.HasAccess = false;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            if (emp.Lahore == true)
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Lahore").LocID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = true;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            else
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = false;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Lahore").LocID;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            if (emp.Karachi == true)
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Karachi").LocID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = true;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            else
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = false;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Karachi").LocID;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            if (emp.Peshawar == true)
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Peshawar").LocID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = true;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            else
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = false;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Peshawar").LocID;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            if (emp.Quetta == true)
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Quetta").LocID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = true;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
+            else
+            {
+                emploc.EmpID = emp.EmpID;
+                emploc.IsFresh = true;
+                emploc.HasAccess = false;
+                emploc.LocationID = db.Locations.First(aa => aa.LocName == "Quetta").LocID;
+                db.EmpLocations.Add(emploc);
+                db.SaveChanges();
+            }
         }
         private void SaveChanges(DbContext context)
         {
@@ -322,7 +418,7 @@ namespace WMS.Controllers
             }
         }
         // GET: /Emp/Edit/5
-         [CustomActionAttribute]
+        [CustomActionAttribute]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -338,22 +434,23 @@ namespace WMS.Controllers
             {
                 EmpType et = db.EmpTypes.Where(aa => aa.TypeID == emp.TypeID).FirstOrDefault();
                 //ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName", et.CatID);
-                ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName", emp.CrewID);
-                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName", emp.DesigID);
+                ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s => s.CrewName), "CrewID", "CrewName", emp.CrewID);
+                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName", emp.DesigID);
+                // ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s => s.GradeID), "GradeID", "GradeName");
                 //ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName", emp.GradeID);
                 //ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1", emp.JobID);
-                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName", emp.LocID);
-                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName", emp.SecID);
-                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName", emp.ShiftID);
-                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName", emp.TypeID);
-                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s=>s.Face1), "EmpID", "Face1");
-                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s=>s.Fp1), "EmpID", "Fp1");
-                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName", emp.Section.DeptID);
+                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName", emp.LocID);
+                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s => s.SectionName), "SectionID", "SectionName", emp.SecID);
+                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s => s.ShiftName), "ShiftID", "ShiftName", emp.ShiftID);
+                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName", emp.TypeID);
+                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s => s.Face1), "EmpID", "Face1");
+                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s => s.Fp1), "EmpID", "Fp1");
+                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s => s.DeptName), "DeptID", "DeptName", emp.Section.DeptID);
             }
-             catch(Exception ex)
+            catch (Exception ex)
             {
 
-             }
+            }
             return View(emp);
         }
 
@@ -363,7 +460,7 @@ namespace WMS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomActionAttribute]
-         public ActionResult Edit([Bind(Include = "EmpID,EmpNo,EmpName,DesigID,JobID,Gender,ShiftID,LocID,TypeID,GradeID,SecID,CardNo,FpID,PinCode,NicNo,FatherName,BloodGroup,BirthDate,MarStatus,JoinDate,ValidDate,IssueDate,ResignDate,HomeAdd,ProcessAtt,ProcessIn,Status,PhoneNo,Remarks,Email,CellNo,CrewID,FlagFP,FlagFace,FlagCard,EmpImageID,HasOT")] Emp emp)
+        public ActionResult Edit([Bind(Include = "EmpID,EmpNo,EmpName,DesigID,JobID,Gender,ShiftID,LocID,TypeID,GradeID,SecID,CardNo,FpID,PinCode,NicNo,FatherName,BloodGroup,BirthDate,MarStatus,JoinDate,ValidDate,IssueDate,ResignDate,HomeAdd,ProcessAtt,ProcessIn,Status,PhoneNo,Remarks,Email,CellNo,CrewID,FlagFP,FlagFace,FlagCard,EmpImageID,HasOT,Islamabad,Lahore,Karachi,Peshawar,Quetta,Gender")] Emp emp)
         {
             try
             {
@@ -373,9 +470,9 @@ namespace WMS.Controllers
                 {
                     ImageConversion _Image = new ImageConversion();
                     int imageid = _Image.UploadImageInDataBase(file, emp);
-                    if (imageid!=0)
+                    if (imageid != 0)
                     {
-                        emp.EmpImageID= imageid;
+                        emp.EmpImageID = imageid;
                     }
                     else
                     {
@@ -383,7 +480,7 @@ namespace WMS.Controllers
                     }
                 }
 
-                
+
                 if (string.IsNullOrEmpty(emp.EmpNo))
                     ModelState.AddModelError("EmpNo", "Emp No field is required!");
                 if (string.IsNullOrEmpty(emp.EmpName))
@@ -415,52 +512,125 @@ namespace WMS.Controllers
                     {
                         emp.CardNo = "0000000000";
                     }
-                    emp.EmpNo = emp.EmpNo.ToUpper();
+                    emp.EmpNo = emp.EmpID.ToString();
                     emp.Deleted = false;
-                    db.Entry(emp).State = System.Data.Entity.EntityState.Modified;
-                   
-                    db.SaveChanges();
+                    List<Emp> emps = db.Emps.Where(aa => aa.EmpID == emp.EmpID).AsNoTracking().ToList();
+                    UpdateEmpLocation(emp, emps.First());
+                    db.Entry(emp).State = System.Data.Entity.EntityState.Modified;                   
+                    db.SaveChanges();                  
                     int _userID = Convert.ToInt32(Session["LogedUserID"].ToString());
                     HelperClass.MyHelper.SaveAuditLog(_userID, (byte)MyEnums.FormName.Employee, (byte)MyEnums.Operation.Edit, DateTime.Now);
                     return RedirectToAction("Index");
                 }
                 User LoggedInUser = Session["LoggedUser"] as User;
-              ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
-                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName");
+                ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s => s.CrewName), "CrewID", "CrewName");
+                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName");
+                // ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s => s.GradeID), "GradeID", "GradeName");
                 //ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName");
                 //ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1");
-                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
-                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
-                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
-                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName");
-                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s=>s.Face1), "EmpID", "Face1");
-                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s=>s.Fp1), "EmpID", "Fp1");
+                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s => s.SectionName), "SectionID", "SectionName");
+                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s => s.ShiftName), "ShiftID", "ShiftName");
+                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
+                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s => s.Face1), "EmpID", "Face1");
+                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s => s.Fp1), "EmpID", "Fp1");
                 //ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
-                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
+                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s => s.DeptName), "DeptID", "DeptName");
                 return View(emp);
             }
             catch (Exception ex)
             {
                 ViewBag.Message = ex.InnerException.ToString();
                 User LoggedInUser = Session["LoggedUser"] as User;
-                ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s=>s.CrewName), "CrewID", "CrewName");
-                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s=>s.DesignationName), "DesignationID", "DesignationName");
+                ViewBag.CrewID = new SelectList(db.Crews.OrderBy(s => s.CrewName), "CrewID", "CrewName");
+                ViewBag.DesigID = new SelectList(db.Designations.OrderBy(s => s.DesignationName), "DesignationID", "DesignationName");
+                //  ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s => s.GradeID), "GradeID", "GradeName");
                 //ViewBag.GradeID = new SelectList(db.Grades.OrderBy(s=>s.GradeName), "GradeID", "GradeName");
                 //ViewBag.JobID = new SelectList(db.JobTitles.OrderBy(s=>s.JobTitle1), "JobID", "JobTitle1");
-                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s=>s.LocName), "LocID", "LocName");
-                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s=>s.SectionName), "SectionID", "SectionName");
-                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s=>s.ShiftName), "ShiftID", "ShiftName");
-                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s=>s.TypeName), "TypeID", "TypeName");
-                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s=>s.Face1), "EmpID", "Face1");
-                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s=>s.Fp1), "EmpID", "Fp1");
+                ViewBag.LocID = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+                ViewBag.SecID = new SelectList(db.Sections.OrderBy(s => s.SectionName), "SectionID", "SectionName");
+                ViewBag.ShiftID = new SelectList(db.Shifts.OrderBy(s => s.ShiftName), "ShiftID", "ShiftName");
+                ViewBag.TypeID = new SelectList(db.EmpTypes.OrderBy(s => s.TypeName), "TypeID", "TypeName");
+                ViewBag.EmpID = new SelectList(db.EmpFaces.OrderBy(s => s.Face1), "EmpID", "Face1");
+                ViewBag.EmpID = new SelectList(db.EmpFps.OrderBy(s => s.Fp1), "EmpID", "Fp1");
                 //ViewBag.CatID = new SelectList(db.Categories.OrderBy(s=>s.CatName), "CatID", "CatName");
-                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s=>s.DeptName), "DeptID", "DeptName");
+                ViewBag.DeptID = new SelectList(db.Departments.OrderBy(s => s.DeptName), "DeptID", "DeptName");
                 return View(emp);
             }
         }
+        private void UpdateEmpLocationChild(Emp emp, int locid, bool IsLocationCheck)
+        {
+            if (IsLocationCheck)
+            {
+                EmpLocation el = new EmpLocation();
+                if (db.EmpLocations.Where(aa => aa.EmpID == emp.EmpID && aa.LocationID == locid).Count() > 0)
+                {
+                    el = db.EmpLocations.First(aa => aa.EmpID == emp.EmpID && aa.LocationID == locid);
+
+                    el.HasAccess = true;
+                    el.IsFresh = true;
+                    db.Entry(el).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    el.EmpID = emp.EmpID;
+                    el.LocationID = locid;
+                    el.IsFresh = true;
+                    el.HasAccess = true;
+                    db.EmpLocations.Add(el);
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                EmpLocation el = new EmpLocation();
+                if (db.EmpLocations.Where(aa => aa.EmpID == emp.EmpID && aa.LocationID == locid).Count() > 0)
+                {
+                    el = db.EmpLocations.First(aa => aa.EmpID == emp.EmpID && aa.LocationID == locid);
+                    el.HasAccess = false;
+                    el.IsFresh = true;
+                    db.Entry(el).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    el.EmpID = emp.EmpID;
+                    el.LocationID = locid;
+                    el.IsFresh = true;
+                    el.HasAccess = false;
+                    db.EmpLocations.Add(el);
+                    db.SaveChanges();
+                }
+            }
+        }
+        private void UpdateEmpLocation(Emp emp, Emp OldEmp)
+        {
+            TAS2013Entities db = new TAS2013Entities();
+            if (emp.Islamabad != OldEmp.Islamabad)
+            {
+                UpdateEmpLocationChild(emp,(int)db.Locations.First(aa => aa.LocName == "Islamabad").LocID,(bool)emp.Islamabad);
+            }
+            if (emp.Quetta != OldEmp.Quetta)
+            {
+                UpdateEmpLocationChild(emp, (int)db.Locations.First(aa => aa.LocName == "Quetta").LocID, (bool)emp.Quetta);
+            }
+            if (emp.Lahore != OldEmp.Lahore)
+            {
+                UpdateEmpLocationChild(emp, (int)db.Locations.First(aa => aa.LocName == "Lahore").LocID, (bool)emp.Lahore);
+            }
+            if (emp.Peshawar != OldEmp.Peshawar)
+            {
+                UpdateEmpLocationChild(emp, (int)db.Locations.First(aa => aa.LocName == "Peshawar").LocID, (bool)emp.Peshawar);
+            }
+            if (emp.Karachi != OldEmp.Karachi)
+            {
+                UpdateEmpLocationChild(emp, (int)db.Locations.First(aa => aa.LocName == "Karachi").LocID, (bool)emp.Karachi);
+            }
+        } 
 
         // GET: /Emp/Delete/5
-         [CustomActionAttribute]
+        [CustomActionAttribute]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -501,7 +671,7 @@ namespace WMS.Controllers
         #region --Cascade DropDown--
         public ActionResult DepartmentList()
         {
-           
+
             var dept = db.Departments.ToList();
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
@@ -527,7 +697,7 @@ namespace WMS.Controllers
         }
         //public ActionResult CrewList()
         //{
-          
+
         //    var secs = db.Crews.OrderBy(s => s.CrewName);
         //    if (HttpContext.Request.IsAjaxRequest())
         //        return Json(new SelectList(
@@ -675,11 +845,11 @@ namespace WMS.Controllers
         }
         public ActionResult GradeList()
         {
-           
+
             //var states = db.Grades.OrderBy(s => s.GradeName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
-                                //states.ToArray(),
+                    //states.ToArray(),
                                 "GradeID",
                                 "GradeName")
                            , JsonRequestBehavior.AllowGet);
@@ -688,7 +858,7 @@ namespace WMS.Controllers
         }
         public ActionResult DesignationList()
         {
-           
+
             var secs = db.Designations.OrderBy(s => s.DesignationName);
             if (HttpContext.Request.IsAjaxRequest())
                 return Json(new SelectList(
@@ -791,7 +961,7 @@ namespace WMS.Controllers
                     DOB = emp.FirstOrDefault().JoinDate.Value.ToString("dd-MMM-yyyy");
                 if (lvConsumed.Count > 0)
                 {
-                    string emplvTypeCL = emp.First().EmpID.ToString() + "A"+DateTime.Today.Year.ToString("0000");
+                    string emplvTypeCL = emp.First().EmpID.ToString() + "A" + DateTime.Today.Year.ToString("0000");
                     string emplvTypeAL = emp.First().EmpID.ToString() + "B" + DateTime.Today.Year.ToString("0000");
                     string emplvTypeSL = emp.First().EmpID.ToString() + "C" + DateTime.Today.Year.ToString("0000");
                     string emplvTypeCPL = emp.First().EmpID.ToString() + "E" + DateTime.Today.Year.ToString("0000");
@@ -867,6 +1037,8 @@ namespace WMS.Controllers
 
             return RedirectToAction("Index");
         }
+
+
     }
 
 }

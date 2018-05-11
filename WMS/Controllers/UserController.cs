@@ -11,7 +11,7 @@ using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
 using WMS.Controllers.Filters;
 using WMS.CustomClass;
-using PagedList;
+
 namespace WMS.Controllers
 {
     [CustomControllerAttributes]
@@ -20,72 +20,10 @@ namespace WMS.Controllers
         private TAS2013Entities db = new TAS2013Entities();
 
         // GET: /User/
-        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
+        public ActionResult Index()
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.UserNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.NameSortParm = sortOrder == "LvType" ? "LvType_desc" : "LvType";
-            ViewBag.CanAddSortParm = sortOrder == "Date" ? "Date_desc" : "Date";
-            ViewBag.CanEditSortParm = sortOrder == "Leave" ? "Leave_desc" : "Leave";
-            ViewBag.CanDeleteSortParm = sortOrder == "Leave" ? "Leave_desc" : "Leave";
-            ViewBag.CanViewSortParm = sortOrder == "thu" ? "Leave_desc" : "Leave";
-            ViewBag.StatusSortParm = sortOrder == "Leave" ? "Leave_desc" : "Leave";
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-            User LoggedInUser = Session["LoggedUser"] as User;
-            QueryBuilder qb = new QueryBuilder();
-            string query = qb.MakeCustomizeQuery(LoggedInUser);         
-            DataTable dt = qb.GetValuesfromDB("select * from User");
-            List<User> lvapplications = dt.ToList<User>();
-            ViewBag.CurrentFilter = searchString;
-            //var lvapplications = db.LvApplications.Where(aa=>aa.ToDate>=dt2).Include(l => l.Emp).Include(l => l.LvType1);
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                lvapplications = lvapplications.Where(s => s.UserName.ToUpper().Contains(searchString.ToUpper())
-                     || s.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
-                lvapplications = lvapplications.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
-                     || s.UserName.ToUpper().Contains(searchString.ToUpper())).ToList();
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    lvapplications = lvapplications.OrderByDescending(s => s.UserName).ToList();
-                    break;
-
-                case "LvType_desc":
-                    lvapplications = lvapplications.OrderByDescending(s => s.Name).ToList();
-                    break;
-                case "LvType":
-                    lvapplications = lvapplications.OrderBy(s => s.CanAdd).ToList();
-                    break;
-                case "Date_desc":
-                    lvapplications = lvapplications.OrderByDescending(s => s.CanEdit).ToList();
-                    break;
-                case "Date":
-                    lvapplications = lvapplications.OrderBy(s => s.CanDelete).ToList();
-                    break;
-                case "thu":
-                    lvapplications = lvapplications.OrderBy(s => s.CanView).ToList();
-                    break;
-                case "fri":
-                    lvapplications = lvapplications.OrderBy(s => s.Status).ToList();
-                    break;
-                default:
-                    lvapplications = lvapplications.OrderBy(s => s.UserName).ToList();
-                    break;
-            }
-            int pageSize = 12;
-            int pageNumber = (page ?? 1);
-            return View(lvapplications.OrderByDescending(aa => aa.UserID).ToPagedList(pageNumber, pageSize));
             int NoOfUsres = Convert.ToInt32(GlobalVaribales.NoOfUsers);
-            var users = db.Users.Where(aa=>aa.Deleted==false);
+            var users = db.Users.Where(aa => aa.Deleted == false);
             var usr = users.Take(NoOfUsres);
             return View(usr.ToList());
         }
@@ -108,6 +46,8 @@ namespace WMS.Controllers
         [CustomActionAttribute]
         public ActionResult Create()
         {
+            ViewBag.Location = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+            ViewBag.Department = new SelectList(db.Sections.OrderBy(s => s.SectionName), "SectionID", "SectionName");
             return View();
         }
 
@@ -117,9 +57,11 @@ namespace WMS.Controllers
         [HttpPost]
         [CustomActionAttribute]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( [Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRoster,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
+        public ActionResult Create([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRoster,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,MProcess")] User user, string[] Location, string[] Department)
         {
-            if (db.Users.Where(aa => aa.Status == true && aa.Deleted==false).Count() >= Convert.ToInt32(GlobalVaribales.NoOfUsers))
+            ViewBag.Location = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+            ViewBag.Department = new SelectList(db.Departments.OrderBy(s => s.DeptName), "DeptID", "DeptName");
+            if (db.Users.Where(aa => aa.Status == true && aa.Deleted == false).Count() >= Convert.ToInt32(GlobalVaribales.NoOfUsers))
                 ModelState.AddModelError("UserName", "Your Users has exceeded from License, Please upgrade your license");
             user.CanAdd = (bool)ValueProvider.GetValue("CanAdd").ConvertTo(typeof(bool));
             user.CanEdit = (bool)ValueProvider.GetValue("CanEdit").ConvertTo(typeof(bool));
@@ -128,17 +70,17 @@ namespace WMS.Controllers
             user.MHR = (bool)ValueProvider.GetValue("MHR").ConvertTo(typeof(bool));
             user.MOption = (bool)ValueProvider.GetValue("MOption").ConvertTo(typeof(bool));
             user.MLeave = (bool)ValueProvider.GetValue("MLeave").ConvertTo(typeof(bool));
-            user.MRoster = (bool)ValueProvider.GetValue("MRoster").ConvertTo(typeof(bool));
+            //user.MRoster = (bool)ValueProvider.GetValue("MRoster").ConvertTo(typeof(bool));
             user.MUser = (bool)ValueProvider.GetValue("MUser").ConvertTo(typeof(bool));
             user.MDevice = (bool)ValueProvider.GetValue("MDevice").ConvertTo(typeof(bool));
-            user.MDesktop = (bool)ValueProvider.GetValue("MDesktop").ConvertTo(typeof(bool));
+            // user.MDesktop = (bool)ValueProvider.GetValue("MDesktop").ConvertTo(typeof(bool));
             user.MEditAtt = (bool)ValueProvider.GetValue("MEditAtt").ConvertTo(typeof(bool));
             user.MProcess = (bool)ValueProvider.GetValue("MProcess").ConvertTo(typeof(bool));
             user.MRLeave = (bool)ValueProvider.GetValue("MRLeave").ConvertTo(typeof(bool));
             user.MRDailyAtt = (bool)ValueProvider.GetValue("MRDailyAtt").ConvertTo(typeof(bool));
             user.MRMonthly = (bool)ValueProvider.GetValue("MRMonthly").ConvertTo(typeof(bool));
-            user.MRAudit = (bool)ValueProvider.GetValue("MRAudit").ConvertTo(typeof(bool));
-            user.MRManualEditAtt = (bool)ValueProvider.GetValue("MRManualEditAtt").ConvertTo(typeof(bool));
+            //user.MRAudit = (bool)ValueProvider.GetValue("MRAudit").ConvertTo(typeof(bool));
+            // user.MRManualEditAtt = (bool)ValueProvider.GetValue("MRManualEditAtt").ConvertTo(typeof(bool));
             user.MRDetail = (bool)ValueProvider.GetValue("MRDetail").ConvertTo(typeof(bool));
             if (Request.Form["UserType"].ToString() == "true")
                 user.UserType = "Admin";
@@ -154,16 +96,58 @@ namespace WMS.Controllers
                 {
                     List<Section> secs = new List<Section>();
                     secs = db.Sections.ToList();
-                    int count = Convert.ToInt32(Request.Form["uSectionCount"]);
-                    for (int i = 1; i <= count; i++)
+                    // int count = Convert.ToInt32(Request.Form["uSectionCount"]);
+                    //for (int i = 1; i <= count; i++)
+                    //{
+                    //string uSecID = "uSection" + i;
+                    //string secName = Request.Form[uSecID].ToString();
+                    //int locID = secs.Where(aa => aa.SectionName == secName).FirstOrDefault().SectionID;
+                    UserSection uLoc = new UserSection();
+                    uLoc.UserID = user.UserID;
+                    if (Location.Count() > 0)
                     {
-                        string uSecID = "uSection" + i;
-                        string secName = Request.Form[uSecID].ToString();
-                        int locID = secs.Where(aa => aa.SectionName == secName).FirstOrDefault().SectionID;
-                        UserSection uSec = new UserSection();
-                        uSec.UserID = user.UserID;
-                        uSec.SecID = (short)locID;
-                        db.UserSections.Add(uSec);
+                        foreach (var item in Location)
+                        {
+                            uLoc.LocationID = Convert.ToInt16(item);
+                            uLoc.LocationOrSection = "Location";
+                            db.UserSections.Add(uLoc);
+                            db.SaveChanges();
+                        }
+                    }
+                    UserSection uDept = new UserSection();
+                    uDept.UserID = user.UserID;
+                    if (Department != null && Department.Count() > 0)
+                    {
+                        foreach (var item in Department)
+                        {
+                            uDept.SectionID = Convert.ToInt16(item);
+                            uDept.LocationOrSection = "Section";
+                            db.UserSections.Add(uDept);
+                            db.SaveChanges();
+                        }
+                    }
+                    //}                 
+                }
+                else
+                {
+                    UserSection us = new UserSection();
+                    var ls = db.Locations.ToList();
+                    var ds = db.Sections.ToList();
+                    foreach (var item in ls)
+                    {
+                        us.LocationID = item.LocID;
+                        us.LocationOrSection = "Location";
+                        us.UserID = user.UserID;
+                        db.UserSections.Add(us);
+                        db.SaveChanges();
+                    }
+                    foreach (var item in ds)
+                    {
+                        us.SectionID = item.SectionID;
+                        us.LocationOrSection = "Section";
+                        us.LocationID = null;
+                        us.UserID = user.UserID;
+                        db.UserSections.Add(us);
                         db.SaveChanges();
                     }
                 }
@@ -171,12 +155,18 @@ namespace WMS.Controllers
             }
             return View(user);
         }
-
-
+        [HttpPost]
+        public ActionResult GETIDs(string Locations, string Departments)
+        {
+            return View();
+        }
         // GET: /User/Edit/5
         [CustomActionAttribute]
         public ActionResult Edit(int? id)
         {
+            User LoggedInUser = Session["LoggedUser"] as User;
+            ViewBag.Location = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+            ViewBag.Department = new SelectList(db.Sections.OrderBy(s => s.SectionName), "SectionID", "SectionName");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -187,11 +177,11 @@ namespace WMS.Controllers
                 return HttpNotFound();
             }
             //ViewBag.RoleIDL = new SelectList(db.UserRoles, "RoleID", "RoleName", user.UserRoleL);
-
             ViewBag.LocationID = new SelectList(db.Locations, "LocID", "LocName");
-            
-
-
+            var list = db.UserSections.Where(aa => aa.UserID == id).Select(aa => aa.LocationID).ToList().ToArray();
+            ViewBag.SelectedLocation = list;
+            var Seclist = db.UserSections.Where(aa => aa.UserID == id).Select(aa => aa.SectionID).ToList().ToArray();
+            ViewBag.SelectedDepartments = Seclist;
             return View(user);
         }
 
@@ -201,8 +191,10 @@ namespace WMS.Controllers
         [HttpPost]
         [CustomActionAttribute]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user)
+        public ActionResult Edit([Bind(Include = "UserID,UserName,Password,EmpID,DateCreated,Name,Status,Department,CanEdit,CanDelete,CanAdd,CanView,RoleID,MHR,MDevice,MLeave,MDesktop,MEditAtt,MUser,MOption,MRDailyAtt,MRLeave,MRMonthly,MRAudit,MRManualEditAtt,MREmployee,MRDetail,MRSummary,MRGraph,ViewPermanentStaff,ViewPermanentMgm,ViewContractual,ViewLocation,LocationID,MProcess")] User user, string[] Location, string[] Department)
         {
+            ViewBag.Location = new SelectList(db.Locations.OrderBy(s => s.LocName), "LocID", "LocName");
+            ViewBag.Department = new SelectList(db.Departments.OrderBy(s => s.DeptName), "DeptID", "DeptName");
             bool check = false;
             user.CanAdd = (bool)ValueProvider.GetValue("CanAdd").ConvertTo(typeof(bool));
             user.CanEdit = (bool)ValueProvider.GetValue("CanEdit").ConvertTo(typeof(bool));
@@ -211,17 +203,16 @@ namespace WMS.Controllers
             user.MHR = (bool)ValueProvider.GetValue("MHR").ConvertTo(typeof(bool));
             user.MOption = (bool)ValueProvider.GetValue("MOption").ConvertTo(typeof(bool));
             user.MLeave = (bool)ValueProvider.GetValue("MLeave").ConvertTo(typeof(bool));
-            user.MRoster = (bool)ValueProvider.GetValue("MRoster").ConvertTo(typeof(bool));
+            // user.MRoster = (bool)ValueProvider.GetValue("MRoster").ConvertTo(typeof(bool));
             user.MUser = (bool)ValueProvider.GetValue("MUser").ConvertTo(typeof(bool));
             user.MDevice = (bool)ValueProvider.GetValue("MDevice").ConvertTo(typeof(bool));
-            user.MDesktop = (bool)ValueProvider.GetValue("MDesktop").ConvertTo(typeof(bool));
             user.MEditAtt = (bool)ValueProvider.GetValue("MEditAtt").ConvertTo(typeof(bool));
             user.MProcess = (bool)ValueProvider.GetValue("MProcess").ConvertTo(typeof(bool));
             user.MRLeave = (bool)ValueProvider.GetValue("MRLeave").ConvertTo(typeof(bool));
             user.MRDailyAtt = (bool)ValueProvider.GetValue("MRDailyAtt").ConvertTo(typeof(bool));
             user.MRMonthly = (bool)ValueProvider.GetValue("MRMonthly").ConvertTo(typeof(bool));
-            user.MRAudit = (bool)ValueProvider.GetValue("MRAudit").ConvertTo(typeof(bool));
-            user.MRManualEditAtt = (bool)ValueProvider.GetValue("MRManualEditAtt").ConvertTo(typeof(bool));
+            // user.MRAudit = (bool)ValueProvider.GetValue("MRAudit").ConvertTo(typeof(bool));
+            // user.MRManualEditAtt = (bool)ValueProvider.GetValue("MRManualEditAtt").ConvertTo(typeof(bool));
             user.MRDetail = (bool)ValueProvider.GetValue("MRDetail").ConvertTo(typeof(bool));
             if (Request.Form["UserType"].ToString() == "true")
                 user.UserType = "Admin";
@@ -240,35 +231,39 @@ namespace WMS.Controllers
             List<int> currentLocIDs = new List<int>();
             foreach (var uloc in userLocs)
             {
-                UserSection ul = db.UserSections.First(aa => aa.SecID == uloc.SecID);
+                UserSection ul = db.UserSections.First(aa => aa.UserID == user.UserID);
                 db.UserSections.Remove(ul);
                 db.SaveChanges();
             }
             userLocs = new List<UserSection>();
-            if (user.UserType=="Restricted")
+            if (user.UserType == "Restricted")
             {
-                for (int i = 1; i <= count; i++)
+                UserSection uLoc = new UserSection();
+                uLoc.UserID = user.UserID;
+                if (Location != null)
                 {
-                    string uLocID = "uSection" + i;
-                    string LocName = Request.Form[uLocID].ToString();
-                    int locID = secs.Where(aa => aa.SectionName == LocName).FirstOrDefault().SectionID;
-                    currentLocIDs.Add(locID);
-                    if (userLocs.Where(aa => aa.SecID == locID).Count() > 0)
+                    foreach (var item in Location)
                     {
-
+                            uLoc.LocationID = Convert.ToInt16(item);
+                            uLoc.LocationOrSection = "Location";
+                            uLoc.SectionID = null;
+                            db.UserSections.Add(uLoc);
+                            db.SaveChanges();
                     }
-                    else
-                    {
-                        UserSection uloc = new UserSection();
-                        uloc.UserID = user.UserID;
-                        uloc.SecID = (short)locID;
-                        db.UserSections.Add(uloc);
-                        userLocs.Add(uloc);
-                        db.SaveChanges();
+                }
+                if (Department != null)
+                {
+                    foreach (var item in Department)
+                    {                      
+                            uLoc.SectionID = Convert.ToInt16(item);
+                            uLoc.LocationID = null;
+                            uLoc.LocationOrSection = "Section";
+                            db.UserSections.Add(uLoc);
+                            db.SaveChanges();
                     }
-                } 
+                }
             }
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
         // GET: /User/Delete/5
         public ActionResult Delete(int? id)
@@ -324,7 +319,7 @@ namespace WMS.Controllers
 
             foreach (var loc in userLoc)
             {
-                Section ll = db.Sections.FirstOrDefault(aa => aa.SectionID == loc.SecID);
+                Section ll = db.Sections.FirstOrDefault(aa => aa.SectionID == loc.LocationID);
                 locs.Add(ll);
             }
             return Json(new SelectList(

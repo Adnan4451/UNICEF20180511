@@ -301,10 +301,8 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Properties\PublishProfiles\a.pubxml" />
     <Content Include="ReportingEngine.Master" />
-    <None Include="Properties\PublishProfiles\DHA-WMS%2814Jully%29.pubxml" />
-    <None Include="Properties\PublishProfiles\PPAF-New.pubxml" />
+    <None Include="Properties\PublishProfiles\UNICEF.pubxml" />
     <None Include="Properties\PublishProfiles\WMSProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -398,6 +396,16 @@
     <Content Include="Views\LeaveType\Edit.cshtml" />
     <Content Include="Views\LeaveType\Index.cshtml" />
     <Content Include="Views\Home\CompanyInfo.cshtml" />
+    <Content Include="Views\OTEditor\EditorOT.cshtml" />
+    <Content Include="Views\OTEditor\Index.cshtml" />
+    <Content Include="Views\LeaveJCEditor\Index.cshtml" />
+    <Content Include="Views\PollDataImport\Index.cshtml" />
+    <Content Include="Views\Grade\Create.cshtml" />
+    <Content Include="Views\Grade\Delete.cshtml" />
+    <Content Include="Views\Grade\Details.cshtml" />
+    <Content Include="Views\Grade\Edit.cshtml" />
+    <Content Include="Views\Grade\Index.cshtml" />
+    <Content Include="Views\Home\DashboardContainer.cshtml" />
     <None Include="Views\User\Partials\CityAccess.cshtml" />
     <None Include="Views\User\Partials\LocationAccess.cshtml" />
     <None Include="Views\User\Partials\RegionAccess.cshtml" />
@@ -449,6 +457,7 @@
     <Compile Include="Controllers\EmpTypeController.cs" />
     <Compile Include="Controllers\Filters\CustomActionAttribute.cs" />
     <Compile Include="Controllers\Filters\CustomControllerAttributes.cs" />
+    <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\HolidayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -456,15 +465,19 @@
     <Compile Include="Controllers\joJobCardDetail.cs" />
     <Compile Include="Controllers\LeaveApprovalController.cs" />
     <Compile Include="Controllers\LeaveController.cs" />
+    <Compile Include="Controllers\LeaveJCEditorController.cs" />
     <Compile Include="Controllers\LeaveSettingsController.cs" />
     <Compile Include="Controllers\LeaveTypeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LvAppController.cs" />
     <Compile Include="Controllers\LvShortController.cs" />
     <Compile Include="Controllers\OptionController.cs" />
+    <Compile Include="Controllers\OTEditorController.cs" />
+    <Compile Include="Controllers\PollDataImportController.cs" />
     <Compile Include="Controllers\ReaderController.cs" />
     <Compile Include="Controllers\ReaderTypeController.cs" />
     <Compile Include="Controllers\RosterController.cs" />
+    <Compile Include="Controllers\RosterDetailRController.cs" />
     <Compile Include="Controllers\Roster\RosterModel.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -486,6 +499,7 @@
     </Compile>
     <Compile Include="HelperClass\AttDeptSummary.cs" />
     <Compile Include="HelperClass\GraphClass.cs" />
+    <Compile Include="HelperClass\ReportModal.cs" />
     <Compile Include="HelperClass\StringCipher.cs" />
     <Compile Include="MannualAttendance\ManualProcess.cs" />
     <Compile Include="Models\AttData.cs">
@@ -548,6 +562,9 @@
     <Compile Include="Models\EmpFp.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmpLocation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EmpPhoto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -555,6 +572,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpView.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grade.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Holiday.cs">
@@ -653,6 +673,9 @@
     <Compile Include="Models\Shift.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -665,6 +688,12 @@
     <Compile Include="Models\ViewAttData.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewAttMainEdit.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewDepartment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewDetailAttData.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -674,10 +703,22 @@
     <Compile Include="Models\ViewJobCardApp.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewJobCardEmp.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewJobCardTime.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewLocation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewLvApplication.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewMonthlyData.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewMonthlyDataPer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewMultipleInOut.cs">
@@ -877,6 +918,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\RDLC\AttendancePer.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DailyParadeState.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRAbsent.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRAttendance.rdlc" />
@@ -889,13 +931,21 @@
     <EmbeddedResource Include="Reports\RDLC\DRMultipleInOut.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DROverTime.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRPresent.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\DSConsolidated.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\EditAttendance.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpAttSummary.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\Employee.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmployeeDetail.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\EmpSummary.rdlc" />
-    <EmbeddedResource Include="Reports\RDLC\MLvApplication.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\GTimeINOUT.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\GTimeINOUTDept.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\JobCard.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\JobCardReport.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\LeaveApplication.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\MRFlexyDetailExcelP.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRShortLeave.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\LeaveReport.rdlc" />
+    <EmbeddedResource Include="Reports\RDLC\SummaryReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

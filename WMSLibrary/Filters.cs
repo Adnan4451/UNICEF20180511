@@ -49,6 +49,7 @@ namespace WMSLibrary
             filtersModel.SectionFilter = new List<FiltersAttributes>();
             filtersModel.ShiftFilter = new List<FiltersAttributes>();
             filtersModel.TypeFilter = new List<FiltersAttributes>();
+            filtersModel.GenderFilter = new List<FiltersAttributes>();
             return filtersModel;
         }
 
@@ -164,6 +165,13 @@ namespace WMSLibrary
                             filtersModel.EmployeeFilter.RemoveAt(k);
                     }
                     break;
+                case "Gender":
+                    for (int k = 0; k < filtersModel.GenderFilter.Count; k++)
+                    {
+                        if (filtersModel.GenderFilter[k].ID == ItemID)
+                            filtersModel.GenderFilter.RemoveAt(k);
+                    }
+                    break;
             }
         }
 
@@ -203,10 +211,10 @@ namespace WMSLibrary
                     if (filtersModel.EmployeeFilter.Where(aa => aa.ID == ItemID).Count() == 0)
                         filtersModel.EmployeeFilter.Add(new FiltersAttributes() { ID = ItemID, FilterName = ItemName });
                     break;
-                //case "Crew":
-                //    if (filtersModel.CrewFilter.Where(aa => aa.ID == ItemID).Count() == 0)
-                //        filtersModel.CrewFilter.Add(new FiltersAttributes() { ID = ItemID, FilterName = ItemName });
-                //    break;
+                case "Gender":
+                    if (filtersModel.GenderFilter.Where(aa => aa.ID == ItemID).Count() == 0)
+                        filtersModel.GenderFilter.Add(new FiltersAttributes() { ID = ItemID, FilterName = ItemName });
+                   break;
 
             }
         }
@@ -246,6 +254,9 @@ namespace WMSLibrary
                 //    break;
                 case "Type":
                     SetGridViewCheckStateChild(gv, filtersModel, filtersModel.TypeFilter);
+                    break;
+                case "Gender":
+                    SetGridViewCheckStateChild(gv, filtersModel, filtersModel.GenderFilter);
                     break;
             }
 
@@ -292,5 +303,6 @@ namespace WMSLibrary
         //public List<FiltersAttributes> CrewFilter = new List<FiltersAttributes>();
         public List<FiltersAttributes> EmployeeFilter = new List<FiltersAttributes>();
         public List<FiltersAttributes> TypeFilter = new List<FiltersAttributes>();
+        public List<FiltersAttributes> GenderFilter = new List<FiltersAttributes>();
     }
 }

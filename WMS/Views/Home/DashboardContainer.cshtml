@@ -1,0 +1,218 @@
+﻿@model WMS.Controllers.DashboardValues
+@{Layout = null;
+      }
+   <link rel="stylesheet" href="~/Content/Dashboard/AdminLTE.min.css">
+<link rel="stylesheet" href="~/Content/Dashboard/_all-skins.min.css">
+<article style="background-color: #F4F4F4;">
+    <section class="hold-transition skin-blue sidebar-mini">
+        <div>
+            <!-- Content Wrapper. Contains page content -->
+            <div style="background-color: #F4F4F4;">
+                <!-- Content Header (Page header) -->             
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Info boxes -->
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Registered (@Model.LocationName)</span>
+                                    <span class="info-box-number">
+                                        <label>@Model.TotalEmps</label>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-green"><i class="ion ion-android-person"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Present</span>
+                                    <span class="info-box-number">
+                                        <label>@Model.Present</label>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- fix for small devices only -->
+                        <div class="clearfix visible-sm-block"></div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-red"><i class="ion-ios-person-outline"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Absent</span>
+                                    <span class="info-box-number">
+                                        <label>@Model.Absent</label>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-yellow"><i class="ion-ios-calendar"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Leaves</span>
+                                    <span class="info-box-number">
+                                        <label>@Model.Leaves</label>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <section class="box-footer">
+                        <h4>Totals in all Locations</h4>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="progress-group">
+                                <span class="progress-text">Total Employees</span>
+                                <span class="progress-number"><b>
+                                    <label>@Model.TotalEmpAllLoc</label>
+                                </b></span>
+                                <div class="progress sm">
+                                    <div class="progress-bar progress-bar-aqua" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <!-- /.progress-group -->
+                            <div class="progress-group">
+                                <span class="progress-text">Total Present</span>
+                                <span class="progress-number"><b>
+                                    <label>@Model.TotalPresent</label>
+                                </b></span>
+                                <div class="progress sm">
+                                    <div class="progress-bar progress-bar-green" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <!-- /.progress-group -->
+                            <!-- /.progress-group -->
+                            <div class="progress-group">
+                                <span class="progress-text">Total Absent</span>
+                                <span class="progress-number"><b>
+                                    <label>@Model.TotalAbsent</label>
+                                </b></span>
+                                <div class="progress sm">
+                                    <div class="progress-bar progress-bar-yellow" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-group">
+                                <span class="progress-text">Total Visitors</span>
+                                <span class="progress-number"><b>
+                                    <label>@Model.TotalVisitors</label>
+                                </b></span>
+                                <div class="progress sm">
+                                    <div class="progress-bar progress-bar-green" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <p class="text-center">
+                            </p>
+                            <div class="progress-group">
+                                <span class="progress-text">Total Leaves</span>
+                                <span class="progress-number"><b>
+                                    <label>@Model.TotalLeaves</label>
+                                </b></span>
+                                <div class="progress sm">
+                                    <div class="progress-bar progress-bar-pink" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <!-- /.progress-group -->
+                            <div class="progress-group">
+                                <span class="progress-text">Training</span>
+                                <span class="progress-number"><b>
+                                    <label>@Model.JCTraining</label>
+                                </b></span>
+                                <div class="progress sm">
+                                    <div class="progress-bar progress-bar-red" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <!-- /.progress-group -->
+                            <!-- /.progress-group -->
+                            <div class="progress-group">
+                                <span class="progress-text">Official Duty</span>
+                                <span class="progress-number"><b>
+                                    <label>@Model.JCOfficialDuty</label>
+                                </b></span>
+                                <div class="progress sm">
+                                    <div class="progress-bar progress-bar-green" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-group">
+                                <span class="progress-text">Field Visit</span>
+                                <span class="progress-number"><b>
+                                    <label>@Model.JCFieldTour</label>
+                                </b></span>
+                                <div class="progress sm">
+                                    <div class="progress-bar progress-bar-aqua" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <!-- /.progress-group -->
+                        </div>
+                        <div class="col-md-9 col-sm-12 col-xs-12">
+                            <!-- LINE CHART -->
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Monthly Present Trend (@Model.LocationName)</h3>
+                                </div>
+                                <div id="linechart_material"></div>
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </section>
+                </section>
+                <!-- /.content -->
+            </div>
+        </div>
+    </section>
+</article>
+<script type="text/javascript">
+    $(document).ready(function () {
+        google.charts.load('current', { 'packages': ['line', 'corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var button = document.getElementById('change-chart');
+            var chartDiv = document.getElementById('chart_div');
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Month');
+            data.addColumn('number',@Html.Raw(Json.Encode(Model.LocationName)));
+            var list = @Html.Raw(Json.Encode(Model.DashboardGraphObj));
+            for (var i = 0; i <= @Model.DashboardGraphObj.Count -1; i++) 
+            {
+                var date = new Date(list[i].XAxis);
+                data.addRow([date,list[i].YAxis]);
+            }
+            var options = {
+                hAxis: {
+                    format: 'MMM dd, yyyy',
+                    gridlines: { count: 36 }
+                },
+                legend: {position: 'top'},
+                chart: {
+                    //title: 'Box Office Earnings in First Two Weeks of Opening',
+                    //subtitle: 'in millions of dollars (USD)'
+                },
+                width: 800,
+                height: 300
+            };
+
+            var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+            chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+    });
+</script>

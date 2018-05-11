@@ -2,7 +2,7 @@
     $('#ShiftList').empty();
     //var convalue = $('#CatID').val() + "s" + $('#CompanyID').val();
     //var URL = '/WMS/Emp/EmpTypeList';
-      var URL = '/Shift/ShiftList';
+    var URL = '/USAS/Shift/ShiftList';
     $.getJSON(URL, function (data) {
         var items;
         $.each(data, function (i, state) {

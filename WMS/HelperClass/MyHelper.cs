@@ -119,6 +119,8 @@ namespace WMS.HelperClass
             //    check = true;
             if (fm.LocationFilter.Count > 0)
                 check = true;
+            if (fm.GenderFilter.Count > 0)
+                check = true;
             //if (fm.DivisionFilter.Count > 0)
             //    check = true;
             if (fm.ShiftFilter.Count > 0)

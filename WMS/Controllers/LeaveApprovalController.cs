@@ -16,7 +16,6 @@ namespace WMS.Controllers
         {
             return View();
         }
-
         // GET: /LeaveApproval/PendingLeavesList -- Returns list of emps acc to the user info
         public JsonResult PendingLeavesList()
         {
@@ -34,7 +33,6 @@ namespace WMS.Controllers
             });
             return Json(collection, JsonRequestBehavior.AllowGet);
         }
-
         // POST: /LeaveApproval -- post with selected Leaves Data -- post back the selected Leave to Approve
         [HttpPost]
         public ActionResult Index(List<LvApplication> apps)
@@ -47,7 +45,6 @@ namespace WMS.Controllers
             }
             return View();
         }
-
         // GET: /LeaveApproval/ApproveAll  -- Get request to approve all leaves
         public ActionResult ApproveAll()
         {
@@ -60,7 +57,6 @@ namespace WMS.Controllers
             }
             return Json("success", JsonRequestBehavior.AllowGet);
         }
-
         // Get: /LeaveApproval/ApproveLeave -- Request to approve single leave with ID
         public JsonResult ApproveLeave(int LvID)
         {

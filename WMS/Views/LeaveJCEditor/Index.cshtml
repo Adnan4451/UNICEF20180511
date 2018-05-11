@@ -1,0 +1,116 @@
+﻿@model WMS.Controllers.VMLeaveEditor
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br>
+<br>
+@using (Html.BeginForm("JCLeaveEditor", "LeaveJCEditor", FormMethod.Get))
+{
+    <legend>JC Leave Editor</legend>
+ <p class="ErorrMessage">@ViewBag.Messages</p>;
+    <div class="widget-body">
+        <div class="well bs-component">
+            <div class="form-inline">
+                <form class="form-inline" action="/action_page.php">
+                    <div class="form-group">
+                        <label for="email">From Date:</label>
+                        @Html.EditorFor(model => model.FromDate)
+                        @Html.ValidationMessageFor(model => model.FromDate)
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">To Date:</label>
+                        @Html.EditorFor(model => model.ToDate)
+                        @Html.ValidationMessageFor(model => model.ToDate)
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Employee No:</label>
+                        @Html.TextBoxFor(model => model.EmpNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EmpNo)
+                    </div>
+                    <input type="submit" value="Next" class="btn btn-sm btn-success" />
+                </form>
+            </div>
+        </div>
+    </div>
+           
+}
+<h6 style="color: red">@ViewBag.message</h6>
+<h6 style="color: red">@ViewBag.validtonmessage</h6>
+<h6 style="color: red">@ViewBag.validtonmessageforJC</h6>
+@using (Html.BeginForm("UpdateEditor", "LeaveJCEditor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.EmpID)
+    @Html.HiddenFor(model => model.EmpNo)
+    @Html.HiddenFor(model => model.FromDate)
+    @Html.HiddenFor(model => model.ToDate)
+    @Html.HiddenFor(model => model.Count)
+    <div class="row">
+    </div>
+    <br />
+    <section class="col-md-12">
+        <section class="col-md-12">
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true)
+                <div class="col-md-12">
+                    <table class="table table-bordered table-hover  table-condensed">
+                        <thead>
+                            <tr class="table-header">
+                                <th>Emp No
+                                </th>
+                                <th class="text-bold">Emp Name
+                                </th>
+                                <th class="text-bold">Date
+                                </th>
+                                <th class="text-bold">Section
+                                </th>
+                                <th class="text-bold">Status
+                                </th>
+                                <th class="text-bold">Leaves/Job Cards
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.dbViewAttData != null)
+                            {
+                                foreach (var item in Model.dbViewAttData)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EmpNo)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EmpName)
+                                    </td>
+                                    <td>
+                                        @item.AttDate.Value.ToString("dd-MM-yyyy")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SectionName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Remarks)
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("EmpDate" + @item.EmpDate.ToString(), new SelectList(Model.dropdowns), new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                        @*@Html.DropDownList("Leave", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth",@name="EmpDate-@item.EmpDate" })*@
+                                    </td>
+                                </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Save" class="btn btn-sm btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+}

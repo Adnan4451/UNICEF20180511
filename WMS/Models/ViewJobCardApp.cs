@@ -42,5 +42,6 @@ namespace WMS.Models
         public string Remarks { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public Nullable<int> CriteriaDate { get; set; }
+        public Nullable<byte> Gender { get; set; }
     }
 }

@@ -1,22 +1,20 @@
 ﻿@model WMS.Models.EmpType
 
 @{
-    ViewBag.Title = "Employee Type Create";
+    ViewBag.Title = "Create";
 }
-<br />
+
+<div>
+      <form class ="form-inline" role="form">
+          <div class="form-group "> <h2>Add Employee Type</h2> </div>
+      </form>  
+    </div>
+ <hr />
 
 @using (Html.BeginForm()) 
 {
-     <div class="well bs-component">
-        <form class="form-horizontal" action="~/Views/EmpType/Create" enctype="multipart/form-data" method="post">
-             @Html.AntiForgeryToken()
-            <fieldset>
-        <div>
-      <form class ="form-inline" role="form">
-          <div class="form-group "> <h3>Add Employee Type</h3> </div>
-      </form>  
-    </div>
-                <hr />
+    @Html.AntiForgeryToken()
+    
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
@@ -27,15 +25,13 @@
                 @Html.ValidationMessageFor(model => model.TypeName)
             </div>
         </div>
-
-       @* <div class="form-group">
-            <div class="control-label col-md-2">Category</div>
+        <div class="form-group">
+            <div class="control-label col-md-2">AL Increment</div>
             <div class="col-md-10">
-                @Html.DropDownList("CatID", null,new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"})
-                @Html.ValidationMessageFor(model => model.CatID)
+                @Html.TextBoxFor(model => model.ALIncrement,new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ALIncrement)
             </div>
-        </div>*@
-       
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default btn-success" />
@@ -43,14 +39,4 @@
              </div>
         </div>
     </div>
-                </fieldset>
-            </form>
-         </div>
 }
-<style>
-    hr {
-        color: #fff;
-        background-color: #fff;
-        height: 1px;
-    }
-</style>

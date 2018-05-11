@@ -2,7 +2,7 @@
     $('#buttonId').click(function () {
         var empNo = document.getElementById("EmpNo").value;
         //var URL = '/WMS/LvApp/GetEmpInfo';
-        var URL = '/Emp/GetEmpInfo';
+        var URL = '/USAS/Emp/GetEmpInfo';
         $.getJSON(URL, { empNo: empNo }, function (data) {
             var values = data.split('sss');
             document.getElementById("EName").value = values[0];

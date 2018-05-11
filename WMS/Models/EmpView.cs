@@ -40,5 +40,9 @@ namespace WMS.Models
         public string ShiftName { get; set; }
         public short DeptID { get; set; }
         public Nullable<bool> Deleted { get; set; }
+        public string GradeName { get; set; }
+        public Nullable<int> GradeID { get; set; }
+        public Nullable<byte> Gender { get; set; }
+        public Nullable<double> ALIncrement { get; set; }
     }
 }

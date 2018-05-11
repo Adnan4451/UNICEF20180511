@@ -11,7 +11,7 @@
     document.getElementById("ELBCPL").innerHTML = "CPL: 0";
     $('#buttonId').click(function () {
         var EmpNo = document.getElementById("EmpNo").value;                
-        var URL = '/LvApp/GetEmpInfo';
+        var URL = '/USAS/LvApp/GetEmpInfo';
         $.getJSON(URL, { EmpNo: EmpNo }, function (data) {
             var values = data.split('@');
             document.getElementById("ELName").innerHTML = values[0];
@@ -20,7 +20,7 @@
             document.getElementById("ELType").innerHTML = values[3];
             document.getElementById("ELJoin").innerHTML = values[4];
         });
-        var URL2 = '/LvApp/GetEmpLeaveBalance';
+        var URL2 = '/USAS/LvApp/GetEmpLeaveBalance';
         $.getJSON(URL2, { EmpNo: EmpNo }, function (data) {
             var values = data.split('@');
             document.getElementById("ELBCasual").innerHTML = values[0];

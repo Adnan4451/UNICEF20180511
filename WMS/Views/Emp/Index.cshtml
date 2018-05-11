@@ -1,17 +1,21 @@
-﻿@*@model IEnumerable<WMSModel.Emp>*@
+﻿@*@model IEnumerable<wmsmodel.emp>*@
 @model PagedList.IPagedList<WMS.Models.EmpView>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Employees";
 }
+@{ WMS.Models.User user = (WMS.Models.User)HttpContext.Current.Session["LoggedUser"]; }
 <p>
 </p>
 <div>
     <div>
       <form class ="form-inline" role="form">
           <div class="form-group"> <h2>Employees</h2> </div>
+ @if (user.CanAdd == true)
+{
           <div class="form-group CreateBtnMargin"><p>@Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-xs btn-success" })</p></div>
+}
           <div class="form-group pull-right"  style="margin-top:15px">
               @using (Html.BeginForm("Index", "Emp", FormMethod.Get))
                 {<p><span style="font-weight:bold">Find: </span>  @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" } )  
@@ -43,6 +47,9 @@
                 <th>
                      @Html.ActionLink("Directorate/Branch", "Index", new { sortOrder = ViewBag.SectionSortParm })
                 </th>
+                 <th>
+                    Location
+                </th>
                 <th>
                     Status
                 </th>
@@ -51,7 +58,7 @@
             @foreach (var item in Model) {
             <tr>
                 <td>
-                    <img src="/PPAF/Emp/RetrieveImage/@item.EmpID" alt="" height=58 width=55/>
+                    <img src="/Emp/RetrieveImage/@item.EmpID" alt="" height=58 width=55/>
                 </td>
                 <td>
                    @Html.DisplayFor(modelItem => item.EmpNo)
@@ -68,6 +75,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.SectionName)
                 </td> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocName)
+                </td> 
                  <td>
                      @if (item.Status==true)
                     {
@@ -80,9 +90,18 @@
                     }
                 </td>
                 <td>
+ @if (user.CanEdit == true)
+{
                     @Html.ActionLink(" ", "Edit", new { id=item.EmpID } , new { @class = "glyphicon glyphicon-pencil btn btn-warning btn-xs btn-EditViewDelete" })
+}
+ @if (user.CanView == true)
+{
                     @Html.ActionLink(" ", "Details", new { id = item.EmpID }, new { @class = "glyphicon glyphicon-list btn btn-info btn-xs btn-EditViewDelete" }) 
+}
+ @if (user.CanDelete == true)
+{
                     @Html.ActionLink(" ", "Delete", new { id=item.EmpID }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-xs btn-EditViewDelete" })
+}
                 </td>
             </tr>
         }
@@ -95,4 +114,3 @@
           <div class="form-group ">@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))</div>
           <div class="form-group pull-right">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
      </div>
-

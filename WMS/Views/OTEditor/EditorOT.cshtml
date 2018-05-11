@@ -1,0 +1,111 @@
+﻿@model WMS.Controllers.VMOTEntry
+@{
+    ViewBag.Title = "EditAttWizardOne";
+}
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('.focus :input').focus();
+    });
+</script>
+<h3>Edit Overtime for  </h3>
+@using (Html.BeginForm("EditorOTNew", "OTEditor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="row"> 
+</div>
+    <br />
+    <section class="col-md-12">
+        <section class="col-md-6">
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.EmpNo)
+        @Html.HiddenFor(model => model.dbViewAttData.FirstOrDefault().EmpDate)  
+        @Html.HiddenFor(model => model.dbViewAttData.FirstOrDefault().AttDate)             
+            <div class="col-md-6">
+           @*<h4 style="margin-bottom:20px;">Enter New Time In and Out</h4>*@                            
+            <table id="dynamic-table" class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+
+                                <tr>
+                                    <th><input type="checkbox" class="ace" id="chkSelectAllEmp" />Emp No</th>
+                                    <th class="text-bold">
+                                        Emp Name
+                                    </th>
+                                    <th class="text-bold">
+                                        Date
+                                    </th>
+                                    <th class="text-bold">
+                                        Time IN
+                                    </th>
+                                    <th class="text-bold">
+                                        Time Out
+                                    </th>
+                                    <th class="text-bold">
+                                        Work
+                                    </th>
+                                    <th class="text-bold">
+                                        Claimed OT
+                                    </th>
+                                    <th class="text-bold">
+                                        Approved OT
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.dbViewAttData)
+                                {
+                                <tr>
+                                    <td class="text-nowrap"><input type="checkbox" class="chkSelectEmp" name="SelectedEmpIds" value="@item.EmpNo" /></td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EmpName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AttDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TimeIn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TimeOut)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.WorkMin)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OTMin)
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(modelItem => item.ApprovedOT)
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>                                        
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-sm btn-success" />
+                    <a href="~/Editor" class="btn btn-sm btn-warning">Back</a>
+                </div>
+            </div>
+@*            <p style="color:green; font-size:15px;">@ViewBag.SucessMessage</p>*@
+        </div>         
+    </div>
+            </section>       
+ 
+    </section>
+}
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#date1").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+        $("#phone").mask("(999) 999-9999");
+        $("#tin").mask("99-9999999");
+        $("#ssn").mask("999-99-9999");
+    });
+</script>
+

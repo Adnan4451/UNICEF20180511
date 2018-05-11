@@ -17,7 +17,7 @@ namespace WMS.HelperClass
                 EmpPhoto _EmpPhoto = new EmpPhoto();
                 int empPhotoID = 0;
                 _empPhotoList = context.EmpPhotoes.Where(aa => aa.EmpID == _Emp.EmpID).ToList();
-               
+
                 if (_empPhotoList.Count > 0)
                 {
                     _EmpPhoto = context.EmpPhotoes.First(aa => aa.EmpID == _Emp.EmpID);
@@ -43,7 +43,7 @@ namespace WMS.HelperClass
                 catch (Exception ex)
                 {
                     return empPhotoID;
-                } 
+                }
             }
 
         }

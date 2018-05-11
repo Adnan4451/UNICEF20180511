@@ -1,144 +1,201 @@
 ﻿@model WMS.Models.User
 
 @{
-    ViewBag.Title = "User Create";
+    ViewBag.Title = "Create";
 }
-<br />
-@using (Html.BeginForm()) 
+<div>
+    <form class="form-inline" role="form">
+        <div class="form-group ">
+            <h2>Create User</h2>
+        </div>
+    </form>
+</div>
+<hr />
+
+@using (Html.BeginForm())
 {
-     <div class="well bs-component">
-        <form class="form-horizontal" action="~/Views/User/Create" enctype="multipart/form-data" method="post">
-             @Html.AntiForgeryToken()
-            <fieldset>
-     <div>
-      <form class ="form-inline" role="form">
-          <div class="form-group "> <h3>Create new User</h3> </div>
-      </form>  
-    </div>
-                <hr/>
+    @Html.AntiForgeryToken()
     <div class="form-horizontal">
-    @Html.ValidationSummary(true)
-      <div ng-app="UserLocation" ng-controller="myCtrl" data-ng-init="initFunction()">
-      
-        <section class="col-md-12">
-             <div class="form-group">
-               <div class="control-label col-md-2">Username</div>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.UserName,new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.UserName)
-@*@Html.ActionLink("View AD Users", "ListOfADUser",null,new { @class = "" })<a target="_blank" href="~/User/ListOfADUser">List of AD Users</a>*@
+        @Html.ValidationSummary(true)
+        <div ng-app="UserLocation" ng-controller="myCtrl" data-ng-init="initFunction()">
+
+            <section class="col-md-12">
+                <div class="form-group">
+                    <div class="control-label col-md-2">Username</div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-               <div class="control-label col-md-2">Password</div>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Password,new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Password)
+                <div class="form-group">
+                    <div class="control-label col-md-2">Password</div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
                 </div>
-             </div>
-            <div class="form-group">
-               <div class="control-label col-md-2">User Type</div>
-                <div class="col-md-10">
-                    @Html.DropDownList("UserType", new List<SelectListItem>
+                <div class="form-group">
+                    <div class="control-label col-md-2">User Type</div>
+                    <div class="col-md-10">
+                        @Html.DropDownList("UserType", new List<SelectListItem>
                     { 
                         new SelectListItem { Text = "Admin", Value = "true"},
                         new SelectListItem { Text = "Restricted", Value = "false"}
-                    },new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth"}) 
+                    }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                    </div>
                 </div>
-             </div>
+                <div class="form-group">
+                    <div class=" col-md-2 text-right">Status</div>
+                    <div class="col-md-10">
+                        @Html.CheckBox("Status")
+
+                    </div>
+                </div>
+
+                @*<div class="form-group" name="ForUserOnly" id="ForUserOnly">
+                    <div class="col-md-2 text-right"></div>
+                    <div class="col-md-3">
+                        <input type="hidden" placeholder="eUnits.g Lahore" data-ng-model="section.name" id="uSectionCount" name="uSectionCount" class="form-control" value="{{sections.length}}">
+                        <div class="input-group" ng-repeat="sec in sections">
+                            <input disabled type="text" placeholder="e.g Lahore" id="testSection{{$index + 1}}" data-ng-model="sec.name" class="form-control">
+                            <input type="hidden" placeholder="e.g Lahore" data-ng-model="sec.name" id="uSection{{$index + 1}}" name="uSection{{$index + 1}}" class="form-control" value="{{sec.name}}">
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="removeSection($index)" class="btn btn-default"><i class="fa fa-times"></i>[X]</button>
+                            </span>
+                        </div>
+                        <div ng-show="isAddingSection">
+                            <select type="text" placeholder="Add a Section" data-ng-model="newSection.name" class="form-control">
+                                <option ng-repeat="sec in AllSections">{{sec.Text}}</option>
+                            </select>
+                            <a class="btn btn-default btn-sm" ng-click="addSection()">Add</a>
+                            <a href="" ng-click="isAddingSection = false">Done Adding</a>
+                        </div>
+                        <p><a href="" ng-click="isAddingSection = true">+ Add Units</a></p>
+                    </div>
+                </div>*@
+                <div id="ForUserOnly">
+                    <div class="form-group">
+                        <div class="control-label col-md-2">Locations</div>
+                        <div class="col-md-6">
+                            @Html.DropDownList("Location", null, new { @id = "Location", @multiple = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-2">Departments</div>
+                        <div class="col-md-6">
+                            @Html.DropDownList("Department", null, new { @id = "Department", @multiple = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2 text-right">Operations</div>
+                    <div class="col-md-10">
+                        @Html.CheckBox("CanAdd")
+                        <label>Can Add</label>
+                        @Html.CheckBox("CanEdit")
+                        <label>Can Edit</label>
+                        @Html.CheckBox("CanDelete")
+                        <label>Can Delete</label>
+                        @Html.CheckBox("CanView")
+                        <label>Can View</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class=" col-md-2 text-right">Forms</div>
+                    <div class="col-md-10">
+                        @Html.CheckBox("MHR")
+                        <label>HR</label>
+                        @Html.CheckBox("MOption")
+                        <label>Options</label>
+                        @Html.CheckBox("MLeave")
+                        <label>Leaves</label>
+                       @* @Html.CheckBox("MRoster")
+                        <label>Roster</label>*@
+                        @Html.CheckBox("MUser")
+                        <label>Users</label>
+                        @Html.CheckBox("MDevice")
+                        <label>Devices</label>
+                        @Html.CheckBox("MDesktop")
+                        <label>Desktop</label>
+                        @Html.CheckBox("MEditAtt")
+                        <label>Edit Attendance</label>
+                        @Html.CheckBox("MProcess")
+                        <label>Process Attendance</label>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2 text-right">Reports</div>
+                    <div class="col-md-10">
+                        @Html.CheckBox("MRLeave")
+                        <label>Leaves</label>
+                        @Html.CheckBox("MRDailyAtt")
+                        <label>Daily Attendance</label>
+                        @Html.CheckBox("MRMonthly")
+                        <label>Monthly Attendance</label>
+                        @*@Html.CheckBox("MRAudit")
+                        <label>Audit</label>*@
+                        @*@Html.CheckBox("MRManualEditAtt")
+                        <label>Edit Attendance</label>*@
+                        @Html.CheckBox("MRDetail")
+                        <label>Detailed</label>
+                        @*@Html.CheckBox("MRSummary")
+                        <label>Summary</label>*@
+                    </div>
+                </div>
+            </section>
+
             <div class="form-group">
-               <div class=" col-md-2 text-right">Status</div>
-                <div class="col-md-10">
-                    @Html.CheckBox("Status") 
-                        
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="button" value="Create" class="btn btn-default btn-success" />
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary " })
                 </div>
             </div>
 
-            <div class="form-group" name="ForUserOnly" id="ForUserOnly">
-            <div class="col-md-2 text-right"></div>
-            <div class="col-md-3">
-                <input type="hidden" placeholder="eUnits.g Lahore" data-ng-model="section.name" id="uSectionCount" name="uSectionCount" class="form-control" value="{{sections.length}}">
-                <div class="input-group" ng-repeat="sec in sections">
-                    <input disabled type="text" placeholder="e.g Lahore" id="testSection{{$index + 1}}" data-ng-model="sec.name" class="form-control">
-                    <input type="hidden" placeholder="e.g Lahore" data-ng-model="sec.name" id="uSection{{$index + 1}}" name="uSection{{$index + 1}}" class="form-control" value="{{sec.name}}">
-                    <span class="input-group-btn">
-                        <button type="button" ng-click="removeSection($index)" class="btn btn-default"><i class="fa fa-times"></i>[X]</button>
-                    </span>
-                </div>
-                 <div  ng-show="isAddingSection">
-                    @*<input type="text" placeholder="Add a Location" data-ng-model="newLocation.name" class="form-control">*@
-                    <select type="text" placeholder="Add a Section" data-ng-model="newSection.name" class="form-control">
-                        <option ng-repeat="sec in AllSections">{{sec.Text}}</option>
-                    </select>
-                    <a class="btn btn-default btn-sm" ng-click="addSection()">Add</a>
-                    <a href="" ng-click="isAddingSection = false">Done Adding</a>
-                </div>
-                <p><a href="" ng-click="isAddingSection = true">+ Add Units</a></p>
-            </div>
-          </div>
-          
-            
-         <div class="form-group">
-             <div class="col-md-2 text-right">Operations</div>
-             <div class="col-md-10">
-                 @Html.CheckBox("CanAdd") <label>Can Add</label>
-                 @Html.CheckBox("CanEdit") <label>Can Edit</label>
-                 @Html.CheckBox("CanDelete") <label>Can Delete</label>
-                 @Html.CheckBox("CanView") <label>Can View</label>
-             </div>
-          </div>
-            <div class="form-group">
-                <div class=" col-md-2 text-right">Forms</div>
-                <div class="col-md-10">
-                    @Html.CheckBox("MHR") <label>HR</label>
-                    @Html.CheckBox("MLeave") <label>Leaves</label>
-                    @Html.CheckBox("MUser") <label>Users</label>
-                    @Html.CheckBox("MDevice") <label>Readers</label>
-                    @Html.CheckBox("MEditAtt") <label>Edit Attendance</label>
-                    @Html.CheckBox("MProcess") <label>Process Attendance</label>
-                    
-                </div>
-            </div>
-         <div class="form-group">
-                <div class="col-md-2 text-right">Reports</div>
-                <div class="col-md-10">
-                        @Html.CheckBox("MRLeave") <label>Leaves</label>
-                        @Html.CheckBox("MRDailyAtt") <label>Daily Attendance</label>
-                        @Html.CheckBox("MRMonthly") <label>Monthly Attendance</label>                                       
-                        @Html.CheckBox("MRDetail") <label>Detailed</label>
-                
-                </div>
-            </div>
-     </section>
-        
-
-         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default btn-success" />
-                 @Html.ActionLink("Back to List", "Index",null,new { @class = "btn btn-primary " })
-            </div>
         </div>
-      </div>
     </div>
-                </fieldset>
-            </form>
-         </div>
+    
 }
-@*<div>
-    <div ng-controller="myCtrl" data-ng-init="initFunction()">
- 	<p>Name: <input type="text" ng-model="name"></p>
- 	<p>{{name}}</p>
-        
-</div>
-    </div>*@
-  
-<script src="~/Scripts/angular/MainController.js"></script>  
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/angular/MainController.js"></script>
 <script src="~/Scripts/angular/UserController.js"></script>
 <script src="~/Scripts/UserScripts.js"></script>
-<style>
-    hr {
-        color: #fff;
-        background-color: #fff;
-        height: 1px;
-    }
-</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+<script>
+    $(document).ready(function () {
+        $('#Location').multiselect({
+            nonSelectedText: 'Select Locations',
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            includeSelectAllOption: true,
+            buttonWidth: '200px'
+        });
+        $('#Department').multiselect({
+            nonSelectedText: 'Select Departments',
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            includeSelectAllOption: true,
+            buttonWidth: '200px'
+        });
+
+        $('#button').click(function () {
+            var selectedLocation = $('#Location');
+            
+            var selectedDepts = $('#Department');
+
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                url: '/User/GETIDs',
+                type: 'POST',
+                cache: false,
+                dataType: "json",              
+                data: { Locations: location, Department: departments },
+                success: function (result) {
+                    alert(result);
+                }
+            });
+        });
+    });
+</script>
+
